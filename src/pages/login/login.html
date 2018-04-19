@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Bold Telecom</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding="true">
+    <ion-list>
+
+        <ion-item>
+          <ion-label floating>E-mail</ion-label>
+          <ion-input type="email"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label floating>Senha</ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Permanecer conectado</ion-label>
+            <ion-checkbox [(ngModel)]="permanecerConectado"></ion-checkbox>
+        </ion-item>
+        
+        <button ion-button block>Login</button>       
+
+      </ion-list>
+        
+      <a>Esqueci minha senha</a>
+
+
+      <ion-footer align="center">
+          <a color="light" [navPush]="registerPage">Não tem conta? 
+              <strong>Registrar</strong>
+          </a>
+      </ion-footer>
+      
+  </ion-content>
+  

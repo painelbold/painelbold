@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Bold Telecom</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding="true">
+    <ion-list>
+        <ion-item>
+          <ion-label floating>Nome</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label floating>E-mail</ion-label>
+          <ion-input type="email"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+            <ion-label floating>Telefone</ion-label>
+            <ion-input type="tel"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+            <ion-label floating>Senha</ion-label>
+            <ion-input type="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Confirmar Senha</ion-label>
+            <ion-input type="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Li e concordo com os <a>Termos de Uso</a> e <a>Política de Privacidade</a></ion-label>
+            <ion-checkbox [(ngModel)]="concordaPolitica"></ion-checkbox>
+        </ion-item>
+
+        <button ion-button block>CADASTRAR</button>       
+
+      </ion-list>
+
+      <ion-footer align="center">
+            <a color="light" (click)="goBack($event)">Já tem conta? 
+                <strong>Entre</strong>
+            </a>
+        </ion-footer>
+  </ion-content>
+  
