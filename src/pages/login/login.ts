@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { RegisterPage } from '../../pages/register/register'
+import { RegisterPage } from '../register/register'
+import { ListPage } from '../list/list'
 
 @Component({
   selector: 'page-login',
@@ -15,5 +16,8 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
- 
+  login(event) {
+    // That's right, we're pushing to ourselves!
+    this.navCtrl.setRoot(ListPage);
+  }
 }
