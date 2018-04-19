@@ -16,8 +16,8 @@
           <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
             <div class="list-item">
               <ion-icon item-start [name]="item.icon"></ion-icon>
-              <h2 class="item-text">{{item.title}}</h2>
-              <h3 class="item-text">{{item.note}}</h3>
+              <h3 class="item-text">{{item.title}}</h3>
+              <p class="item-text">{{item.note}}</p>
               <p>{{item.date}}</p>
             </div>
           </button>

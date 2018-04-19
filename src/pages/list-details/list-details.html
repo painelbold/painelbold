@@ -1,27 +1,21 @@
-<!--
-  Generated template for the ListDetailsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Comunicado</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Bold Telecom</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
   <ion-card>
     <ion-card-header>
-      <strong>{{item.title}}</strong>
+      <strong>Comunicado: {{selectedItem.title}}</strong>
     </ion-card-header>
     <ion-card-content>
-      <p><strong>Mensagem: </strong> {{item.note}}</p>
+      <p><strong>Mensagem: </strong> {{selectedItem.note}}</p>
       <hr>
-      <p>Data de publicação: {{item.date}}</p>
+      <p>{{selectedItem.date}}</p>
     </ion-card-content>
   </ion-card>
 </ion-content>
