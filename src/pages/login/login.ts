@@ -17,7 +17,6 @@ export class LoginPage {
   }
 
   login(event) {
-    // That's right, we're pushing to ourselves!
     this.navCtrl.setRoot(ListPage);
   }
 }
