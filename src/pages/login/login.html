@@ -1,39 +1,35 @@
-<ion-header>
-    <ion-navbar>
-      <img src="../../assets/logotipo.png" height="10px"/>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding="true">
-    <ion-list>
+<ion-content class="login-content" padding>
+    <ion-row class="logo-row">
+        <img src="assets/imgs/logo.png" class="logo"/>
+    </ion-row>
+    <div class="login-box">
+        <form (ngSubmit)="login()" #registerForm="ngForm">
+            <ion-row>
+                <ion-col>
+                    <ion-list inset>
+                        <ion-item>
+                            <ion-label floating>E-mail</ion-label>
+                            <ion-input type="email" name="email" [(ngModel)]="loginFields.email"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label floating>Senha</ion-label>
+                            <ion-input type="password" name="password" [(ngModel)]="loginFields.password"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Continuar conectado</ion-label>
+                            <ion-checkbox name="stayConnected" [(ngModel)]="loginFields.stayConnected"></ion-checkbox>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
 
-        <ion-item>
-          <ion-label floating>E-mail</ion-label>
-          <ion-input type="email"></ion-input>
-        </ion-item>
-      
-        <ion-item>
-          <ion-label floating>Senha</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label>Permanecer conectado</ion-label>
-            <ion-checkbox [(ngModel)]="permanecerConectado"></ion-checkbox>
-        </ion-item>
-        
-        <button ion-button block (click)="login($event)">Login</button>       
-
-      </ion-list>
-        
-      <a>Esqueci minha senha</a>
-
-
-      <ion-footer align="center">
-          <a color="light" [navPush]="registerPage">Não tem conta? 
-              <strong>Registrar</strong>
-          </a>
-      </ion-footer>
-      
-  </ion-content>
-  
+            <ion-row>
+                <ion-col class="signup-col">
+                    <button ion-button class="submit-btn" full type="submit">Login</button>
+                    <button ion-button class="register-btn" block clear type="button" (click)="createAccount()">Criar nova conta</button>
+                </ion-col>
+            </ion-row>
+            <a align-center>Esqueceu sua senha?</a>
+        </form>
+    </div>
+</ion-content>

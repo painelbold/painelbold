@@ -1,3 +1,4 @@
+import { MenuController } from 'ionic-angular/index';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { RegisterPage } from '../register/register'
@@ -8,15 +9,22 @@ import { ListPage } from '../list/list'
   templateUrl: 'login.html'
 })
 export class LoginPage {
+  
   selectedItem: any;
   registerPage = RegisterPage;
+  loginFields = { email: '', password: '', stayConnected: '' };
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController) {
+    
   }
 
   login(event) {
     this.navCtrl.setRoot(ListPage);
+  }
+
+  createAccount(event) {
+    this.navCtrl.push(RegisterPage);
   }
 }

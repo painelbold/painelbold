@@ -4,46 +4,116 @@
     </ion-navbar>
   </ion-header>
   
-  <ion-content padding="true">
-    <ion-list>
-        <ion-item>
-          <ion-label floating>Nome</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-      
-        <ion-item>
-          <ion-label floating>E-mail</ion-label>
-          <ion-input type="email"></ion-input>
-        </ion-item>
-      
-        <ion-item>
-            <ion-label floating>Telefone</ion-label>
-            <ion-input type="tel"></ion-input>
-        </ion-item>
-      
-        <ion-item>
-            <ion-label floating>Senha</ion-label>
-            <ion-input type="password"></ion-input>
-        </ion-item>
+<ion-content class="register-content" padding>
+    <ion-item>
+        <ion-label>Eu sou:</ion-label>
+        <ion-select [(ngModel)]="tipoRegistro">
+          <ion-option value="u" selected>Usuário</ion-option>
+          <ion-option value="c">Condomínio</ion-option>
+          <ion-option value="e">Edifício</ion-option>
+        </ion-select>
+    </ion-item>
 
-        <ion-item>
-            <ion-label floating>Confirmar Senha</ion-label>
-            <ion-input type="password"></ion-input>
-        </ion-item>
+        <div class="register-box">
+            <form (ngSubmit)="registrar()" #registerForm="ngForm">
+                <ion-row>
+                    <ion-col>
+                        <ion-item-group inset *ngIf="tipoRegistro === 'u'" class="register-user">
+                            <ion-item>
+                                <ion-label floating>Nome</ion-label>
+                                <ion-input type="text" name="name"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>CPF</ion-label>
+                                <ion-input type="text" name="cpf"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>E-mail</ion-label>
+                                <ion-input type="email" name="email"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>Senha</ion-label>
+                                <ion-input type="password" name="password"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>Confirmar Senha</ion-label>
+                                <ion-input type="password" name="confirm-password"></ion-input>
+                            </ion-item>
+                        </ion-item-group>
+                    </ion-col>
+                </ion-row>
 
-        <ion-item>
-            <ion-label>Li e concordo com os <a>Termos de Uso</a> e <a>Política de Privacidade</a></ion-label>
-            <ion-checkbox [(ngModel)]="concordaPolitica"></ion-checkbox>
-        </ion-item>
+                <ion-row>
+                    <ion-col>
+                        <ion-item-group inset *ngIf="tipoRegistro === 'c'">
+                            <ion-item>
+                                <ion-label floating>Nome do Condomínio</ion-label>
+                                <ion-input type="text" name="name"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>CNPJ</ion-label>
+                                <ion-input type="text" name="cpf"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>Endereço</ion-label>
+                                <ion-input type="text" name="address"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>E-mail do Administrador</ion-label>
+                                <ion-input type="email" name="email"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>Senha</ion-label>
+                                <ion-input type="password" name="password"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>Confirmar Senha</ion-label>
+                                <ion-input type="password" name="confirm-password"></ion-input>
+                            </ion-item>
+                        </ion-item-group>
+                    </ion-col>
+                </ion-row>
 
-        <button ion-button block>CADASTRAR</button>       
-
-      </ion-list>
-
-      <ion-footer align="center">
-            <a color="light" (click)="goBack($event)">Já tem conta? 
-                <strong>Entre</strong>
-            </a>
-        </ion-footer>
-  </ion-content>
-  
+                <ion-row>
+                    <ion-col>
+                        <ion-item-group inset *ngIf="tipoRegistro === 'e'">
+                            <ion-item>
+                                <ion-label>Condomínio:</ion-label>
+                                <ion-select [(ngModel)]="tipoCond" [ngModelOptions]="{standalone: true}">
+                                    <ion-option value="a" selected>Condomínio A</ion-option>
+                                    <ion-option value="b">Condomínio B</ion-option>
+                                    <ion-option value="c">Condomínio C</ion-option>
+                                </ion-select>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>Nome do Edifício</ion-label>
+                                <ion-input type="text" name="name"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>Bloco</ion-label>
+                                <ion-input type="text" name="address"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>E-mail do Síndico</ion-label>
+                                <ion-input type="email" name="email"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>Senha</ion-label>
+                                <ion-input type="password" name="password"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>Confirmar Senha</ion-label>
+                                <ion-input type="password" name="confirm-password"></ion-input>
+                            </ion-item>
+                        </ion-item-group>
+                    </ion-col>
+                </ion-row>
+    
+                <ion-row>
+                    <ion-col class="signup-col">
+                        <button ion-button class="submit-btn" full type="submit">Cadastrar</button>
+                    </ion-col>
+                </ion-row>
+            </form>
+        </div>
+</ion-content>

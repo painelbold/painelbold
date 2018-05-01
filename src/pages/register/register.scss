@@ -1,7 +1,12 @@
 page-register{
-    
-}
+    ion-item {
+        font-size: 0.8em;
+        color: #fff; 
+        border-bottom: 1px solid #fff;
+        margin-bottom: -2px;
+    }
 
-ion-label{
-    white-space: pre-line;
+    .submit-btn{
+        border-radius: 20px;
+    }
 }
