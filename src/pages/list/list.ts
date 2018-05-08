@@ -22,7 +22,7 @@ export class ListPage {
     'Prezados, já encontra-se disponível o boleto para pagamento da taxa condominal.',
     'Prezados, na próxima segunda-feira haverá manutenção da piscina.' ];
     this.dates = ['10/04/2018', '11/04/2018', '03/04/2018'];
-    this.images = [ '../../assets/imgs/avatar1.jpg', '../../assets/imgs/avatar1.jpg']
+    this.images = [ 'assets/imgs/avatar1.jpg', 'assets/imgs/avatar2.jpg']
 
     this.items = [];
     for (let i = 1; i < 11; i++) {
