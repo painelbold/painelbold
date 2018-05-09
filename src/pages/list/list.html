@@ -3,7 +3,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <img src="assets/logotipo.png"/>
+    <ion-title>
+      <img src="assets/logotipo.png"/>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button class="button-assine" (click)="showDates($event)">
+        Assine
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

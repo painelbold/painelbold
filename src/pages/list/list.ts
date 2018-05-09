@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ListDetailsPage } from '../list-details/list-details'
+import { DatePicker } from '@ionic-native/date-picker';
 
 @Component({
   selector: 'page-list',
@@ -14,7 +15,7 @@ export class ListPage {
   images: string[];
   items: Array<{title: string, note: string, date: string, image: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public datePicker: DatePicker) {
     this.selectedItem = navParams.get('item');
 
     this.comunicados = ['Comunicado do Síndico', 'Comunicado da Administração'];
@@ -41,5 +42,20 @@ export class ListPage {
       item: item
     });
   }
+
+  showDates(event){
+    console.log('Entrou aqui');
+
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+    }).then(
+      date => console.log('Got date: ', date),
+      err => console.log('Error occurred while getting date: ', err)
+    );
+  }
+
+
 }
 
