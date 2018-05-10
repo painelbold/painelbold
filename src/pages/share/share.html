@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      <img src="assets/logotipo.png"/>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="share-box">
+    <h2>Indique seus amigos</h2>
+    <ion-list>
+      <button ion-item (click)="whatsappShare()">
+        <ion-icon name="logo-whatsapp" item-start></ion-icon>
+        WhatsApp
+      </button>
+      <button ion-item>
+        <ion-icon name="mail" item-start (click)="emailShare()"></ion-icon>
+        E-mail
+      </button>
+    </ion-list>
+  </div>
+</ion-content>

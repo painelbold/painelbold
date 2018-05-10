@@ -44,8 +44,6 @@ export class ListPage {
   }
 
   showDates(event){
-    console.log('Entrou aqui');
-
     this.datePicker.show({
       date: new Date(),
       mode: 'date',

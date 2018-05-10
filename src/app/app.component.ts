@@ -1,3 +1,4 @@
+import { SharePage } from './../pages/share/share';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -22,9 +23,9 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Comunicados', component: ListPage },
-      { title: 'Entrar', component: LoginPage }
+      { title: 'Indicar', component: SharePage},
+      { title: 'Sair', component: LoginPage }
     ];
-
   }
 
   initializeApp() {

@@ -1,7 +1,9 @@
+import { SharePage } from './../pages/share/share';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { DatePicker } from '@ionic-native/date-picker';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { MyApp } from './app.component';
 import { ListPage } from '../pages/list/list';
@@ -18,7 +20,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     LoginPage,
     RegisterPage,
-    ListDetailsPage
+    ListDetailsPage,
+    SharePage
   ],
   imports: [
     BrowserModule,
@@ -30,12 +33,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     LoginPage,
     RegisterPage,
-    ListDetailsPage
+    ListDetailsPage,
+    SharePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     DatePicker,
+    SocialSharing,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
