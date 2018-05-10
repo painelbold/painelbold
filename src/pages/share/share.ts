@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the SharePage page.
@@ -16,7 +17,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 })
 export class SharePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private socialSharing: SocialSharing) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private socialSharing: SocialSharing, private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -24,7 +25,7 @@ export class SharePage {
   }
 
   whatsappShare(){
-    this.socialSharing.shareViaWhatsApp("Experimente o nosso aplicativo","assets/imgs/logo.png","http://www.google.com.br/")
+    this.socialSharing.shareViaWhatsApp("Experimente o nosso aplicativo",null,"http://www.google.com.br/")
     .then(()=>{
       console.log("Mensagem enviada por WhatsApp");
     }).catch((error) => {
@@ -33,13 +34,23 @@ export class SharePage {
   }
 
   emailShare(){
-    this.socialSharing
-    .shareViaEmail("Experimente nosso aplicativo","Teste",["teste@teste.com"])
-    .then(()=>{
-      console.log("Mensagem enviada por email");
-    }).catch((error) => {
-      console.log(error);
+    this.presentPrompt();
+    // this.socialSharing
+    // .shareViaEmail("Experimente nosso aplicativo","Teste",["teste@teste.com"])
+    // .then(()=>{
+    //   console.log("Mensagem enviada por email");
+    // }).catch((error) => {
+    //   console.log(error);
+    // });
+  }
+
+  presentPrompt() {
+    let alert = this.alertCtrl.create({
+      title: 'Low battery',
+      subTitle: '10% of battery remaining',
+      buttons: ['Dismiss']
     });
+    alert.present();
   }
 
 }

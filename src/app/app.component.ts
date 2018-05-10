@@ -1,3 +1,4 @@
+import { MyAccountPage } from './../pages/my-account/my-account';
 import { SharePage } from './../pages/share/share';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
@@ -24,6 +25,7 @@ export class MyApp {
     this.pages = [
       { title: 'Comunicados', component: ListPage },
       { title: 'Indicar', component: SharePage},
+      { title: 'Minha Conta', component: MyAccountPage},
       { title: 'Sair', component: LoginPage }
     ];
   }

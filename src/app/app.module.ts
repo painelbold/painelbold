@@ -1,3 +1,4 @@
+import { MyAccountPage } from './../pages/my-account/my-account';
 import { SharePage } from './../pages/share/share';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -21,7 +22,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     RegisterPage,
     ListDetailsPage,
-    SharePage
+    SharePage,
+    MyAccountPage,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     RegisterPage,
     ListDetailsPage,
-    SharePage
+    SharePage,
+    MyAccountPage,
   ],
   providers: [
     StatusBar,
