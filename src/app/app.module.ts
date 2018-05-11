@@ -14,6 +14,7 @@ import { ListDetailsPage } from '../pages/list-details/list-details';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { RegisterBuildingsPage } from '../pages/register-buildings/register-buildings';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListDetailsPage,
     SharePage,
     MyAccountPage,
+    RegisterBuildingsPage
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListDetailsPage,
     SharePage,
     MyAccountPage,
+    RegisterBuildingsPage,
   ],
   providers: [
     StatusBar,

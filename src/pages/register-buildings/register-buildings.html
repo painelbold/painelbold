@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <img src="assets/logotipo.png" />
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="register-content" padding>
+    <h4>Cadastrar</h4>
+    <ion-item>
+        <ion-label>Imóvel:</ion-label>
+        <ion-select [(ngModel)]="tipoRegistro">
+            <ion-option value="c" selected>Condomínio</ion-option>
+            <ion-option value="e">Edifício</ion-option>
+        </ion-select>
+    </ion-item>
+    <div class="register-box">
+        <form (ngSubmit)="register()" #registerForm="ngForm">
+            <ion-item-group inset *ngIf="tipoRegistro === 'c'">
+                <ion-item>
+                    <ion-label floating>Nome do Condomínio</ion-label>
+                    <ion-input type="text" name="name"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>CNPJ</ion-label>
+                    <ion-input type="text" name="cpf"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Endereço</ion-label>
+                    <ion-input type="text" name="address"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>E-mail do Administrador</ion-label>
+                    <ion-input type="email" name="email"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Senha</ion-label>
+                    <ion-input type="password" name="password"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Confirmar Senha</ion-label>
+                    <ion-input type="password" name="confirm-password"></ion-input>
+                </ion-item>
+            </ion-item-group>
+
+            <ion-item-group inset *ngIf="tipoRegistro === 'e'">
+                <ion-item>
+                    <ion-label>Condomínio:</ion-label>
+                    <ion-select [(ngModel)]="tipoCond" [ngModelOptions]="{standalone: true}">
+                        <ion-option value="a" selected>Condomínio A</ion-option>
+                        <ion-option value="b">Condomínio B</ion-option>
+                        <ion-option value="c">Condomínio C</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Nome do Edifício</ion-label>
+                    <ion-input type="text" name="name"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Bloco</ion-label>
+                    <ion-input type="text" name="address"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>E-mail do Síndico</ion-label>
+                    <ion-input type="email" name="email"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Senha</ion-label>
+                    <ion-input type="password" name="password"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Confirmar Senha</ion-label>
+                    <ion-input type="password" name="confirm-password"></ion-input>
+                </ion-item>
+            </ion-item-group>
+            <button ion-button class="submit-btn" full type="submit">Cadastrar</button>
+        </form>
+    </div>
+</ion-content>

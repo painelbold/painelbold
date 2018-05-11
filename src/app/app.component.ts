@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
+import { RegisterBuildingsPage } from '../pages/register-buildings/register-buildings';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,7 +27,8 @@ export class MyApp {
       { title: 'Comunicados', component: ListPage },
       { title: 'Indicar', component: SharePage},
       { title: 'Minha Conta', component: MyAccountPage},
-      { title: 'Sair', component: LoginPage }
+      { title: 'Cadastrar Imóvel', component: RegisterBuildingsPage},
+      { title: 'Sair', component: LoginPage },
     ];
   }
 
