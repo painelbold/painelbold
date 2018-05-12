@@ -7,42 +7,81 @@
 <ion-content class="register-content" padding>
     <h4>Registrar</h4>
     <div class="register-box">
-        <form (ngSubmit)="registrar()" #registerForm="ngForm">
-            <ion-list inset>
+        <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm.value)">
+            <ion-item-group inset>
                 <ion-item>
                     <ion-label floating>Nome Completo</ion-label>
-                    <ion-input type="text" name="name"></ion-input>
+                    <ion-input 
+                    type="text" 
+                    name="fullName" 
+                    ngModel
+                    required></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label floating>CPF</ion-label>
-                    <ion-input type="text" name="cpf"></ion-input>
+                    <ion-input 
+                    type="number" 
+                    pattern="[0-9]*"
+                    name="cpf" 
+                    ngModel
+                    required></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label floating>Endereço</ion-label>
-                    <ion-input type="text" name="address"></ion-input>
+                    <ion-input 
+                    type="text" 
+                    name="address" 
+                    ngModel
+                    required></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label floating>Complemento</ion-label>
-                    <ion-input type="text" name="address-comp"></ion-input>
+                    <ion-input 
+                    type="text" 
+                    name="address-comp" 
+                    ngModel
+                    required></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label floating>E-mail</ion-label>
-                    <ion-input type="email" name="email"></ion-input>
+                    <ion-input 
+                    type="email" 
+                    name="email" 
+                    ngModel
+                    required></ion-input>
                 </ion-item>
                 <ion-item>
-                        <ion-label floating>Telefone</ion-label>
-                        <ion-input type="tel" name="tel"></ion-input>
+                    <ion-label floating>Telefone</ion-label>
+                    <ion-input 
+                    type="tel" 
+                    name="phone" 
+                    pattern="[0-9]*"
+                    ngModel
+                    required></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label floating>Senha</ion-label>
-                    <ion-input type="password" name="password"></ion-input>
+                    <ion-input 
+                    type="password" 
+                    name="password" 
+                    ngModel
+                    required></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label floating>Confirmar Senha</ion-label>
-                    <ion-input type="password" name="confirm-password"></ion-input>
+                    <ion-input 
+                    type="password" 
+                    name="confirm-password" 
+                    ngModel
+                    required></ion-input>
                 </ion-item>
-            </ion-list>
-            <button ion-button class="submit-btn" full type="submit">Registrar</button>
+            </ion-item-group>
+            <button 
+            ion-button 
+            class="submit-btn" 
+            full 
+            type="submit"
+            [disabled]="!registerForm.valid">Registrar</button>
         </form>
     </div>
 </ion-content>

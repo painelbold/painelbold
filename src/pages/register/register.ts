@@ -1,6 +1,7 @@
 import { ListPage } from './../list/list';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'page-register',
@@ -8,21 +9,29 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class RegisterPage {
   selectedItem: any;
+  masks: any;
+
   tipoRegistro: string;
   tipoCond: string;
+
   icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+
+  items: Array<{ title: string, note: string, icon: string }>;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.tipoRegistro = 'u';
     this.tipoCond = 'a';
+    
+    
   }
 
-  goBack(event){
+  goBack(event) {
     this.navCtrl.pop();
-  } 
+  }
 
-  registrar(event){
-    this.navCtrl.setRoot(ListPage)
+  onRegister(form: NgForm) {
+    console.log(form);
+    this.navCtrl.setRoot(ListPage);
   }
 }
