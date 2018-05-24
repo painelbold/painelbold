@@ -1,3 +1,4 @@
+import { CalendarPage } from './../pages/calendar/calendar';
 import { MyAccountPage } from './../pages/my-account/my-account';
 import { SharePage } from './../pages/share/share';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,7 +26,8 @@ import { RegisterBuildingsPage } from '../pages/register-buildings/register-buil
     ListDetailsPage,
     SharePage,
     MyAccountPage,
-    RegisterBuildingsPage
+    RegisterBuildingsPage,
+    CalendarPage,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import { RegisterBuildingsPage } from '../pages/register-buildings/register-buil
     SharePage,
     MyAccountPage,
     RegisterBuildingsPage,
+    CalendarPage,
   ],
   providers: [
     StatusBar,

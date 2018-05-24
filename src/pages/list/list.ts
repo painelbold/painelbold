@@ -1,3 +1,4 @@
+import { CalendarPage } from './../calendar/calendar';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ListDetailsPage } from '../list-details/list-details'
@@ -44,14 +45,7 @@ export class ListPage {
   }
 
   showDates(event){
-    this.datePicker.show({
-      date: new Date(),
-      mode: 'date',
-      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
-    }).then(
-      date => console.log('Got date: ', date),
-      err => console.log('Error occurred while getting date: ', err)
-    );
+    this.navCtrl.push(CalendarPage);
   }
 
 
