@@ -1,3 +1,5 @@
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from './../providers/auth/auth-service';
 import { MyAccountPage } from './../pages/my-account/my-account';
 import { SharePage } from './../pages/share/share';
 import { Component, ViewChild } from '@angular/core';
@@ -8,27 +10,41 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { RegisterBuildingsPage } from '../pages/register-buildings/register-buildings';
+import { User } from '../models/user';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
-  rootPage: any = LoginPage;
+  
+  rootPage: any;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen,
+    private authService: AuthService,
+    private afAuth: AngularFireAuth) {
     this.initializeApp();
-
+    const authObserver = afAuth.authState.subscribe(user => {
+      if(user){
+        this.rootPage = ListPage;
+        authObserver.unsubscribe();
+      }
+      else{
+        this.rootPage = LoginPage;
+        authObserver.unsubscribe();
+      }
+    });
+    
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Comunicados', component: ListPage },
       { title: 'Indicar', component: SharePage},
       { title: 'Minha Conta', component: MyAccountPage},
       { title: 'Cadastrar Imóvel', component: RegisterBuildingsPage},
-      { title: 'Sair', component: LoginPage },
     ];
   }
 
@@ -38,6 +54,15 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+    });
+  }
+
+  logout(){
+    this.authService.signOut()
+    .then(()=>{
+      this.nav.setRoot(LoginPage);
+    }).catch((error)=>{
+      console.error(error);
     });
   }
 

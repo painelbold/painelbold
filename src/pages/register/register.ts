@@ -30,12 +30,7 @@ export class RegisterPage {
   }
 
   onRegister(form: NgForm) {
-    console.log("entrou");
-    console.log(form.form.valid);
     if (form.valid){
-      console.log("é valido");
-      console.log(this.user.email);
-      console.log(this.user.password);
       let toast = this.toastController.create({duration: 100, position: "bottom"});
 
       this.authService.createUser(this.user)
@@ -45,7 +40,6 @@ export class RegisterPage {
         this.navCtrl.setRoot(ListPage);
       })
       .catch((error:any)=>{
-        console.log("catch");
         switch (error.code){
           case "auth/email-already-in-use":
           toast.setMessage("O e-mail inserido já está em uso.");
