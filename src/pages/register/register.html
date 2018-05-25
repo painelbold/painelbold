@@ -47,9 +47,13 @@
                     <ion-input 
                     type="email" 
                     name="email" 
-                    ngModel
+                    [(ngModel)]="user.email"
+                    #email="ngModel"
                     required></ion-input>
                 </ion-item>
+                <!-- <ion-item *ngIf="email.errors && (email.dirty || email.touched)" class="text-danger">
+                    O campo é obrigatório
+                </ion-item> -->
                 <ion-item>
                     <ion-label floating>Telefone</ion-label>
                     <ion-input 
@@ -64,9 +68,13 @@
                     <ion-input 
                     type="password" 
                     name="password" 
-                    ngModel
+                    [(ngModel)]="user.password"
+                    #password="ngModel"
                     required></ion-input>
                 </ion-item>
+                <!-- <ion-item *ngIf="password.errors && (password.dirty || password.touched)" class="text-danger">
+                    O campo é obrigatório
+                </ion-item> -->
                 <ion-item>
                     <ion-label floating>Confirmar Senha</ion-label>
                     <ion-input 
