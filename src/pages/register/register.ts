@@ -9,7 +9,6 @@ import { NgForm } from '@angular/forms';
 })
 export class RegisterPage {
   selectedItem: any;
-  masks: any;
 
   tipoRegistro: string;
   tipoCond: string;
@@ -22,8 +21,6 @@ export class RegisterPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.tipoRegistro = 'u';
     this.tipoCond = 'a';
-    
-    
   }
 
   goBack(event) {

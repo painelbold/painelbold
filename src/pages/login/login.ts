@@ -1,4 +1,3 @@
-import { MenuController } from 'ionic-angular/index';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { RegisterPage } from '../register/register'
@@ -16,7 +15,7 @@ export class LoginPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     
   }
 

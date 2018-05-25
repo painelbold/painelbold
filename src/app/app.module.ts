@@ -16,6 +16,18 @@ import { ListDetailsPage } from '../pages/list-details/list-details';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RegisterBuildingsPage } from '../pages/register-buildings/register-buildings';
+import { AngularFireModule } from 'angularfire2';
+import { AuthService } from '../providers/auth/auth-service';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
+  authDomain: "painelbold.firebaseapp.com",
+  databaseURL: "https://painelbold.firebaseio.com",
+  projectId: "painelbold",
+  storageBucket: "painelbold.appspot.com",
+  messagingSenderId: "636170343298"
+};
 
 @NgModule({
   declarations: [
@@ -32,6 +44,8 @@ import { RegisterBuildingsPage } from '../pages/register-buildings/register-buil
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -50,7 +64,8 @@ import { RegisterBuildingsPage } from '../pages/register-buildings/register-buil
     SplashScreen,
     DatePicker,
     SocialSharing,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthService
   ]
 })
 export class AppModule {}
