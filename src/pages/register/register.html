@@ -7,14 +7,15 @@
 <ion-content class="register-content" padding>
     <h4>Registrar</h4>
     <div class="register-box">
-        <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm.value)">
+        <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
             <ion-item-group inset>
                 <ion-item>
                     <ion-label floating>Nome Completo</ion-label>
                     <ion-input 
                     type="text" 
                     name="fullName" 
-                    ngModel
+                    [(ngModel)]="user.fullName"
+                    #fullName="ngModel"
                     required></ion-input>
                 </ion-item>
                 <ion-item>
@@ -22,8 +23,9 @@
                     <ion-input 
                     type="number" 
                     pattern="[0-9]*"
-                    name="cpf" 
-                    ngModel
+                    name="document" 
+                    [(ngModel)]="user.document"
+                    #document="ngModel"
                     required></ion-input>
                 </ion-item>
                 <ion-item>
@@ -32,7 +34,7 @@
                     type="text" 
                     name="address" 
                     ngModel
-                    required></ion-input>
+                    ></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label floating>Complemento</ion-label>
@@ -40,7 +42,7 @@
                     type="text" 
                     name="address-comp" 
                     ngModel
-                    required></ion-input>
+                    ></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label floating>E-mail</ion-label>
@@ -60,7 +62,8 @@
                     type="tel" 
                     name="phone" 
                     pattern="[0-9]*"
-                    ngModel
+                    [(ngModel)]="user.phone"
+                    #phone="ngModel"
                     required></ion-input>
                 </ion-item>
                 <ion-item>
@@ -81,7 +84,7 @@
                     type="password" 
                     name="confirm-password" 
                     ngModel
-                    required></ion-input>
+                    ></ion-input>
                 </ion-item>
             </ion-item-group>
             <button 
