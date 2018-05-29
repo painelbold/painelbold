@@ -5,6 +5,7 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { RegisterPage } from '../register/register'
 import { ListPage } from '../list/list'
 import { NgForm } from '@angular/forms';
+import { ResetPasswordPage } from '../reset-password/reset-password';
 
 @Component({
   selector: 'page-login',
@@ -60,5 +61,9 @@ export class LoginPage {
 
   createAccount(event) {
     this.navCtrl.push(RegisterPage);
+  }
+
+  resetPassword(event){
+    this.navCtrl.push(ResetPasswordPage);
   }
 }

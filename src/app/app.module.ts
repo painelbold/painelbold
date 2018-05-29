@@ -19,6 +19,7 @@ import { RegisterBuildingsPage } from '../pages/register-buildings/register-buil
 import { AngularFireModule } from 'angularfire2';
 import { AuthService } from '../providers/auth/auth-service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -40,6 +41,7 @@ export const firebaseConfig = {
     MyAccountPage,
     RegisterBuildingsPage,
     CalendarPage,
+    ResetPasswordPage,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,7 @@ export const firebaseConfig = {
     MyAccountPage,
     RegisterBuildingsPage,
     CalendarPage,
+    ResetPasswordPage,
   ],
   providers: [
     StatusBar,
