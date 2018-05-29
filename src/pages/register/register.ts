@@ -16,7 +16,7 @@ export class RegisterPage {
   items: Array<{ title: string, note: string, icon: string }>;
   
   user: User = new User();
-  @ViewChild('registerForm') form = NgForm;
+  //@ViewChild('registerForm') form = NgForm;
 
   constructor(
     public navCtrl: NavController, 
@@ -31,7 +31,7 @@ export class RegisterPage {
 
   onRegister(form: NgForm) {
     if (form.valid){
-      let toast = this.toastController.create({duration: 100, position: "bottom"});
+      let toast = this.toastController.create({duration: 500, position: "bottom"});
 
       this.authService.createUser(this.user)
       .then((user: any)=> {
