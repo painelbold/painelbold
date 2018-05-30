@@ -22,6 +22,7 @@ import { AuthService } from '../providers/auth/auth-service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
+import { AnnouncementProvider } from '../providers/announcement/announcement';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -71,7 +72,8 @@ export const firebaseConfig = {
     DatePicker,
     SocialSharing,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthService
+    AuthService,
+    AnnouncementProvider
   ]
 })
 export class AppModule {}
