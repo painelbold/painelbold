@@ -17,8 +17,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RegisterBuildingsPage } from '../pages/register-buildings/register-buildings';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AuthService } from '../providers/auth/auth-service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 
 export const firebaseConfig = {
@@ -47,7 +49,8 @@ export const firebaseConfig = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
