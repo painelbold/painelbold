@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+      <img src="assets/logotipo.png" />
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="announcement-content" padding>
+  <h4>Comunicado</h4>
+  <div class="announcement-box">
+      <form #announcementForm="ngForm" (ngSubmit)="onSave(announcementForm)">
+          <ion-item-group inset>
+            <ion-item>
+                <ion-label floating>Título</ion-label>
+                <ion-input 
+                type="text" 
+                name="title" 
+                [(ngModel)]="announcement.title"
+                #title="ngModel"
+                required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Mensagem</ion-label>
+                <ion-input 
+                type="text" 
+                name="message" 
+                [(ngModel)]="announcement.message"
+                #message="ngModel"
+                required></ion-input>
+            </ion-item>
+          </ion-item-group>
+          <button 
+          ion-button 
+          class="submit-btn" 
+          full 
+          type="submit"
+          [disabled]="!registerForm.valid">Salvar</button>
+      </form>
+  </div>
+</ion-content>
