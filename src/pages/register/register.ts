@@ -16,7 +16,6 @@ export class RegisterPage {
   items: Array<{ title: string, note: string, icon: string }>;
   
   user: User = new User();
-  //@ViewChild('registerForm') form = NgForm;
 
   constructor(
     public navCtrl: NavController, 
@@ -31,30 +30,27 @@ export class RegisterPage {
 
   onRegister(form: NgForm) {
     if (form.valid){
-      let toast = this.toastController.create({duration: 500, position: "bottom"});
-
       this.authService.createUser(this.user)
       .then((user: any)=> {
-        toast.setMessage("Usuário criado com sucesso");
-        toast.present();
+        this.toastController.create({message: "Usuário criado com sucesso", duration: 500, position: "bottom"}).present;
         this.navCtrl.setRoot(ListPage);
       })
       .catch((error:any)=>{
         switch (error.code){
           case "auth/email-already-in-use":
-          toast.setMessage("O e-mail inserido já está em uso.");
+          this.toastController.create({message: "O e-mail inserido já está em uso.", duration: 500, position: "bottom"}).present;
           break;
           case "auth/invalid-email":
-          toast.setMessage("O e-mail inserido é inválido.");
+          this.toastController.create({message: "O e-mail inserido é inválido.", duration: 500, position: "bottom"}).present;
           break;
           case "auth/operation-not-allowed":
-          toast.setMessage("A operação não é permitida");
+          this.toastController.create({message: "A operação não é permitida.", duration: 500, position: "bottom"}).present;
           break;
           case "auth/weak-password":
-          toast.setMessage("A senha escolhida é fraca.");
+          this.toastController.create({message: "A senha escolhida é fraca.", duration: 500, position: "bottom"}).present;
           break;
           default:
-          toast.setMessage("Erro: " + error.code);
+          console.log("Erro ao registrar usuário: " + error.code);
           break;
         }
       })

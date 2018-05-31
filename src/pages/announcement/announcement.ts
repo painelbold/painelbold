@@ -1,7 +1,8 @@
+import { AnnouncementProvider } from './../../providers/announcement/announcement';
 import { Announcement } from './../../models/announcement';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NgForm } from '@angular/forms';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -9,17 +10,46 @@ import { NgForm } from '@angular/forms';
   templateUrl: 'announcement.html',
 })
 export class AnnouncementPage {
-  announcement: Announcement = new Announcement();
+  announcement: any;
+  title: string;
+  form: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private formBuilder: FormBuilder,
+    private toastController: ToastController,
+    private announcementProvider: AnnouncementProvider ) {
+      this.announcement = this.navParams.data.announcement || {};
+
+      this.setupPageTitle();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AnnouncementPage');
+  private setupPageTitle(){
+    this.createForm();
+    this.title = this.navParams.data.announcement ? "Editar comunicado" : "Novo Comunicado";
+  }
+
+  createForm(){
+    this.form = this.formBuilder.group({
+      key: [this.announcement.key],
+      title: [this.announcement.title, Validators.required],
+      message: [this.announcement.message, Validators.required],
+    })
   }
 
   onSave(form: NgForm){
-    
+    if(form.valid){
+      this.announcementProvider.save(form.value)
+      .then(()=>{
+        this.toastController.create({message: "Comunicado salvo com sucesso!", duration: 500, position: "bottom"}).present();
+        this.navCtrl.pop();
+      })
+      .catch((error) => {
+        this.toastController.create({message: "Erro ao salvar o contato.", duration: 500, position: "bottom"}).present();
+        console.log("Erro ao salvar o contato: " + error);
+      })
+    }
   }
 
 }

@@ -23,6 +23,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { AnnouncementProvider } from '../providers/announcement/announcement';
+import { CondominioProvider } from '../providers/condominio/condominio';
+import { EdificioProvider } from '../providers/edificio/edificio';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -73,7 +75,9 @@ export const firebaseConfig = {
     SocialSharing,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
-    AnnouncementProvider
+    AnnouncementProvider,
+    CondominioProvider,
+    EdificioProvider
   ]
 })
 export class AppModule {}
