@@ -1,3 +1,4 @@
+import { AnnouncementPage } from './../pages/announcement/announcement';
 import { CalendarPage } from './../pages/calendar/calendar';
 import { MyAccountPage } from './../pages/my-account/my-account';
 import { SharePage } from './../pages/share/share';
@@ -47,6 +48,7 @@ export const firebaseConfig = {
     RegisterBuildingsPage,
     CalendarPage,
     ResetPasswordPage,
+    AnnouncementPage
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,7 @@ export const firebaseConfig = {
     RegisterBuildingsPage,
     CalendarPage,
     ResetPasswordPage,
+    AnnouncementPage
   ],
   providers: [
     StatusBar,

@@ -1,3 +1,4 @@
+import { AnnouncementPage } from './../announcement/announcement';
 import { CalendarPage } from './../calendar/calendar';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -46,6 +47,10 @@ export class ListPage {
 
   showDates(event){
     this.navCtrl.push(CalendarPage);
+  }
+
+  newAnnouncement(){
+    this.navCtrl.push(AnnouncementPage);
   }
 
 

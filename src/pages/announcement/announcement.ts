@@ -12,7 +12,7 @@ import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AnnouncementPage {
   announcement: any;
   title: string;
-  form: FormGroup;
+  announcementForm: FormGroup;
 
   constructor(
     public navCtrl: NavController, 
@@ -31,16 +31,16 @@ export class AnnouncementPage {
   }
 
   createForm(){
-    this.form = this.formBuilder.group({
+    this.announcementForm = this.formBuilder.group({
       key: [this.announcement.key],
       title: [this.announcement.title, Validators.required],
       message: [this.announcement.message, Validators.required],
     })
   }
 
-  onSave(form: NgForm){
-    if(form.valid){
-      this.announcementProvider.save(form.value)
+  onSave(){
+    if(this.announcementForm.valid){
+      this.announcementProvider.save(this.announcementForm.value)
       .then(()=>{
         this.toastController.create({message: "Comunicado salvo com sucesso!", duration: 500, position: "bottom"}).present();
         this.navCtrl.pop();
