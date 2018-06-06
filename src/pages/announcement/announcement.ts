@@ -35,6 +35,7 @@ export class AnnouncementPage {
       key: [this.announcement.key],
       title: [this.announcement.title, Validators.required],
       message: [this.announcement.message, Validators.required],
+      
     })
   }
 
@@ -42,12 +43,12 @@ export class AnnouncementPage {
     if(this.announcementForm.valid){
       this.announcementProvider.save(this.announcementForm.value)
       .then(()=>{
-        this.toastController.create({message: "Comunicado salvo com sucesso!", duration: 500, position: "bottom"}).present();
+        this.toastController.create({message: "Comunicado salvo com sucesso!", duration: 1500, position: "bottom"}).present();
         this.navCtrl.pop();
       })
       .catch((error) => {
-        this.toastController.create({message: "Erro ao salvar o contato.", duration: 500, position: "bottom"}).present();
-        console.log("Erro ao salvar o contato: " + error);
+        this.toastController.create({message: "Erro ao salvar o comunicado.", duration: 1500, position: "bottom"}).present();
+        console.log("Erro ao salvar o comunicado: " + error);
       })
     }
   }

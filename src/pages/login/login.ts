@@ -1,4 +1,3 @@
-import { User } from './../../models/user';
 import { AuthService } from './../../providers/auth/auth-service';
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
@@ -14,9 +13,9 @@ import { ResetPasswordPage } from '../reset-password/reset-password';
 export class LoginPage {
   
   selectedItem: any;
-  user: User = new User();
   
   loginFields = { email: '', password: '', stayConnected: '' };
+
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
@@ -30,7 +29,7 @@ export class LoginPage {
 
   login(form: NgForm) {
     if(form.valid){
-      this.authService.signIn(this.user)
+      this.authService.signIn(this.loginFields)
       .then(()=> {
         this.navCtrl.setRoot(ListPage)
       })

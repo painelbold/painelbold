@@ -1,11 +1,11 @@
 import { Address } from './address';
-import { User } from './user';
 import { Edificio } from './edificio';
+import { Usuario } from './usuario';
 
 export class Condominio {
     constructor(
         public endereco: Address,
-        public sindico: User,
+        public sindico: Usuario,
         public blocos: Edificio[],
     ) { }
 }

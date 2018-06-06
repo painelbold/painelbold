@@ -1,3 +1,4 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Announcement } from './../../models/announcement';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
@@ -6,7 +7,8 @@ import { Injectable } from '@angular/core';
 export class AnnouncementProvider {
   private PATH='announcements/';
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase,
+              private auth: AngularFireAuth) {
   }
 
   getAll(){

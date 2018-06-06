@@ -1,8 +1,9 @@
-import { User } from './user';
+import { Usuario } from "./usuario";
+
 export class Announcement {
     public key: string;
     public title: string;
     public message: string;
     public publishDate: Date;
-    public user: User;
+    public user: Usuario;
 }

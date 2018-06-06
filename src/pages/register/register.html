@@ -14,7 +14,7 @@
                     <ion-input 
                     type="text" 
                     name="fullName" 
-                    [(ngModel)]="user.fullName"
+                    [(ngModel)]="usuario.fullName"
                     #fullName="ngModel"
                     required></ion-input>
                 </ion-item>
@@ -24,32 +24,16 @@
                     type="number" 
                     pattern="[0-9]*"
                     name="document" 
-                    [(ngModel)]="user.document"
+                    [(ngModel)]="usuario.document"
                     #document="ngModel"
                     required></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label floating>Endereço</ion-label>
-                    <ion-input 
-                    type="text" 
-                    name="address" 
-                    ngModel
-                    ></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label floating>Complemento</ion-label>
-                    <ion-input 
-                    type="text" 
-                    name="address-comp" 
-                    ngModel
-                    ></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label floating>E-mail</ion-label>
                     <ion-input 
                     type="email" 
                     name="email" 
-                    [(ngModel)]="user.email"
+                    [(ngModel)]="registerCredentials.email"
                     #email="ngModel"
                     required></ion-input>
                 </ion-item>
@@ -62,7 +46,7 @@
                     type="tel" 
                     name="phone" 
                     pattern="[0-9]*"
-                    [(ngModel)]="user.phone"
+                    [(ngModel)]="usuario.phone"
                     #phone="ngModel"
                     required></ion-input>
                 </ion-item>
@@ -71,7 +55,7 @@
                     <ion-input 
                     type="password" 
                     name="password" 
-                    [(ngModel)]="user.password"
+                    [(ngModel)]="registerCredentials.password"
                     #password="ngModel"
                     required></ion-input>
                 </ion-item>

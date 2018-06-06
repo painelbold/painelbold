@@ -26,6 +26,7 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { AnnouncementProvider } from '../providers/announcement/announcement';
 import { CondominioProvider } from '../providers/condominio/condominio';
 import { EdificioProvider } from '../providers/edificio/edificio';
+import { UserDataProvider } from '../providers/user-data/user-data';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -80,7 +81,8 @@ export const firebaseConfig = {
     AuthService,
     AnnouncementProvider,
     CondominioProvider,
-    EdificioProvider
+    EdificioProvider,
+    UserDataProvider
   ]
 })
 export class AppModule {}
