@@ -1,12 +1,8 @@
+import { RegisterEdificioPage } from './../register-edificio/register-edificio';
+import { RegisterCondominioPage } from './../register-condominio/register-condominio';
+import { RegisterBuildingsPage } from './../register-buildings/register-buildings';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the AdminDashboardPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,8 +14,18 @@ export class AdminDashboardPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AdminDashboardPage');
+  cadastraSindico(event){
+  }
+
+  cadastraAdmin(event){
+  }
+
+  cadastraCondominio(event){
+    this.navCtrl.push(RegisterCondominioPage);
+  }
+
+  cadastraEdificio(event){
+    this.navCtrl.push(RegisterEdificioPage);
   }
 
 }

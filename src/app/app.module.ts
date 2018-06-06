@@ -1,3 +1,6 @@
+import { RegisterEdificioPage } from './../pages/register-edificio/register-edificio';
+import { RegisterCondominioPage } from './../pages/register-condominio/register-condominio';
+import { AdminDashboardPage } from './../pages/admin-dashboard/admin-dashboard';
 import { AnnouncementPage } from './../pages/announcement/announcement';
 import { CalendarPage } from './../pages/calendar/calendar';
 import { MyAccountPage } from './../pages/my-account/my-account';
@@ -49,7 +52,10 @@ export const firebaseConfig = {
     RegisterBuildingsPage,
     CalendarPage,
     ResetPasswordPage,
-    AnnouncementPage
+    AnnouncementPage,
+    AdminDashboardPage,
+    RegisterCondominioPage,
+    RegisterEdificioPage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +76,10 @@ export const firebaseConfig = {
     RegisterBuildingsPage,
     CalendarPage,
     ResetPasswordPage,
-    AnnouncementPage
+    AnnouncementPage,
+    AdminDashboardPage,
+    RegisterCondominioPage,
+    RegisterEdificioPage
   ],
   providers: [
     StatusBar,

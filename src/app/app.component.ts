@@ -1,3 +1,4 @@
+import { AdminDashboardPage } from './../pages/admin-dashboard/admin-dashboard';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from './../providers/auth/auth-service';
 import { MyAccountPage } from './../pages/my-account/my-account';
@@ -41,9 +42,9 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Comunicados', component: ListPage },
-      { title: 'Indicar', component: SharePage},
       { title: 'Minha Conta', component: MyAccountPage},
-      { title: 'Cadastrar Imóvel', component: RegisterBuildingsPage},
+      { title: 'Indicar', component: SharePage},
+      { title: 'Painel do Administrador', component: AdminDashboardPage},
     ];
   }
 
