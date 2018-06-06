@@ -1,6 +1,5 @@
 import { RegisterEdificioPage } from './../register-edificio/register-edificio';
 import { RegisterCondominioPage } from './../register-condominio/register-condominio';
-import { RegisterBuildingsPage } from './../register-buildings/register-buildings';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 

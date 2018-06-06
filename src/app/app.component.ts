@@ -10,7 +10,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
-import { RegisterBuildingsPage } from '../pages/register-buildings/register-buildings';
 
 @Component({
   templateUrl: 'app.html'

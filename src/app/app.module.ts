@@ -19,7 +19,6 @@ import { ListDetailsPage } from '../pages/list-details/list-details';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { RegisterBuildingsPage } from '../pages/register-buildings/register-buildings';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AuthService } from '../providers/auth/auth-service';
@@ -49,7 +48,6 @@ export const firebaseConfig = {
     ListDetailsPage,
     SharePage,
     MyAccountPage,
-    RegisterBuildingsPage,
     CalendarPage,
     ResetPasswordPage,
     AnnouncementPage,
@@ -73,7 +71,6 @@ export const firebaseConfig = {
     ListDetailsPage,
     SharePage,
     MyAccountPage,
-    RegisterBuildingsPage,
     CalendarPage,
     ResetPasswordPage,
     AnnouncementPage,
