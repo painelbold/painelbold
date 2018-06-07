@@ -1,17 +1,27 @@
-import { HttpClient } from '@angular/common/http';
+import { Condominio } from './../../models/condominio';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 
-/*
-  Generated class for the CondominioProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class CondominioProvider {
+  private PATH='condominios/';
 
-  constructor(public http: HttpClient) {
-    console.log('Hello CondominioProvider Provider');
+  constructor(private db: AngularFireDatabase) {
+    
   }
-
+  
+  saveCondominio(condominio: Condominio){
+    return new Promise((resolve, reject) => {
+      if(condominio.key){
+        this.db.list(this.PATH)
+        .update(condominio.key, condominio )
+        .then(() =>resolve())
+        .catch((e) => reject(e))
+      } else {
+        this.db.list(this.PATH)
+        .push( condominio )
+        .then((result: any) =>resolve(result.key))
+      }
+    });
+  }
 }

@@ -1,11 +1,13 @@
 import { Address } from './address';
 import { Edificio } from './edificio';
-import { Usuario } from './usuario';
+import { DateTime } from 'ionic-angular';
 
 export class Condominio {
-    constructor(
-        public endereco: Address,
-        public sindico: Usuario,
-        public blocos: Edificio[],
-    ) { }
+    public key: string;
+    public nome: string;
+    public cnpj: string;
+    public endereco: Address;
+    public sindicoId: string;
+    public userCreatedId: string;
+    public dateCreated: Date;
 }

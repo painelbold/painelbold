@@ -39,7 +39,6 @@ export class ListPage {
   }
 
   itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
     this.navCtrl.push(ListDetailsPage, {
       item: item
     });

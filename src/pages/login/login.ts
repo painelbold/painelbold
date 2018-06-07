@@ -34,7 +34,7 @@ export class LoginPage {
         this.navCtrl.setRoot(ListPage)
       })
       .catch((error)=>{
-        let toast = this.toastController.create({duration: 500, position: "bottom"});
+        let toast = this.toastController.create({duration: 2000, position: "bottom"});
 
         switch(error.code){
           case "auth/invalid-email":

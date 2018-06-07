@@ -67,7 +67,8 @@
                     <ion-input 
                     type="password" 
                     name="confirm-password" 
-                    ngModel
+                    [(ngModel)]="registerCredentials.confirmPassword"
+                    #confirmPassword="ngModel"
                     ></ion-input>
                 </ion-item>
             </ion-item-group>

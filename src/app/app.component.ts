@@ -27,6 +27,7 @@ export class MyApp {
     private authService: AuthService,
     private afAuth: AngularFireAuth) {
     this.initializeApp();
+
     const authObserver = afAuth.authState.subscribe(user => {
       if(user){
         this.rootPage = ListPage;

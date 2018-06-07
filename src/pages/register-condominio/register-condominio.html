@@ -10,31 +10,64 @@
   <ion-content class="register-content" padding>
       <h4>Cadastrar Condomínio</h4>
       <div class="register-condominio-box">
-        <form (ngSubmit)="register()" #registerForm="ngForm">
+        <form (ngSubmit)="register(condominioForm)" #condominioForm="ngForm">
           <ion-item-group inset>
             <ion-item>
               <ion-label floating>Nome do Condomínio</ion-label>
-              <ion-input type="text" name="name"></ion-input>
+              <ion-input 
+              type="text" 
+              name="name"
+              [(ngModel)]="condominio.nome"
+              #nome="ngModel"
+              ></ion-input>
             </ion-item>
             <ion-item>
               <ion-label floating>CNPJ</ion-label>
-              <ion-input type="text" name="cpf"></ion-input>
+              <ion-input 
+              type="number" 
+              name="cnpj"
+              [(ngModel)]="condominio.cnpj"
+              #cnpj="ngModel"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label floating>Endereço</ion-label>
-              <ion-input type="text" name="address"></ion-input>
+              <ion-input 
+              type="text" 
+              name="logradouro"
+              [(ngModel)]="address.logradouro"
+              #logradouro="ngModel"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label floating>E-mail do Administrador</ion-label>
-              <ion-input type="email" name="email"></ion-input>
+              <ion-label floating>Complemento</ion-label>
+              <ion-input 
+              type="text" 
+              name="complemento"
+              [(ngModel)]="address.complemento"
+              #complemento="ngModel"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label floating>Senha</ion-label>
-              <ion-input type="password" name="password"></ion-input>
+              <ion-label floating>Bairro</ion-label>
+              <ion-input 
+              type="text" 
+              name="complemento"
+              [(ngModel)]="address.bairro"
+              #bairro="ngModel"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label floating>Confirmar Senha</ion-label>
-              <ion-input type="password" name="confirm-password"></ion-input>
+              <ion-label floating>Número</ion-label>
+              <ion-input 
+              type="number" 
+              name="numero"
+              [(ngModel)]="address.numero"
+              #numero="ngModel"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>CEP</ion-label>
+              <ion-input 
+              type="number" 
+              name="cep"
+              [(ngModel)]="address.cep"
+              #cep="ngModel"></ion-input>
             </ion-item>
           </ion-item-group>
           <button ion-button class="submit-btn" full type="submit">Cadastrar</button>

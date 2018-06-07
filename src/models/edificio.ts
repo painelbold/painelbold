@@ -1,6 +1,5 @@
 export class Edificio {
-    constructor(
-        public emailSindico: string,
-        public bloco: string,        
-    ) { }
+    public nome: string;
+    public bloco: string;
+    public key: string;
 }

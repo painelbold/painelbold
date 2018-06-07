@@ -11,7 +11,7 @@ import { Usuario } from '../../models/usuario';
   templateUrl: 'register.html'
 })
 export class RegisterPage {
-  registerCredentials = { email: '', password: ''};
+  registerCredentials = { email: '', password: '', confirmPassword: ''};
   usuario: Usuario = new Usuario();
 
   constructor(
@@ -28,36 +28,42 @@ export class RegisterPage {
 
   onRegister(form: NgForm) {
     if (form.valid){
-      this.authService.createUser(this.registerCredentials)
-      .then((result: any)=> {
-        this.usuario.email = this.registerCredentials.email;
-        this.usuario.admin = false;
-        this.usuario.assinante = false;
-        
-        this.userProvider.saveUserData(JSON.parse(JSON.stringify(this.usuario)), result.user.uid);
-
-        this.toastController.create({message: "Usuário criado com sucesso", duration: 2000, position: "bottom"}).present;
-        this.navCtrl.setRoot(ListPage);
-      })
-      .catch((error:any)=>{
-        switch (error.code){
-          case "auth/email-already-in-use":
-          this.toastController.create({message: "O e-mail inserido já está em uso.", duration: 2000, position: "bottom"}).present;
-          break;
-          case "auth/invalid-email":
-          this.toastController.create({message: "O e-mail inserido é inválido.", duration: 2000, position: "bottom"}).present;
-          break;
-          case "auth/operation-not-allowed":
-          this.toastController.create({message: "A operação não é permitida.", duration: 2000, position: "bottom"}).present;
-          break;
-          case "auth/weak-password":
-          this.toastController.create({message: "A senha escolhida é fraca.", duration: 2000, position: "bottom"}).present;
-          break;
-          default:
-          console.log("Erro ao registrar usuário: " + error.code);
-          break;
-        }
-      })
+      if(this.registerCredentials.password == this.registerCredentials.confirmPassword){
+        this.authService.createUser(this.registerCredentials)
+        .then((result: any)=> {
+          this.usuario.email = this.registerCredentials.email;
+          this.usuario.admin = false;
+          this.usuario.assinante = false;
+          
+          this.userProvider.saveUserData(JSON.parse(JSON.stringify(this.usuario)), result.user.uid);
+  
+          this.toastController.create({message: "Usuário criado com sucesso", duration: 2000, position: "bottom"}).present();
+          this.navCtrl.setRoot(ListPage);
+        })
+        .catch((error:any)=>{
+          switch (error.code){
+            case "auth/email-already-in-use":
+            this.toastController.create({message: "O e-mail inserido já está em uso.", duration: 2000, position: "bottom"}).present();
+            break;
+            case "auth/invalid-email":
+            this.toastController.create({message: "O e-mail inserido é inválido.", duration: 2000, position: "bottom"}).present();
+            break;
+            case "auth/operation-not-allowed":
+            this.toastController.create({message: "A operação não é permitida.", duration: 2000, position: "bottom"}).present();
+            break;
+            case "auth/weak-password":
+            this.toastController.create({message: "A senha escolhida é fraca.", duration: 2000, position: "bottom"}).present();
+            break;
+            default:
+            console.log("Erro ao registrar usuário: " + error.code);
+            break;
+          }
+        })
+      }
+      else
+      {
+        this.toastController.create({message: "As senhas digitadas são diferentes.", duration: 2000, position: "bottom"}).present();
+      }
     }
   }
 }

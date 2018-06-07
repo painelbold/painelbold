@@ -26,4 +26,12 @@ export class AuthService {
     resetPassword(email: string){
         return this.angularFireAuth.auth.sendPasswordResetEmail(email);
     }
+
+    getLoggedUser(){
+        var uid = "";
+        this.angularFireAuth.authState.subscribe(user =>{
+          uid = user.uid;
+        }).unsubscribe();
+        return uid;
+      }
 }
