@@ -11,11 +11,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'admin-dashboard.html',
 })
 export class AdminDashboardPage {
+  user: any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private afAuth: AngularFireAuth, 
-              private authService: AuthService) {
+              private authService: AuthService,) {
+    this.user = this.navParams.get("user");
   } 
 
   cadastraSindico(event){
@@ -25,7 +27,7 @@ export class AdminDashboardPage {
   }
 
   cadastraCondominio(event){
-    this.navCtrl.push(RegisterCondominioPage, {userUid: this.authService.getLoggedUser()});
+    this.navCtrl.push(RegisterCondominioPage, {userUid: ''});
   }
 
   cadastraEdificio(event){

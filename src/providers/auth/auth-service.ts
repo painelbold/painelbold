@@ -1,3 +1,5 @@
+import { Usuario } from './../../models/usuario';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -7,7 +9,8 @@ import * as firebase from 'firebase/app';
 export class AuthService {
     user: Observable<firebase.User>;
 
-    constructor(private angularFireAuth: AngularFireAuth){
+    constructor(private angularFireAuth: AngularFireAuth,
+                private db: AngularFireDatabase){
         this.user = angularFireAuth.authState;
     }
 
@@ -28,10 +31,6 @@ export class AuthService {
     }
 
     getLoggedUser(){
-        var uid = "";
-        this.angularFireAuth.authState.subscribe(user =>{
-          uid = user.uid;
-        }).unsubscribe();
-        return uid;
-      }
+        return this.angularFireAuth.auth.currentUser;
+    }
 }

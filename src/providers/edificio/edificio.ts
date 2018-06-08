@@ -1,26 +1,35 @@
 import { Edificio } from './../../models/edificio';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { firebaseConfig } from './../../app/app.module';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AuthService } from './../auth/auth-service';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class EdificioProvider {
   
   private PATH="edificios/";
+  uid: string;
+  condominios: AngularFireList<any[]>;
 
   constructor(public auth: AuthService,
-              public db: AngularFireDatabase) {
+              public db: AngularFireDatabase,
+              private authService: AuthService,) {
+        this.uid = authService.getLoggedUser().uid;
   }
-  
-  createEdificio(edificio: Edificio, idCond: string){
+
+  saveEdificio(edificio: Edificio){
     return new Promise((resolve, reject) => {
-      this.db.database
-      .ref(this.PATH + idCond)
-      .set({ bloco: edificio.bloco,
-             nome: edificio.nome,
-             })
+      if(edificio.key){
+        this.db.list(this.PATH + edificio.condominioId)
+        .update(edificio.key, edificio )
+      .then(() =>resolve())
+      .catch((e) => reject(e))
+      }
+      else{
+        edificio.userCreatedId = this.uid;
+      this.db.list(this.PATH + edificio.condominioId)
+      .push( edificio )
+      .then((result: any) =>resolve(result.key))
+      }
     });
   }
 

@@ -17,7 +17,9 @@ export class ListPage {
   images: string[];
   items: Array<{title: string, note: string, date: string, image: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public datePicker: DatePicker) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public datePicker: DatePicker) {
     this.selectedItem = navParams.get('item');
 
     this.comunicados = ['Comunicado do Síndico', 'Comunicado da Administração'];
@@ -51,7 +53,5 @@ export class ListPage {
   newAnnouncement(){
     this.navCtrl.push(AnnouncementPage);
   }
-
-
 }
 

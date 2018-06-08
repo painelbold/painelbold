@@ -14,21 +14,17 @@ import { NgForm } from '@angular/forms';
 export class RegisterCondominioPage {
   condominio: Condominio = new Condominio();
   address: Address = new Address();
-  userCreatedUid
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private condProvider: CondominioProvider,
               private toastController: ToastController,
               private auth: AuthService) {
-    this.userCreatedUid = navParams.get("userUid");
   }
 
   register(form: NgForm){
     if(form.valid){
       this.condominio.endereco = this.address;
-      this.condominio.dateCreated = new Date();
-      this.condominio.userCreatedId = this.auth.getLoggedUser();
 
       this.condProvider.saveCondominio(this.condominio)
       .then((result: any) => {

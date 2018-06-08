@@ -1,12 +1,12 @@
+import { Observable } from 'rxjs/Observable';
+import { CondominioProvider } from './../../providers/condominio/condominio';
+import { EdificioProvider } from './../../providers/edificio/edificio';
+import { NgForm } from '@angular/forms';
+import { Edificio } from './../../models/edificio';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the RegisterEdificioPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, ToastController, List } from 'ionic-angular';
+import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
+import { Condominio } from '../../models/condominio';
 
 @IonicPage()
 @Component({
@@ -14,12 +14,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'register-edificio.html',
 })
 export class RegisterEdificioPage {
+  edificio: Edificio;
+  condominios: AngularFireList<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private edificioProvider: EdificioProvider,
+              private toastController: ToastController,
+              private db: AngularFireDatabase) {
+    this.edificio = new Edificio();
+    this.condominios = this.db.list("condominios");
   }
 
-  register(event){
-    
+  registerEdificio(form: NgForm){
+    if(form.valid){
+      this.edificioProvider.saveEdificio(this.edificio)
+      .then((result: any) => {
+        this.toastController.create({message: "Edifício criado com sucesso", duration: 2000, position: "bottom"}).present();
+        this.navCtrl.pop();
+      })
+      .catch((error)=>{
+        this.toastController.create({message: "Erro na criação do edifício", duration: 2000, position: "bottom"}).present();
+        console.log("Erro na criação do condomínio: ", error);
+      });
+    }
   }
 
 }
