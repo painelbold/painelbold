@@ -1,8 +1,9 @@
 export class Usuario {
     fullName: string;
-    document: number;
+    cpf: number;
     email: string;
     phone: number;
     assinante: boolean;
     admin: boolean;
+    key: string;
 }

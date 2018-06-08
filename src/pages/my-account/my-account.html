@@ -9,24 +9,29 @@
 
 
 <ion-content padding>
-    <form (ngSubmit)="editarConta()" #registerForm="ngForm">
+    <form (ngSubmit)="editarConta()" [formGroup]="myAccountForm">
       <h4>Meus dados</h4>
         <ion-item-group>
           <ion-item>
               <ion-label floating>Nome</ion-label>
-              <ion-input type="text" name="name"></ion-input>
+              <ion-input 
+              type="text" 
+              name="name"
+              formControlName= "fullName"></ion-input>
           </ion-item>
           <ion-item>
               <ion-label floating>CPF</ion-label>
-              <ion-input type="text" name="cpf"></ion-input>
+              <ion-input 
+              type="text" 
+              name="cpf"
+              formControlName= "cpf"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-label floating>E-mail</ion-label>
-              <ion-input type="email" name="email"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label floating></ion-label>
-            <ion-input type="text" name="address">Endereço</ion-input>
+              <ion-label floating>Telefone</ion-label>
+              <ion-input 
+              type="phone" 
+              name="phone"
+              formControlName= "phone"></ion-input>
           </ion-item>
         </ion-item-group>
         <button ion-button class="submit-btn" full type="submit">Confirmar mudanças</button>

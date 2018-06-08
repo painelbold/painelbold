@@ -35,7 +35,6 @@ export class AnnouncementPage {
       key: [this.announcement.key],
       title: [this.announcement.title, Validators.required],
       message: [this.announcement.message, Validators.required],
-      
     })
   }
 

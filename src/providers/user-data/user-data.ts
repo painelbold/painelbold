@@ -18,7 +18,7 @@ export class UserDataProvider {
       this.db.database
       .ref(this.PATH + uid)
       .set({ fullName: usuario.fullName,
-             cpf: usuario.document,
+             cpf: usuario.cpf,
              email: usuario.email,
              phone: usuario.phone,
              assinante: usuario.assinante,
@@ -28,6 +28,10 @@ export class UserDataProvider {
   }
 
   getUserData(){
-    return this.db.object(this.PATH + this.authService.getLoggedUser());
+    return this.db.object(this.PATH + this.authService.getLoggedUser().uid)
+    .snapshotChanges()
+    .map(u =>{
+      return { key: u.key, ...u.payload.val()};
+    });
   }
 }

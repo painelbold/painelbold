@@ -7,14 +7,14 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class CondominioProvider {
-  private PATH='condominios/';
+  private PATH='/condominios/';
   uid: string;
   condominios: Observable<any>;
 
   constructor(private db: AngularFireDatabase,
               private authService: AuthService) {
     this.uid = authService.getLoggedUser().uid;
-    this.condominios = this.db.list("/condominios").valueChanges();
+    this.condominios = this.db.list(this.PATH).valueChanges();
   }
 
   getAllCondominios(){

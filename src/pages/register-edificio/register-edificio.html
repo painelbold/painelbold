@@ -15,7 +15,7 @@
       <ion-item>
         <ion-label>Condomínio:</ion-label>
         <ion-select>
-          <ion-option *ngFor="let c of condominios" [value]="c.key">{{c.nome}}</ion-option>
+          <ion-option *ngFor="let c of condominios | async" [value]="c.key">{{c.nome}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>

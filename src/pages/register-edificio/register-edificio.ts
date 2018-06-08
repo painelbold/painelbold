@@ -15,15 +15,16 @@ import { Condominio } from '../../models/condominio';
 })
 export class RegisterEdificioPage {
   edificio: Edificio;
-  condominios: AngularFireList<any[]>;
+  condominios: Observable<any>;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private edificioProvider: EdificioProvider,
+              private condProvider: CondominioProvider,
               private toastController: ToastController,
               private db: AngularFireDatabase) {
     this.edificio = new Edificio();
-    this.condominios = this.db.list("condominios");
+    this.condominios = this.condProvider.getAllCondominios();
   }
 
   registerEdificio(form: NgForm){
