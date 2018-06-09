@@ -11,7 +11,7 @@ export class AnnouncementProvider {
               private auth: AngularFireAuth) {
   }
 
-  getAll(){
+  getAllByEdificio(key: string){
     return this.db.list(this.PATH)
     .snapshotChanges()
     .map(changes=>{
@@ -28,15 +28,15 @@ export class AnnouncementProvider {
 
   }
 
-  save(announcement: Announcement){
+  save(announcement: Announcement, key: string){
     return new Promise((resolve, reject) => {
       if(announcement.key){
-        this.db.list(this.PATH)
+        this.db.list(this.PATH + key)
         .update(announcement.key, announcement )
         .then(() =>resolve())
         .catch((e) => reject(e))
       } else {
-        this.db.list(this.PATH)
+        this.db.list(this.PATH + key)
         .push( announcement )
         .then((result: any) =>resolve(result.key))
       }

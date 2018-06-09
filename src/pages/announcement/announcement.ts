@@ -1,8 +1,7 @@
 import { AnnouncementProvider } from './../../providers/announcement/announcement';
-import { Announcement } from './../../models/announcement';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -13,6 +12,7 @@ export class AnnouncementPage {
   announcement: any;
   title: string;
   announcementForm: FormGroup;
+  edificioId: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -21,6 +21,7 @@ export class AnnouncementPage {
     private toastController: ToastController,
     private announcementProvider: AnnouncementProvider ) {
       this.announcement = this.navParams.data.announcement || {};
+      this.edificioId = this.navParams.data.edificioId;
 
       this.setupPageTitle();
   }
@@ -40,7 +41,7 @@ export class AnnouncementPage {
 
   onSave(){
     if(this.announcementForm.valid){
-      this.announcementProvider.save(this.announcementForm.value)
+      this.announcementProvider.save(this.announcementForm.value, this.edificioId)
       .then(()=>{
         this.toastController.create({message: "Comunicado salvo com sucesso!", duration: 1500, position: "bottom"}).present();
         this.navCtrl.pop();
