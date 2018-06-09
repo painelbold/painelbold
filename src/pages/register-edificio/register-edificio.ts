@@ -1,11 +1,11 @@
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, NgForm, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { CondominioProvider } from './../../providers/condominio/condominio';
 import { EdificioProvider } from './../../providers/edificio/edificio';
 import { Edificio } from './../../models/edificio';
 import { IonicPage, NavController, NavParams, ToastController, List } from 'ionic-angular';
-import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
-import { Condominio } from '../../models/condominio';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Component } from '@angular/core';
 
 @IonicPage()
 @Component({
@@ -15,6 +15,8 @@ import { Condominio } from '../../models/condominio';
 export class RegisterEdificioPage {
   edificio: Edificio;
   condominios: Observable<any>;
+  edificioForm: FormGroup;
+  condominioId: any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -22,15 +24,27 @@ export class RegisterEdificioPage {
               private condProvider: CondominioProvider,
               private toastController: ToastController,
               private db: AngularFireDatabase,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,) {
     this.edificio = new Edificio();
-    
+
     this.condominios = this.condProvider.getAllCondominios();
 
+    this.createForm();
+  }
+
+  createForm(){
+    this.edificioForm = this.formBuilder.group({
+      nome: [this.edificio.nome, Validators.required],
+      bloco: [this.edificio.bloco],
+      condominioId: [this.condominioId]
+    })
   }
 
   registerEdificio(form: NgForm){
-    if(form.valid){
+    this.edificio = this.edificioForm.value;
+    this.edificio.condominioId = this.condominioId;
+
+    if(form.valid){  
       this.edificioProvider.saveEdificio(this.edificio)
       .then((result: any) => {
         this.toastController.create({message: "Edifício criado com sucesso", duration: 2000, position: "bottom"}).present();

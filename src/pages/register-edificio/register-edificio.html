@@ -10,29 +10,34 @@
 
 <ion-content padding>
   <div class="register-edificio">
-    <form (ngSubmit)="registerEdificio(registerForm)" #registerForm="ngForm">
-    <ion-item-group inset>
-      <ion-item>
-        <ion-label>Condomínio:</ion-label>
-        <ion-select>
-          <ion-option *ngFor="let c of condominios | async" [value]="c.key">{{c.nome}}</ion-option>
-        </ion-select>
+    <form (ngSubmit)="registerEdificio(edificioForm)" [formGroup]="edificioForm">
+      <ion-item-group inset>
+        <ion-item>
+          <ion-label>Condomínio:</ion-label>
+            <ion-select 
+              [(ngModel)]="condominioId" 
+              [ngModelOptions]="{standalone: true}">
+                <ion-option 
+                name="condominioId"
+                *ngFor="let c of condominios | async" 
+                [value]="c.key">
+                  {{c.nome}}
+                </ion-option>
+            </ion-select>
       </ion-item>
       <ion-item>
         <ion-label floating>Nome do Edifício</ion-label>
         <ion-input 
         type="text" 
         name="name"
-        [(ngModel)]="edificio.nome"
-        #nome="ngModel"></ion-input>
+        formControlName="nome"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Bloco</ion-label>
         <ion-input 
         type="text" 
-        name="address"
-        [(ngModel)]="edificio.bloco"
-        #bloco="ngModel"></ion-input>
+        name="bloco"
+        formControlName="bloco"></ion-input>
       </ion-item>
     </ion-item-group>
     <button ion-button class="submit-btn" full type="submit">Cadastrar</button>

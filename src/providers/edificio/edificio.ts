@@ -16,6 +16,22 @@ export class EdificioProvider {
         this.uid = authService.getLoggedUser().uid;
   }
 
+  getAllEdificiosCond(key: string){
+    this.db.list(this.PATH + key)
+    .snapshotChanges()
+    .map(changes => {
+      return changes.map(e => ({ key: e.payload.key, ...e.payload.val() }));
+    })
+  }
+
+  getEdificio(key: string){
+    this.db.object(this.PATH + key)
+    .snapshotChanges()
+    .map(e => {
+      return { key: e.key, ...e.payload.val()};
+    });
+  }
+
   saveEdificio(edificio: Edificio){
     return new Promise((resolve, reject) => {
       if(edificio.key){
