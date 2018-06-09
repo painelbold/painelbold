@@ -1,20 +1,16 @@
-import { Condominio } from './../../models/condominio';
+import { Usuario } from './../../models/usuario';
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Usuario } from '../../models/usuario';
 import { AuthService } from '../auth/auth-service';
 
 @Injectable()
 export class UserDataProvider {
   private PATH='users/';
-  private uid: string;
 
   constructor(private db: AngularFireDatabase,
-              private authService: AuthService) {
+              private authService: AuthService) {                  
     }
   
-
   saveUserData(usuario: Usuario, key: string){
     return new Promise((resolve, reject) => {
       if(key){
@@ -26,10 +22,10 @@ export class UserDataProvider {
       else{
         this.db.database
         .ref(this.PATH + this.authService.getLoggedUser().uid)
-        .set({ fullName: usuario.fullName,
-             cpf: usuario.cpf,
-             email: usuario.email,
-             phone: usuario.phone,
+        .set({ fullName: usuario.fullName || '',
+             cpf: usuario.cpf || '',
+             email: usuario.email || '',
+             phone: usuario.phone || '',
              assinante: usuario.assinante,
              admin: usuario.admin,
              edificioId: usuario.edificioId,

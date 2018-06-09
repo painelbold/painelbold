@@ -43,10 +43,10 @@ export class EdificioProvider {
       }
       else{
         edificio.userCreatedId = this.uid;
-      this.db.list(this.PATH + edificio.condominioId)
-      .push( edificio )
-      .then((result: any) =>resolve(result.key))
-      }
+        this.db.list(this.PATH + edificio.condominioId)
+        .push( edificio )
+        .then((result: any) =>resolve(result.key))
+        }
     });
   }
 

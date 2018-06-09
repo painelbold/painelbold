@@ -30,7 +30,7 @@ export class MyApp {
 
     const authObserver = afAuth.authState.subscribe(user => {
       if(user){
-        this.rootPage = AdminDashboardPage;
+        this.rootPage = ListPage;
         authObserver.unsubscribe();
       }
       else{

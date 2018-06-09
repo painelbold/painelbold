@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Observable';
+import { AnnouncementProvider } from './../../providers/announcement/announcement';
 import { Usuario } from './../../models/usuario';
 import { UserDataProvider } from './../../providers/user-data/user-data';
 import { AnnouncementPage } from './../announcement/announcement';
@@ -11,35 +13,22 @@ import { ListDetailsPage } from '../list-details/list-details'
   templateUrl: 'list.html'
 })
 export class ListPage {
-  comunicados: string[];
-  messages: string[];
-  dates: string[];
-  images: string[];
-  items: Array<{title: string, note: string, date: string, image: string}>;
+  comunicados: Observable<any>
   usuario: Usuario;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
-    private udProvider: UserDataProvider) {
-  
-      const subscribe = udProvider.getUserData()
-      .subscribe((u: any) => {
-        this.usuario = u;
+    private udProvider: UserDataProvider,
+    private aProvider: AnnouncementProvider) {
+  }
 
-        subscribe.unsubscribe();
-      });  
-
-    this.images = [ 'assets/imgs/avatar1.jpg', 'assets/imgs/avatar2.jpg']
-
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: this.comunicados[Math.floor(Math.random() * this.comunicados.length)],
-        note: this.messages[Math.floor(Math.random() * this.messages.length)],
-        date: this.dates[Math.floor(Math.random() * this.dates.length)],
-        image: this.images[Math.floor(Math.random() * this.images.length)]
-      });
-    }
+  ionViewDidEnter(){
+    const subscribe = this.udProvider.getUserData()
+    .subscribe((u: any) => {
+      this.usuario = u;
+      this.comunicados = this.aProvider.getAllByEdificio(this.usuario.edificioId);
+      subscribe.unsubscribe();
+    });
   }
 
   itemTapped(event, item) {
