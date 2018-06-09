@@ -1,6 +1,4 @@
 import { Address } from './address';
-import { Edificio } from './edificio';
-import { DateTime } from 'ionic-angular';
 
 export class Condominio {
     public key: string;

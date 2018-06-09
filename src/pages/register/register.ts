@@ -35,7 +35,7 @@ export class RegisterPage {
           this.usuario.admin = false;
           this.usuario.assinante = false;
           
-          this.userProvider.saveUserData(JSON.parse(JSON.stringify(this.usuario)), result.user.uid);
+          this.userProvider.saveUserData(this.usuario, '');
   
           this.toastController.create({message: "Usuário criado com sucesso", duration: 2000, position: "bottom"}).present();
           this.navCtrl.setRoot(ListPage);

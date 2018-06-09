@@ -1,24 +1,24 @@
 import { AuthService } from './../auth/auth-service';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Condominio } from './../../models/condominio';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class CondominioProvider {
-  private PATH='/condominios/';
+  private PATH='condominios/';
   uid: string;
-  condominios: Observable<any>;
 
   constructor(private db: AngularFireDatabase,
               private authService: AuthService) {
     this.uid = authService.getLoggedUser().uid;
-    this.condominios = this.db.list(this.PATH).valueChanges();
   }
 
   getAllCondominios(){
-    return this.condominios;
+    return this.db.list(this.PATH)
+    .snapshotChanges()
+    .map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    })
   }
   
   saveCondominio(condominio: Condominio){
