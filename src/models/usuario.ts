@@ -6,4 +6,5 @@ export class Usuario {
     assinante: boolean;
     admin: boolean;
     key: string;
+    edificioId: string;
 }

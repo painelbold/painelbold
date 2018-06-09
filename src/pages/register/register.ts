@@ -1,3 +1,5 @@
+import { EdificioProvider } from './../../providers/edificio/edificio';
+import { CondominioProvider } from './../../providers/condominio/condominio';
 import { UserDataProvider } from './../../providers/user-data/user-data';
 import { ListPage } from './../list/list';
 import { Component, ViewChild } from '@angular/core';
@@ -5,6 +7,7 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../providers/auth/auth-service';
 import { Usuario } from '../../models/usuario';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-register',
@@ -13,17 +16,27 @@ import { Usuario } from '../../models/usuario';
 export class RegisterPage {
   registerCredentials = { email: '', password: '', confirmPassword: ''};
   usuario: Usuario = new Usuario();
+  condominios: Observable<any>;
+  edificios: Observable<any>;
+  condominioId: any;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     private toastController: ToastController,
     private authService: AuthService,
-    private userProvider: UserDataProvider) {   
+    private userProvider: UserDataProvider,
+    private condProvider: CondominioProvider,
+    private edfProvider: EdificioProvider) { 
+      this.condominios = this.condProvider.getAllCondominios();
   }
 
   goBack(event) {
     this.navCtrl.pop();
+  }
+
+  condChange(){
+    this.edificios = this.edfProvider.getAllEdificiosCond(this.condominioId);
   }
 
   onRegister(form: NgForm) {

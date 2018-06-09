@@ -32,6 +32,7 @@ export class UserDataProvider {
              phone: usuario.phone,
              assinante: usuario.assinante,
              admin: usuario.admin,
+             edificioId: usuario.edificioId,
              })
       }
     });

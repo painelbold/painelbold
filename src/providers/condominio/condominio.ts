@@ -10,7 +10,8 @@ export class CondominioProvider {
 
   constructor(private db: AngularFireDatabase,
               private authService: AuthService) {
-    this.uid = authService.getLoggedUser().uid;
+                if(authService.getLoggedUser())    
+                  this.uid = authService.getLoggedUser().uid;
   }
 
   getAllCondominios(){

@@ -13,15 +13,16 @@ export class EdificioProvider {
   constructor(public auth: AuthService,
               public db: AngularFireDatabase,
               private authService: AuthService,) {
-        this.uid = authService.getLoggedUser().uid;
+                if(authService.getLoggedUser())
+                  this.uid = authService.getLoggedUser().uid;
   }
 
   getAllEdificiosCond(key: string){
-    this.db.list(this.PATH + key)
-    .snapshotChanges()
-    .map(changes => {
-      return changes.map(e => ({ key: e.payload.key, ...e.payload.val() }));
-    })
+    return this.db.list(this.PATH + key)
+            .snapshotChanges()
+            .map(changes => {
+              return changes.map(e => ({ key: e.payload.key, ...e.payload.val() }));
+            })
   }
 
   getEdificio(key: string){

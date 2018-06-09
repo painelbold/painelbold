@@ -29,6 +29,43 @@
                     required></ion-input>
                 </ion-item>
                 <ion-item>
+                    <ion-label>Condomínio:</ion-label>
+                        <ion-select 
+                        name="condominioId"
+                        [(ngModel)]="condominioId"
+                        condominioId="ngModel"
+                        (ionChange)="condChange()">
+                            <ion-option 
+                            *ngFor="let c of condominios | async" 
+                            [value]="c.key">
+                            {{c.nome}}
+                            </ion-option>
+                        </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Edificio:</ion-label>
+                        <ion-select 
+                        name="edificioId"
+                        [(ngModel)]="usuario.edificioId"
+                        edificioId="ngModel">
+                            <ion-option 
+                            *ngFor="let e of edificios | async" 
+                            [value]="e.key">
+                            {{e.nome}}
+                            </ion-option>
+                        </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Telefone</ion-label>
+                    <ion-input 
+                    type="tel" 
+                    name="phone" 
+                    pattern="[0-9]*"
+                    [(ngModel)]="usuario.phone"
+                    #phone="ngModel"
+                    required></ion-input>
+                </ion-item>
+                <ion-item>
                     <ion-label floating>E-mail</ion-label>
                     <ion-input 
                     type="email" 
@@ -40,16 +77,6 @@
                 <!-- <ion-item *ngIf="email.errors && (email.dirty || email.touched)" class="text-danger">
                     O campo é obrigatório
                 </ion-item> -->
-                <ion-item>
-                    <ion-label floating>Telefone</ion-label>
-                    <ion-input 
-                    type="tel" 
-                    name="phone" 
-                    pattern="[0-9]*"
-                    [(ngModel)]="usuario.phone"
-                    #phone="ngModel"
-                    required></ion-input>
-                </ion-item>
                 <ion-item>
                     <ion-label floating>Senha</ion-label>
                     <ion-input 
