@@ -13,7 +13,7 @@ import { ListDetailsPage } from '../list-details/list-details'
   templateUrl: 'list.html'
 })
 export class ListPage {
-  comunicados: Observable<any>
+  comunicados: Observable<any>;
   usuario: Usuario;
 
   constructor(public navCtrl: NavController, 

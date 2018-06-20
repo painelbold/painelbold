@@ -1,6 +1,7 @@
+import { ListCondominiosPage } from './../pages/admin/list-condominios/list-condominios';
+import { ListCondominioDetailsPage } from './../pages/admin/list-condominio-details/list-condominio-details';
 import { RegisterEdificioPage } from './../pages/register-edificio/register-edificio';
 import { RegisterCondominioPage } from './../pages/register-condominio/register-condominio';
-import { AdminDashboardPage } from './../pages/admin-dashboard/admin-dashboard';
 import { AnnouncementPage } from './../pages/announcement/announcement';
 import { CalendarPage } from './../pages/calendar/calendar';
 import { MyAccountPage } from './../pages/my-account/my-account';
@@ -29,6 +30,7 @@ import { AnnouncementProvider } from '../providers/announcement/announcement';
 import { CondominioProvider } from '../providers/condominio/condominio';
 import { EdificioProvider } from '../providers/edificio/edificio';
 import { UserDataProvider } from '../providers/user-data/user-data';
+import { AdminDashboardPage } from '../pages/admin/admin-dashboard/admin-dashboard';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -53,7 +55,9 @@ export const firebaseConfig = {
     AnnouncementPage,
     AdminDashboardPage,
     RegisterCondominioPage,
-    RegisterEdificioPage
+    RegisterEdificioPage,
+    ListCondominiosPage,
+    ListCondominioDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +80,9 @@ export const firebaseConfig = {
     AnnouncementPage,
     AdminDashboardPage,
     RegisterCondominioPage,
-    RegisterEdificioPage
+    RegisterEdificioPage,
+    ListCondominiosPage,
+    ListCondominioDetailsPage
   ],
   providers: [
     StatusBar,

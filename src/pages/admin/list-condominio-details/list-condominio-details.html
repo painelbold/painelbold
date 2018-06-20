@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img src="assets/logotipo.png"/>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="editarCondominio()" [formGroup]="condominioForm">
+    <h4>Editar Condomínio</h4>
+      <ion-item-group>
+        <ion-item>
+            <ion-label floating>Nome</ion-label>
+            <ion-input 
+            type="text" 
+            name="nome"
+            formControlName="nome"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Logradouro</ion-label>
+            <ion-input 
+            type="text" 
+            name="logradouro"
+            formControlName= "logradouro"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Complemento</ion-label>
+            <ion-input 
+            type="text" 
+            name="complemento"
+            formControlName= "complemento"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Bairro</ion-label>
+            <ion-input 
+            type="text" 
+            name="bairro"
+            formControlName= "bairro"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>CEP</ion-label>
+            <ion-input 
+            type="number" 
+            name="cep"
+            formControlName= "cep"></ion-input>
+        </ion-item>
+      </ion-item-group>
+      <button 
+      ion-button 
+      class="submit-btn" 
+      full 
+      type="submit">Confirmar Mudanças</button>
+  </form>
+  <button 
+      ion-button 
+      class="danger" 
+      full>Excluir Condomínio</button>
+</ion-content>

@@ -1,5 +1,5 @@
 import 'firebase/firestore';
-import { AdminDashboardPage } from './../pages/admin-dashboard/admin-dashboard';
+import { AdminDashboardPage } from './../pages/admin/admin-dashboard/admin-dashboard';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from './../providers/auth/auth-service';
 import { MyAccountPage } from './../pages/my-account/my-account';

@@ -18,7 +18,7 @@
   <h3>Comunicados</h3>
   <ion-item-group>
     <ion-item *ngFor="let c of comunicados | async" (click)="itemTapped($event, c)" text-wrap>
-       <ion-avatar item-start>
+      <ion-avatar item-start>
         <img src='assets/imgs/avatar1.jpg'>
       </ion-avatar>   
       <ion-label>
