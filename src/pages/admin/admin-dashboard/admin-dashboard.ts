@@ -1,3 +1,4 @@
+import { ListEdificiosPage } from './../../admin/list-edificios/list-edificios';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -37,6 +38,10 @@ export class AdminDashboardPage {
 
   listarCondominios(){
     this.navCtrl.push(ListCondominiosPage);
+  }
+
+  listarEdificios(){
+    this.navCtrl.push(ListEdificiosPage);
   }
 
 }

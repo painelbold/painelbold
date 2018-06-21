@@ -1,3 +1,5 @@
+import { ListEdificiosDetailsPage } from './../pages/admin/list-edificios-details/list-edificios-details';
+import { ListEdificiosPage } from './../pages/admin/list-edificios/list-edificios';
 import { ListCondominiosPage } from './../pages/admin/list-condominios/list-condominios';
 import { ListCondominioDetailsPage } from './../pages/admin/list-condominio-details/list-condominio-details';
 import { RegisterEdificioPage } from './../pages/register-edificio/register-edificio';
@@ -57,7 +59,9 @@ export const firebaseConfig = {
     RegisterCondominioPage,
     RegisterEdificioPage,
     ListCondominiosPage,
-    ListCondominioDetailsPage
+    ListCondominioDetailsPage,
+    ListEdificiosPage,
+    ListEdificiosDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -82,7 +86,9 @@ export const firebaseConfig = {
     RegisterCondominioPage,
     RegisterEdificioPage,
     ListCondominiosPage,
-    ListCondominioDetailsPage
+    ListCondominioDetailsPage,
+    ListEdificiosPage,
+    ListEdificiosDetailsPage
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        <img src="assets/logotipo.png"/>
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content padding>
+      <form (ngSubmit)="editarEdificio()" [formGroup]="edificioForm">
+        <h4>Editar Edifício</h4>
+          <ion-item-group>
+            <ion-item>
+                <ion-label floating>Nome</ion-label>
+                <ion-input 
+                type="text" 
+                name="nome"
+                formControlName="nome"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Bloco</ion-label>
+                <ion-input 
+                type="text" 
+                name="bloco"
+                formControlName= "bloco"></ion-input>
+            </ion-item>
+          </ion-item-group>
+          <button 
+          ion-button 
+          class="submit-btn" 
+          full 
+          type="submit">Confirmar Mudanças</button>
+      </form>
+      <button 
+          ion-button 
+          class="danger" 
+          full>Excluir Edificio</button>
+    </ion-content>
+    
