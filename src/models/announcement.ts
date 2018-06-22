@@ -2,6 +2,6 @@ export class Announcement {
     public key: string;
     public title: string;
     public message: string;
-    public publishDate: Date;
+    public publishDate: any;
     public userPublishedId: string;
 }

@@ -7,5 +7,5 @@ export class Condominio {
     public endereco: Address;
     public sindicoId: string;
     public userCreatedId: string;
-    public dateCreated: string;
+    public dateCreated: any;
 }

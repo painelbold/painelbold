@@ -1,3 +1,4 @@
+import * as firebase from 'firebase';
 import { Edificio } from './../../models/edificio';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AuthService } from './../auth/auth-service';
@@ -43,6 +44,8 @@ export class EdificioProvider {
       }
       else{
         edificio.userCreatedId = this.uid;
+        edificio.dateCreated = firebase.database.ServerValue.TIMESTAMP;
+
         this.db.list(this.PATH + edificio.condominioId)
         .push( edificio )
         .then((result: any) =>resolve(result.key))

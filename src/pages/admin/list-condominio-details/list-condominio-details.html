@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)="editarCondominio()" [formGroup]="condominioForm">
+  <form (ngSubmit)="editarCondominio(condominioForm)" #condominioForm="ngForm">
     <h4>Editar Condomínio</h4>
       <ion-item-group>
         <ion-item>
@@ -18,35 +18,40 @@
             <ion-input 
             type="text" 
             name="nome"
-            formControlName="nome"></ion-input>
+            [(ngModel)]="condominio.nome"
+            #nome="ngModel"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Logradouro</ion-label>
             <ion-input 
             type="text" 
             name="logradouro"
-            formControlName= "logradouro"></ion-input>
+            [(ngModel)]="condominio.endereco.logradouro"
+            #logradouro="ngModel"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Complemento</ion-label>
             <ion-input 
             type="text" 
             name="complemento"
-            formControlName= "complemento"></ion-input>
+            [(ngModel)]="condominio.endereco.complemento"
+            #complemento="ngModel"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Bairro</ion-label>
             <ion-input 
             type="text" 
             name="bairro"
-            formControlName= "bairro"></ion-input>
+            [(ngModel)]="condominio.endereco.bairro"
+            #bairro="ngModel"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>CEP</ion-label>
             <ion-input 
             type="number" 
             name="cep"
-            formControlName= "cep"></ion-input>
+            [(ngModel)]="condominio.endereco.cep"
+            #cep="ngModel"></ion-input>
         </ion-item>
       </ion-item-group>
       <button 
@@ -55,8 +60,4 @@
       full 
       type="submit">Confirmar Mudanças</button>
   </form>
-  <button 
-      ion-button 
-      class="danger" 
-      full>Excluir Condomínio</button>
 </ion-content>

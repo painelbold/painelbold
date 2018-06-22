@@ -4,4 +4,5 @@ export class Edificio {
     public key: string;
     public userCreatedId: string;
     public condominioId: string;
+    public dateCreated: any;
 }

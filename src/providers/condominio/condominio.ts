@@ -1,3 +1,4 @@
+import * as firebase from 'firebase';
 import { AuthService } from './../auth/auth-service';
 import { Condominio } from './../../models/condominio';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
@@ -31,6 +32,8 @@ export class CondominioProvider {
         .catch((e) => reject(e))
       } else {
         condominio.userCreatedId = this.uid;
+        condominio.dateCreated = firebase.database.ServerValue.TIMESTAMP;
+
         this.db.list(this.PATH)
         .push( condominio )
         .then((result: any) =>resolve(result.key))

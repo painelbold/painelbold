@@ -1,3 +1,4 @@
+import * as firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Announcement } from './../../models/announcement';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -8,7 +9,7 @@ export class AnnouncementProvider {
   private PATH='announcements/';
 
   constructor(private db: AngularFireDatabase,
-              private auth: AngularFireAuth) {
+              private auth: AngularFireAuth,) {
   }
 
   getAllByEdificio(key: string){
@@ -36,6 +37,8 @@ export class AnnouncementProvider {
         .then(() =>resolve())
         .catch((e) => reject(e))
       } else {
+        announcement.publishDate = firebase.database.ServerValue.TIMESTAMP;
+
         this.db.list(this.PATH + key)
         .push( announcement )
         .then((result: any) =>resolve(result.key))
