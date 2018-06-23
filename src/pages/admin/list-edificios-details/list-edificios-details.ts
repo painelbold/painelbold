@@ -1,4 +1,4 @@
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
 import { EdificioProvider } from './../../../providers/edificio/edificio';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
@@ -15,31 +15,23 @@ export class ListEdificiosDetailsPage {
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private formBuilder: FormBuilder,
     private toastController: ToastController,
     private eProvider: EdificioProvider) {
-    this.edificio = navParams.get("item");
-    
-    this.createForm();
+      this.edificio = navParams.get("item");
   }
 
-  createForm(){
-    this.edificioForm = this.formBuilder.group({
-      nome: [this.edificio.nome, Validators.required],
-      bloco: [this.edificio.bloco, Validators.required],
-    })
-  }
-
-  editarEdificio(){
-    this.eProvider.saveEdificio(this.edificioForm.value)
-    .then(()=>{
-      this.toastController.create({message: "Edifício alterado com sucesso.", duration: 2000, position: "bottom"}).present();
-      this.navCtrl.pop();
-    })
-    .catch((error)=>{
-      this.toastController.create({message: "Erro ao alterar dados do edifício.", duration: 2000, position: "bottom"}).present();
-      console.log("Erro ao alterar dados do edifício:" + error);
-    })
+  editarEdificio(form: NgForm){
+    if(form.valid){
+      this.eProvider.saveEdificio(this.edificio)
+      .then(()=>{
+        this.toastController.create({message: "Edifício alterado com sucesso.", duration: 2000, position: "bottom"}).present();
+        this.navCtrl.pop();
+      })
+      .catch((error)=>{
+        this.toastController.create({message: "Erro ao alterar dados do edifício.", duration: 2000, position: "bottom"}).present();
+        console.log("Erro ao alterar dados do edifício:" + error);
+      })
+    }
   }
 
 }
