@@ -14,7 +14,7 @@ import { ListDetailsPage } from '../list-details/list-details'
 })
 export class ListPage {
   comunicados: Observable<any>;
-  usuario: Usuario;
+  usuario: Usuario = new Usuario();
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 

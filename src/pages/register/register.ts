@@ -47,6 +47,7 @@ export class RegisterPage {
           this.usuario.email = this.registerCredentials.email;
           this.usuario.admin = false;
           this.usuario.assinante = false;
+          this.usuario.sindico = false;
           
           this.userProvider.saveUserData(this.usuario, '');
   

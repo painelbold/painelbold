@@ -5,6 +5,7 @@ export class Usuario {
     phone: number;
     assinante: boolean;
     admin: boolean;
+    sindico: boolean;
     key: string;
     edificioId: string;
 }

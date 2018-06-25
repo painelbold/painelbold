@@ -1,3 +1,6 @@
+import { Observable } from 'rxjs/Observable';
+import { UserDataProvider } from './../providers/user-data/user-data';
+import { Usuario } from './../models/usuario';
 import 'firebase/firestore';
 import { AdminDashboardPage } from './../pages/admin/admin-dashboard/admin-dashboard';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -18,6 +21,7 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any;
+  public loggedUser: Usuario;
 
   pages: Array<{title: string, component: any}>;
 
@@ -25,12 +29,37 @@ export class MyApp {
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     private authService: AuthService,
-    private afAuth: AngularFireAuth ) {
+    private afAuth: AngularFireAuth,
+    private udProvider: UserDataProvider) {
     this.initializeApp();
 
     const authObserver = afAuth.authState.subscribe(user => {
       if(user){
-        this.rootPage = AdminDashboardPage;
+        this.udProvider.getUserData()
+        .subscribe((u:any) =>{
+          this.loggedUser = u;
+
+          if(this.loggedUser.admin){
+            this.pages = [
+              { title: 'Comunicados', component: ListPage },
+              { title: 'Minha Conta', component: MyAccountPage},
+              { title: 'Indicar', component: SharePage},
+              { title: 'Painel do Administrador', component: AdminDashboardPage},
+            ];
+  
+            this.rootPage = AdminDashboardPage;
+          }
+          else{
+            this.pages = [
+              { title: 'Comunicados', component: ListPage },
+              { title: 'Minha Conta', component: MyAccountPage},
+              { title: 'Indicar', component: SharePage},
+            ];
+  
+            this.rootPage = ListPage;
+        } 
+      });
+      
         authObserver.unsubscribe();
       }
       else{
@@ -39,13 +68,7 @@ export class MyApp {
       }
     });
     
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Comunicados', component: ListPage },
-      { title: 'Minha Conta', component: MyAccountPage},
-      { title: 'Indicar', component: SharePage},
-      { title: 'Painel do Administrador', component: AdminDashboardPage},
-    ];
+
   }
 
   initializeApp() {

@@ -15,7 +15,7 @@
     <ion-card-content>
       <p><strong>Mensagem: </strong> {{selectedItem.message}}</p>
       <hr>
-      <p>{{selectedItem.date}}</p>
+      <p>Publicado em: {{selectedItem.publishDate | date:'dd/MM'}}</p>
     </ion-card-content>
   </ion-card>
 </ion-content>

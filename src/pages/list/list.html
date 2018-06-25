@@ -23,10 +23,10 @@
       </ion-avatar>   
       <ion-label>
         <ion-row>
-          <ion-col col-10>
+          <ion-col col-9>
             <h3 item-left>{{c.title}}</h3>
           </ion-col>
-          <ion-col col-2>
+          <ion-col col-3>
             <p text-right class="publish-date">{{c.publishDate | date:'dd/MM'}}</p>
           </ion-col>
         </ion-row>
@@ -36,7 +36,8 @@
   </ion-item-group>
   <ion-fab 
   bottom right 
-  (click)="newAnnouncement()">
+  (click)="newAnnouncement()"
+  *ngIf="usuario.sindico">
     <button 
     ion-fab
     class="button-add">

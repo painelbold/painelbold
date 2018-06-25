@@ -1,4 +1,3 @@
-import { EdificioProvider } from './../edificio/edificio';
 import { Usuario } from './../../models/usuario';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -9,7 +8,8 @@ export class UserDataProvider {
   private PATH='users/';
 
   constructor(private db: AngularFireDatabase,
-              private authService: AuthService) {                  
+              private authService: AuthService) {
+
     }
   
   saveUserData(usuario: Usuario, key: string){
