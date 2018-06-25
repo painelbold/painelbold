@@ -33,6 +33,7 @@ import { CondominioProvider } from '../providers/condominio/condominio';
 import { EdificioProvider } from '../providers/edificio/edificio';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { AdminDashboardPage } from '../pages/admin/admin-dashboard/admin-dashboard';
+import { ListMoradoresPage } from '../pages/admin/list-moradores/list-moradores';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -61,7 +62,8 @@ export const firebaseConfig = {
     ListCondominiosPage,
     ListCondominioDetailsPage,
     ListEdificiosPage,
-    ListEdificiosDetailsPage
+    ListEdificiosDetailsPage,
+    ListMoradoresPage
   ],
   imports: [
     BrowserModule,
@@ -88,7 +90,8 @@ export const firebaseConfig = {
     ListCondominiosPage,
     ListCondominioDetailsPage,
     ListEdificiosPage,
-    ListEdificiosDetailsPage
+    ListEdificiosDetailsPage,
+    ListMoradoresPage
   ],
   providers: [
     StatusBar,

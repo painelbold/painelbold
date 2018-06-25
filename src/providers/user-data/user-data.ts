@@ -1,3 +1,4 @@
+import { EdificioProvider } from './../edificio/edificio';
 import { Usuario } from './../../models/usuario';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -32,6 +33,12 @@ export class UserDataProvider {
              })
       }
     });
+  }
+
+  getAllUsersEdificio(keyEdificio: string){
+    return this.db.list(this.PATH, ref => 
+      ref.orderByChild('edificioId')
+      .equalTo(keyEdificio));
   }
 
   getUserData(){

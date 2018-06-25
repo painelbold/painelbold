@@ -6,6 +6,7 @@ import { AuthService } from '../../../providers/auth/auth-service';
 import { RegisterCondominioPage } from '../../register-condominio/register-condominio';
 import { RegisterEdificioPage } from '../../register-edificio/register-edificio';
 import { ListCondominiosPage } from '../list-condominios/list-condominios';
+import { ListMoradoresPage } from './../../admin/list-moradores/list-moradores';
 
 @IonicPage()
 @Component({
@@ -23,13 +24,11 @@ export class AdminDashboardPage {
   } 
 
   cadastraSindico(event){
-  }
-
-  cadastraAdmin(event){
+    this.navCtrl.push(ListMoradoresPage);
   }
 
   cadastraCondominio(event){
-    this.navCtrl.push(RegisterCondominioPage, {userUid: ''});
+    this.navCtrl.push(RegisterCondominioPage);
   }
 
   cadastraEdificio(event){
