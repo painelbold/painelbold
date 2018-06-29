@@ -38,7 +38,11 @@ export class UserDataProvider {
   getAllUsersEdificio(keyEdificio: string){
     return this.db.list(this.PATH, ref => 
       ref.orderByChild('edificioId')
-      .equalTo(keyEdificio));
+      .equalTo(keyEdificio))
+      .snapshotChanges()
+      .map(changes => {
+        return changes.map(u => ({ key: u.payload.key, ...u.payload.val() }));
+      });
   }
 
   getUserData(){

@@ -15,9 +15,9 @@ import { CondominioProvider } from '../../../providers/condominio/condominio';
 export class ListMoradoresPage {
   condominios: Observable<any>;
   edificios: Observable<any>;
-  users: AngularFireList<any>;
+  users: Observable<any>;
   condominioId: any;  
-  edificioId: any;
+  edificioId: string;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,

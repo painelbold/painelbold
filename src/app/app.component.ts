@@ -63,6 +63,12 @@ export class MyApp {
         authObserver.unsubscribe();
       }
       else{
+        this.pages = [
+          { title: 'Comunicados', component: ListPage },
+          { title: 'Minha Conta', component: MyAccountPage},
+          { title: 'Indicar', component: SharePage},
+        ];
+        
         this.rootPage = LoginPage;
         authObserver.unsubscribe();
       }

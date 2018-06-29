@@ -11,7 +11,7 @@
   
 <ion-content padding>
   <h3>Moradores</h3>
-  <ion-item-group>
+  <ion-item-group class="moradores-header">
       <ion-item>
         <ion-label>Condomínio:</ion-label>
           <ion-select 
@@ -41,10 +41,19 @@
               {{e.nome}}
             </ion-option>
         </ion-select>
-      </ion-item>
-      <ion-item *ngFor="let u of users | async" (click)="itemTapped($event, e)" text-wrap>
+        </ion-item> 
+    </ion-item-group>
+
+    <ion-item-group class="moradores-list" *ngIf="edificioId">
+      <ion-item *ngIf="!(users | async)?.length">
         <ion-label>
-          <h3>{{u.nome}}</h3>
+          <h3 class="bold">Não existem moradores no edifício.</h3>
+        </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let u of users | async"  text-wrap>
+        <ion-label>
+          <h3 class="bold" *ngIf="u.sindico">Síndico:</h3>
+          <h3>{{u.fullName}}</h3>
           <p>{{u.email}}</p>
         </ion-label>
       </ion-item>
