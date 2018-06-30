@@ -1,11 +1,10 @@
-import { AngularFireList } from 'angularfire2/database';
 import { EdificioProvider } from './../../../providers/edificio/edificio';
 import { UserDataProvider } from './../../../providers/user-data/user-data';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { CondominioProvider } from '../../../providers/condominio/condominio';
-
+import { ListMoradoresDetailsPage } from '../list-moradores-details/list-moradores-details';
 
 @IonicPage()
 @Component({
@@ -37,6 +36,12 @@ export class ListMoradoresPage {
 
   edfChange(){
     this.users = this.udProvider.getAllUsersEdificio(this.edificioId);
+  }
+
+  itemTapped(event, item) {
+    this.navCtrl.push(ListMoradoresDetailsPage, {
+      item: item
+    });
   }
 
 }

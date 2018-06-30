@@ -50,7 +50,7 @@
           <h3 class="bold">Não existem moradores no edifício.</h3>
         </ion-label>
       </ion-item>
-      <ion-item *ngFor="let u of users | async"  text-wrap>
+      <ion-item *ngFor="let u of users | async" text-wrap (click)="itemTapped($event, u)">
         <ion-label>
           <h3 class="bold" *ngIf="u.sindico">Síndico:</h3>
           <h3>{{u.fullName}}</h3>
