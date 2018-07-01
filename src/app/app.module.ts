@@ -1,3 +1,4 @@
+import { ReversePipe } from './../pipes/reverse/reverse';
 import { ListMoradoresDetailsPage } from './../pages/admin/list-moradores-details/list-moradores-details';
 import { ListEdificiosDetailsPage } from './../pages/admin/list-edificios-details/list-edificios-details';
 import { ListEdificiosPage } from './../pages/admin/list-edificios/list-edificios';
@@ -66,6 +67,7 @@ export const firebaseConfig = {
     ListEdificiosDetailsPage,
     ListMoradoresPage,
     ListMoradoresDetailsPage,
+    ReversePipe,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +75,9 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+  ],
+  exports: [
+    ReversePipe
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -107,6 +112,6 @@ export const firebaseConfig = {
     CondominioProvider,
     EdificioProvider,
     UserDataProvider
-  ]
+  ],
 })
 export class AppModule {}

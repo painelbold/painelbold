@@ -13,7 +13,8 @@ export class AnnouncementProvider {
   }
 
   getAllByEdificio(key: string){
-    return this.db.list(this.PATH + key)
+    return this.db.list(this.PATH + key, ref =>
+    ref.orderByChild("publishDate"))
     .snapshotChanges()
     .map(changes=>{
       return changes.map(c=>({ key: c.payload.key, ...c.payload.val() }))

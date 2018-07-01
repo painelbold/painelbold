@@ -17,7 +17,7 @@
 <ion-content padding>
   <h3>Comunicados</h3>
   <ion-item-group>
-    <ion-item *ngFor="let c of comunicados | async" (click)="itemTapped($event, c)" text-wrap>
+    <ion-item *ngFor="let c of (comunicados | async) | reverse" (click)="itemTapped($event, c)" text-wrap>
       <ion-avatar item-start>
         <img src='assets/imgs/avatar1.jpg'>
       </ion-avatar>   

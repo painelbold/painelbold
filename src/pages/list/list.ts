@@ -1,3 +1,4 @@
+import { ReversePipe } from './../../pipes/reverse/reverse';
 import { Observable } from 'rxjs/Observable';
 import { AnnouncementProvider } from './../../providers/announcement/announcement';
 import { Usuario } from './../../models/usuario';
@@ -27,6 +28,7 @@ export class ListPage {
     .subscribe((u: any) => {
       this.usuario = u;
       this.comunicados = this.aProvider.getAllByEdificio(this.usuario.edificioId);
+      
       subscribe.unsubscribe();
     });
   }
