@@ -1,5 +1,5 @@
 import { Usuario } from './../../models/usuario';
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../auth/auth-service';
 
@@ -52,4 +52,14 @@ export class UserDataProvider {
         return { key: u.key, ...u.payload.val()};
       });
     }
+
+  alterarSindico(key: string, isSindico: boolean){
+    return new Promise((resolve,reject)=>{
+      this.db
+      .object(this.PATH + key)
+      .update( { sindico: isSindico } )
+      .then(()=> resolve())
+      .catch((e) => reject(e))
+    })
+  }
 }
