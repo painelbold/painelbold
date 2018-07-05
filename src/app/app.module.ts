@@ -36,6 +36,7 @@ import { EdificioProvider } from '../providers/edificio/edificio';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { AdminDashboardPage } from '../pages/admin/admin-dashboard/admin-dashboard';
 import { ListMoradoresPage } from '../pages/admin/list-moradores/list-moradores';
+import { AgendamentoProvider } from '../providers/agendamento/agendamento';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -111,7 +112,8 @@ export const firebaseConfig = {
     AnnouncementProvider,
     CondominioProvider,
     EdificioProvider,
-    UserDataProvider
+    UserDataProvider,
+    AgendamentoProvider
   ],
 })
 export class AppModule {}

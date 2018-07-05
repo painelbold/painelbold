@@ -33,26 +33,32 @@
         <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month">{{lastDay}}</ion-col>
         <ion-col col-1 *ngFor="let day of daysInThisMonth" (click)="selectDate(day)">
           <ng-container [ngSwitch]="true">
-            <span class="currentDate" *ngSwitchCase="currentDate === day && selectedDate != day">{{day}}</span>
-            <span class="selectedDate" *ngSwitchCase="selectedDate === day">{{day}}</span>
+            <span class="currentDate" *ngSwitchCase="currentDate === day && selectedDay != day">{{day}}</span>
+            <span class="selectedDay" *ngSwitchCase="selectedDay === day">{{day}}</span>
             <span class="otherDate" *ngSwitchDefault>{{day}}</span>
           </ng-container>
         </ion-col>
         <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month">{{nextDay}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="selectedDay != 999">
+        <p>Data selecionada: {{selectedDate | date:"dd/MM/yyyy"}}</p>
       </ion-row>
       <ion-row>
         <ion-col col-6>
           <button
           ion-button
           block
-          outline>
+          outline
+          (click)="goBack()">
             Voltar
           </button>
         </ion-col>
         <ion-col col-6>
           <button
           ion-button
-          block>
+          block
+          [disabled]="selectedDay===999"
+          (click)="confirm()">
             Confirmar
           </button>
         </ion-col>

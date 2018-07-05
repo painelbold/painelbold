@@ -1,5 +1,7 @@
+import { AgendamentoProvider } from './../../providers/agendamento/agendamento';
+import { Usuario } from './../../models/usuario';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the CalendarPage page.
@@ -22,9 +24,15 @@ export class CalendarPage {
   currentMonth: any;
   currentYear: any;
   currentDate: any;
-  selectedDate: any;
+  selectedDay: any;
+  selectedDate: Date = new Date();
+  usuario: Usuario;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    private aProvider: AgendamentoProvider,
+    private toastController: ToastController) {
+    this.usuario = this.navParams.data.user;
   }
 
   ionViewDidLoad() {
@@ -34,7 +42,7 @@ export class CalendarPage {
   ionViewWillEnter(){
     this.date = new Date();
     this.monthNames = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
-    this.selectedDate = 999;
+    this.selectedDay = 999;
     this.getDaysOfMonth();
     //this.loadEventThisMonth();
   }
@@ -77,19 +85,35 @@ export class CalendarPage {
 
   goToLastMonth() {
     this.date = new Date(this.date.getFullYear(), this.date.getMonth(), 0);
+    this.selectedDay = 999;
     this.getDaysOfMonth();
   }
 
   goToNextMonth() {
     this.date = new Date(this.date.getFullYear(), this.date.getMonth()+2, 0);
+    this.selectedDay = 999;
     this.getDaysOfMonth();
   }
 
   selectDate(day){
-    console.log(this.currentDate);
-    console.log(this.selectedDate);
-    console.log(this.date);
-    this.selectedDate = day;
+    this.selectedDay = day;
+    this.selectedDate = new Date(this.date.getFullYear(), this.date.getMonth(),this.selectedDay);
+  }
+
+  goBack(){
+    this.navCtrl.pop();
+  }
+
+  confirm(){
+    this.aProvider.saveAgendamento(this.usuario, this.selectedDate)
+    .then(()=>{
+      this.toastController.create({message: "Agendado com sucesso!", duration: 2000, position: "bottom"}).present();
+      this.navCtrl.pop();
+    })
+    .catch((error) =>{
+      this.toastController.create({message:"Erro no agendamento", duration:2000, position:"bottom"}).present();
+      console.log("Erro no agendamento: " + error);
+    })
   }
 
 }

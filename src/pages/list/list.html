@@ -7,7 +7,11 @@
       <img src="assets/logotipo.png"/>
     </ion-title>
     <ion-buttons end>
-      <button ion-button class="button-assine" (click)="showDates($event)">
+      <button 
+      ion-button 
+      class="button-assine" 
+      (click)="showDates($event)"
+      *ngIf="(agendamento | async)?.length">
         Mude Já
       </button>
     </ion-buttons>

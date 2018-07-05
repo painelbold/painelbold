@@ -1,4 +1,5 @@
-import { ReversePipe } from './../../pipes/reverse/reverse';
+import { AgendamentoProvider } from './../../providers/agendamento/agendamento';
+import { Agendamento } from './../../models/agendamento';
 import { Observable } from 'rxjs/Observable';
 import { AnnouncementProvider } from './../../providers/announcement/announcement';
 import { Usuario } from './../../models/usuario';
@@ -16,11 +17,13 @@ import { ListDetailsPage } from '../list-details/list-details'
 export class ListPage {
   comunicados: Observable<any>;
   usuario: Usuario = new Usuario();
+  agendamento: Observable<any>;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private udProvider: UserDataProvider,
-    private aProvider: AnnouncementProvider) {
+    private aProvider: AnnouncementProvider,
+    private agProvider: AgendamentoProvider) {
   }
 
   ionViewDidEnter(){
@@ -28,6 +31,7 @@ export class ListPage {
     .subscribe((u: any) => {
       this.usuario = u;
       this.comunicados = this.aProvider.getAllByEdificio(this.usuario.edificioId);
+      this.agendamento = this.agProvider.getAgendamentoUsuario(this.usuario);
       
       subscribe.unsubscribe();
     });
@@ -40,7 +44,9 @@ export class ListPage {
   }
 
   showDates(event){
-    this.navCtrl.push(CalendarPage);
+    this.navCtrl.push(CalendarPage, {
+      user: this.usuario
+    });
   }
 
   newAnnouncement(){
