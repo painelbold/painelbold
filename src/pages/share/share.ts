@@ -25,7 +25,7 @@ export class SharePage {
   }
 
   whatsappShare(){
-    this.socialSharing.shareViaWhatsApp("Experimente o nosso aplicativo",null,"http://www.google.com.br/")
+    this.socialSharing.shareViaWhatsApp("Vizinho, fique sabendo de tudo que acontece no nosso condomínio",null,"https://play.google.com/store/apps/details?id=com.br.viva.painelBold")
     .then(()=>{
       console.log("Mensagem enviada por WhatsApp");
     }).catch((error) => {

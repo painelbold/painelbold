@@ -22,6 +22,7 @@ export class CalendarPage {
   currentMonth: any;
   currentYear: any;
   currentDate: any;
+  selectedDate: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -33,6 +34,7 @@ export class CalendarPage {
   ionViewWillEnter(){
     this.date = new Date();
     this.monthNames = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+    this.selectedDate = 999;
     this.getDaysOfMonth();
     //this.loadEventThisMonth();
   }
@@ -81,6 +83,13 @@ export class CalendarPage {
   goToNextMonth() {
     this.date = new Date(this.date.getFullYear(), this.date.getMonth()+2, 0);
     this.getDaysOfMonth();
+  }
+
+  selectDate(day){
+    console.log(this.currentDate);
+    console.log(this.selectedDate);
+    console.log(this.date);
+    this.selectedDate = day;
   }
 
 }

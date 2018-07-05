@@ -48,6 +48,8 @@ export class MyApp {
             ];
   
             this.rootPage = AdminDashboardPage;
+            
+            authObserver.unsubscribe();
           }
           else{
             this.pages = [
@@ -57,10 +59,11 @@ export class MyApp {
             ];
   
             this.rootPage = ListPage;
+
+        authObserver.unsubscribe();
+
         } 
       });
-      
-        authObserver.unsubscribe();
       }
       else{
         this.pages = [
@@ -70,7 +73,6 @@ export class MyApp {
         ];
         
         this.rootPage = LoginPage;
-        authObserver.unsubscribe();
       }
     });
     

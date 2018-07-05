@@ -24,9 +24,10 @@ page-calendar {
     }
     .currentDate {
       font-weight: bold;
-      background-color: #2A4D7F;
-      color: white;
       border-radius: 30px;
+      border-color: #2A4D7F;
+      border-style: dashed;
+      border-width: 2px;
     }
     .calendar-header {
       background-color: #1A2F4E;
@@ -36,13 +37,14 @@ page-calendar {
       margin: 2px auto;
       height: 5px;
       width: 5px;
-      background-color: #2A4D7F;
+      color: #2A4D7F;
       border-radius: 30px;
     }
-    .selected-date {
-      width: 20px;
-      height: 2px;
+    .selectedDate {
+      font-weight: bold;
       background-color: #2A4D7F;
+      color: white;
+      border-radius: 30px;
     }
     .unselected-date {
       border: none;
