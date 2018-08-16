@@ -21,17 +21,19 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any;
-  public loggedUser: Usuario;
+  loggedUser: Usuario;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, 
-    public statusBar: StatusBar, 
+  constructor(public platform: Platform,
+    public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     private authService: AuthService,
     private afAuth: AngularFireAuth,
     private udProvider: UserDataProvider) {
     this.initializeApp();
+    this.loggedUser = new Usuario();
+    this.loggedUser.fullName = "";
 
     const authObserver = afAuth.authState.subscribe(user => {
       if(user){
@@ -46,9 +48,9 @@ export class MyApp {
               { title: 'Indicar', component: SharePage},
               { title: 'Painel do Administrador', component: AdminDashboardPage},
             ];
-  
+
             this.rootPage = AdminDashboardPage;
-            
+
             authObserver.unsubscribe();
           }
           else{
@@ -57,12 +59,12 @@ export class MyApp {
               { title: 'Minha Conta', component: MyAccountPage},
               { title: 'Indicar', component: SharePage},
             ];
-  
+
             this.rootPage = ListPage;
 
         authObserver.unsubscribe();
 
-        } 
+        }
       });
       }
       else{
@@ -71,11 +73,11 @@ export class MyApp {
           { title: 'Minha Conta', component: MyAccountPage},
           { title: 'Indicar', component: SharePage},
         ];
-        
+
         this.rootPage = LoginPage;
       }
     });
-    
+
 
   }
 
