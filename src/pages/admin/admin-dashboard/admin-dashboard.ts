@@ -1,4 +1,4 @@
-import { RegisterEspacoFisicoPage } from './../../register-espaco-fisico/register-espaco-fisico';
+import { RegisterEspacoFisicoPage } from './../../admin/register-espaco-fisico/register-espaco-fisico';
 import { ListEdificiosPage } from './../../admin/list-edificios/list-edificios';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';

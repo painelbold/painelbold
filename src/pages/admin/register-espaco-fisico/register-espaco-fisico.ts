@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the RegisterEspacoFisicoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Observable } from '../../../../node_modules/rxjs/Observable';
+import { CondominioProvider } from '../../../providers/condominio/condominio';
+import { EdificioProvider } from '../../../providers/edificio/edificio';
 
 @IonicPage()
 @Component({
@@ -14,12 +10,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'register-espaco-fisico.html',
 })
 export class RegisterEspacoFisicoPage {
+  condominios: Observable<any>;
+  edificios: Observable<any>;
+  condominioId: any;
+  edificioId: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private cProvider: CondominioProvider,
+    private eProvider: EdificioProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterEspacoFisicoPage');
+    this.condominios = this.cProvider.getAllCondominios();
+  }
+
+  condChange(){
+    this.edificios = this.eProvider.getAllEdificiosCond(this.condominioId);
+  }
+
+  edfChange(){
   }
 
 }
