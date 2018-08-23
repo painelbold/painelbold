@@ -1,12 +1,13 @@
-import { RegisterEspacoFisicoPage } from './../../admin/register-espaco-fisico/register-espaco-fisico';
-import { ListEdificiosPage } from './../../admin/list-edificios/list-edificios';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 import { AuthService } from '../../../providers/auth/auth-service';
 import { RegisterCondominioPage } from '../../register-condominio/register-condominio';
 import { RegisterEdificioPage } from '../../register-edificio/register-edificio';
 import { ListCondominiosPage } from '../list-condominios/list-condominios';
+import { ListEdificiosPage } from './../../admin/list-edificios/list-edificios';
+import { ListEspacoFisicoPage } from './../../admin/list-espaco-fisico/list-espaco-fisico';
 import { ListMoradoresPage } from './../../admin/list-moradores/list-moradores';
 
 @IonicPage()
@@ -45,7 +46,7 @@ export class AdminDashboardPage {
   }
 
   cadastraEspaco(){
-    this.navCtrl.push(RegisterEspacoFisicoPage);
+    this.navCtrl.push(ListEspacoFisicoPage);
   }
 
 }

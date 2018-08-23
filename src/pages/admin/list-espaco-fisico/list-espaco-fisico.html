@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img src="assets/logotipo.png"/>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Espaços Físicos</h3>
+  <ion-item-group>
+      <ion-item>
+        <ion-label>Condomínio:</ion-label>
+          <ion-select 
+          name="condominioId"
+          [(ngModel)]="condominioId"
+          condominioId="ngModel"
+          (ionChange)="condChange()">
+            <ion-option 
+            name="condominioId"
+            *ngFor="let c of condominios | async" 
+            [value]="c.key">
+              {{c.nome}}
+            </ion-option>
+          </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Edificio:</ion-label>
+          <ion-select 
+          name="edificioId"
+          [(ngModel)]="edificioId"
+          edificioId="ngModel"
+          (ionChange)="edfChange()">
+            <ion-option 
+            name="edificioId"
+            *ngFor="let e of edificios | async" 
+            [value]="e.key">
+              {{e.nome}}
+            </ion-option>
+        </ion-select>
+        </ion-item> 
+    </ion-item-group>
+</ion-content>
