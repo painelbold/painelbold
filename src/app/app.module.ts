@@ -1,3 +1,4 @@
+import { RegisterEspacoFisicoPageModule } from './../pages/register-espaco-fisico/register-espaco-fisico.module';
 import { ReversePipe } from './../pipes/reverse/reverse';
 import { ListMoradoresDetailsPage } from './../pages/admin/list-moradores-details/list-moradores-details';
 import { ListEdificiosDetailsPage } from './../pages/admin/list-edificios-details/list-edificios-details';
@@ -37,6 +38,7 @@ import { UserDataProvider } from '../providers/user-data/user-data';
 import { AdminDashboardPage } from '../pages/admin/admin-dashboard/admin-dashboard';
 import { ListMoradoresPage } from '../pages/admin/list-moradores/list-moradores';
 import { AgendamentoProvider } from '../providers/agendamento/agendamento';
+import { RegisterEspacoFisicoPage } from '../pages/register-espaco-fisico/register-espaco-fisico';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -76,6 +78,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    RegisterEspacoFisicoPageModule
   ],
   exports: [
     ReversePipe
@@ -100,7 +103,8 @@ export const firebaseConfig = {
     ListEdificiosPage,
     ListEdificiosDetailsPage,
     ListMoradoresPage,
-    ListMoradoresDetailsPage
+    ListMoradoresDetailsPage,
+    RegisterEspacoFisicoPage
   ],
   providers: [
     StatusBar,

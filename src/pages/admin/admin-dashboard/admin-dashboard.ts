@@ -1,3 +1,4 @@
+import { RegisterEspacoFisicoPage } from './../../register-espaco-fisico/register-espaco-fisico';
 import { ListEdificiosPage } from './../../admin/list-edificios/list-edificios';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
@@ -16,12 +17,12 @@ import { ListMoradoresPage } from './../../admin/list-moradores/list-moradores';
 export class AdminDashboardPage {
   user: any;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private afAuth: AngularFireAuth, 
+              private afAuth: AngularFireAuth,
               private authService: AuthService,) {
     this.user = this.navParams.get("user");
-  } 
+  }
 
   cadastraSindico(event){
     this.navCtrl.push(ListMoradoresPage);
@@ -41,6 +42,10 @@ export class AdminDashboardPage {
 
   listarEdificios(){
     this.navCtrl.push(ListEdificiosPage);
+  }
+
+  cadastraEspaco(){
+    this.navCtrl.push(RegisterEspacoFisicoPage);
   }
 
 }
