@@ -3,7 +3,7 @@
     <name>Painel Bold</name>
     <description>Soluções para condomínios</description>
     <author email="appsms12@gmail.com" href="http://ionicframework.com/">Bold Telecom</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.56.1:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -85,5 +85,6 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.0" />
     <plugin name="cordova-plugin-calendar" spec="^5.0.0" />
     <allow-navigation href="http://192.168.0.15:8100" />
-    <engine name="android" spec="7.0.0" />
+    <allow-navigation href="http://192.168.56.1:8100" />
+    <engine name="android" spec="^7.0.0" />
 </widget>
