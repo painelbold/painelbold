@@ -1,19 +1,19 @@
-import { Observable } from 'rxjs/Observable';
-import { UserDataProvider } from './../providers/user-data/user-data';
-import { Usuario } from './../models/usuario';
 import 'firebase/firestore';
-import { AdminDashboardPage } from './../pages/admin/admin-dashboard/admin-dashboard';
+
+import { Component, ViewChild } from '@angular/core';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AuthService } from './../providers/auth/auth-service';
+import { Nav, Platform } from 'ionic-angular';
+
+import { LoginPage } from '../pages/login/login';
+import { Usuario } from './../models/usuario';
+import { AdminDashboardPage } from './../pages/admin/admin-dashboard/admin-dashboard';
+import { ListPage } from './../pages/list/list';
 import { MyAccountPage } from './../pages/my-account/my-account';
 import { SharePage } from './../pages/share/share';
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { ListPage } from './../pages/list/list';
-import { LoginPage } from '../pages/login/login';
+import { AuthService } from './../providers/auth/auth-service';
+import { UserDataProvider } from './../providers/user-data/user-data';
 
 @Component({
   templateUrl: 'app.html'

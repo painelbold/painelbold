@@ -32,14 +32,18 @@
         <ion-datetime
         displayFormat="HH:mm"
         name="startTime"
-        formControlName="startTime"></ion-datetime>
+        formControlName="startTime"
+        (ionChange)="horaInicialChange()"
+        minuteValues="0,15,30,45"></ion-datetime>
       </ion-item>
       <ion-item>
           <ion-label>Hora final</ion-label>
           <ion-datetime
           displayFormat="HH:mm"
           name="endTime"
-          formControlName="endTime"></ion-datetime>
+          formControlName="endTime"
+          [min]="minHora"
+          minuteValues="0,15,30,45"></ion-datetime>
         </ion-item>
     </ion-item-group>
     <button ion-button class="submit-btn" full type="submit">Salvar</button>

@@ -14,14 +14,14 @@
   <ion-item-group>
       <ion-item>
         <ion-label>Condomínio:</ion-label>
-          <ion-select 
+          <ion-select
           name="condominioId"
           [(ngModel)]="condominioId"
           condominioId="ngModel"
           (ionChange)="condChange()">
-            <ion-option 
+            <ion-option
             name="condominioId"
-            *ngFor="let c of condominios | async" 
+            *ngFor="let c of condominios"
             [value]="c.key">
               {{c.nome}}
             </ion-option>
@@ -29,18 +29,38 @@
       </ion-item>
       <ion-item>
         <ion-label>Edificio:</ion-label>
-          <ion-select 
+          <ion-select
           name="edificioId"
           [(ngModel)]="edificioId"
           edificioId="ngModel"
           (ionChange)="edfChange()">
-            <ion-option 
+            <ion-option
             name="edificioId"
-            *ngFor="let e of edificios | async" 
+            *ngFor="let e of edificios"
             [value]="e.key">
               {{e.nome}}
             </ion-option>
         </ion-select>
-        </ion-item> 
+      </ion-item>
+    </ion-item-group>
+    <ion-item-group *ngIf="edificioId">
+      <button
+      ion-button
+      block
+      color="bold-color"
+      (click)="newEspacoFisico()"
+      class="button-round-md"
+      >
+      Novo Espaço Físico
+      </button>
+      <ion-item *ngIf="espacosFisicos.length == 0">
+        <p>Sem espaços cadastrados para o edifício.</p>
+      </ion-item>
+      <ion-item *ngFor="let ef of espacosFisicos"
+      (click)="itemTapped($event, ef)"
+      text-wrap>
+        <h3>{{ef.name}}</h3>
+        <p>Horário de funcionamento: {{ef.startTime}} até {{ef.endTime}}</p>
+      </ion-item>
     </ion-item-group>
 </ion-content>

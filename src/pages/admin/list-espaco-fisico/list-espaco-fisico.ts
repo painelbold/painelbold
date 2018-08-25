@@ -1,15 +1,13 @@
+import { RegisterEspacoFisicoPage } from './../register-espaco-fisico/register-espaco-fisico';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Observable } from '../../../../node_modules/rxjs/Observable';
+import { IonicPage, NavController, NavParams, Loading, LoadingController } from 'ionic-angular';
+
+import { EspacoFisico } from '../../../models/espacoFisico';
 import { CondominioProvider } from '../../../providers/condominio/condominio';
 import { EdificioProvider } from '../../../providers/edificio/edificio';
-
-/**
- * Generated class for the ListEspacoFisicoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { EspacoFisicoProvider } from '../../../providers/espaco-fisico/espaco-fisico';
+import { Condominio } from './../../../models/condominio';
+import { Edificio } from './../../../models/edificio';
 
 @IonicPage()
 @Component({
@@ -17,26 +15,65 @@ import { EdificioProvider } from '../../../providers/edificio/edificio';
   templateUrl: 'list-espaco-fisico.html',
 })
 export class ListEspacoFisicoPage {
-  condominios: Observable<any>;
-  edificios: Observable<any>;
+  condominios: Array<Condominio>;
+  edificios: Array<Edificio>;
+  espacosFisicos: Array<EspacoFisico>;
   condominioId: any;
   edificioId: string;
+  loading: Loading;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private cProvider: CondominioProvider,
-    private eProvider: EdificioProvider) {
+    private eProvider: EdificioProvider,
+    private efProvider: EspacoFisicoProvider,
+    private loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
-    this.condominios = this.cProvider.getAllCondominios();
+    let condSubscribe = this.cProvider.getAllCondominios()
+    .subscribe((c: any) => {
+      this.condominios = c;
+      condSubscribe.unsubscribe();
+    })
   }
 
   condChange(){
-    this.edificios = this.eProvider.getAllEdificiosCond(this.condominioId);
+    let edSubscribe = this.eProvider.getAllEdificiosCond(this.condominioId)
+    .subscribe((e: any) => {
+      this.edificios = e;
+      edSubscribe.unsubscribe();
+    });
   }
 
   edfChange(){
+    this.createLoading();
+    this.espacosFisicos = new Array<EspacoFisico>();
+
+    let efSubscribe = this.efProvider.getAllEspacosEdificio(this.edificioId)
+    .subscribe((ef: any) => {
+      this.espacosFisicos = ef;
+      this.loading.dismiss();
+      efSubscribe.unsubscribe();
+    });
+  }
+
+  createLoading(){
+    this.loading = this.loadingCtrl.create({
+      content: "Carregando espaços físicos..."
+    });
+    this.loading.present();
+  }
+
+  itemTapped(event, ef){
+    this.navCtrl.push(RegisterEspacoFisicoPage, {
+      espacoFisico: ef
+    });
+  }
+
+  newEspacoFisico(){
+    this.navCtrl.push(RegisterEspacoFisicoPage, {
+      edificioId: this.edificioId});
   }
 
 }

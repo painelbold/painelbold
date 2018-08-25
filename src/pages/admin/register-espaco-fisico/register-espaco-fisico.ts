@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Observable } from '../../../../node_modules/rxjs/Observable';
-import { CondominioProvider } from '../../../providers/condominio/condominio';
-import { EdificioProvider } from '../../../providers/edificio/edificio';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IonicPage, Loading, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+
+import { EspacoFisico } from '../../../models/espacoFisico';
+import { EspacoFisicoProvider } from '../../../providers/espaco-fisico/espaco-fisico';
 
 @IonicPage()
 @Component({
@@ -10,26 +11,66 @@ import { EdificioProvider } from '../../../providers/edificio/edificio';
   templateUrl: 'register-espaco-fisico.html',
 })
 export class RegisterEspacoFisicoPage {
-  condominios: Observable<any>;
-  edificios: Observable<any>;
-  condominioId: any;
   edificioId: string;
+  espacoFisicoForm: FormGroup;
+  ef: EspacoFisico;
+  minHora: any;
+  loading: Loading;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private cProvider: CondominioProvider,
-    private eProvider: EdificioProvider) {
+    public efProvider: EspacoFisicoProvider,
+    private fb: FormBuilder,
+    private loadingCtrl: LoadingController,
+    private toast: ToastController) {
+      this.edificioId = this.navParams.data.edificioId;
+      this.createForm();
   }
 
-  ionViewDidLoad() {
-    this.condominios = this.cProvider.getAllCondominios();
+  createForm(){
+    this.espacoFisicoForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      startTime: ['', Validators.required],
+      endTime: ['', Validators.required],
+    })
   }
 
-  condChange(){
-    this.edificios = this.eProvider.getAllEdificiosCond(this.condominioId);
+  saveEspacoFisico(){
+    this.createLoading();
+
+    this.ef = this.espacoFisicoForm.value;
+    this.ef.edificioId = this.edificioId;
+
+    this.efProvider.saveEspaco(this.ef)
+    .then(() => {
+      this.loading.dismiss();
+      this.toast.create({
+        message: "Espaço físico criado com sucesso!",
+        duration: 2000,
+        position: "bottom"
+      });
+      this.navCtrl.pop();
+    })
+    .catch((error : any) => {
+      this.toast.create({
+        message: "Erro ao salvar espaço físico.",
+        duration: 2000,
+        position: "bottom"
+      });
+      console.log("Erro ao salvar espaço físico." + error.code);
+    });
   }
 
-  edfChange(){
+  horaInicialChange(){
+    this.minHora = this.espacoFisicoForm.controls["startTime"].value;
+  }
+
+  createLoading(){
+    this.loading = this.loadingCtrl.create({
+      content: "Salvando espaço físico..."
+    });
+    this.loading.present();
   }
 
 }
