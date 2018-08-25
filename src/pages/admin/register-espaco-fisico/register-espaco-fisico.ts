@@ -23,16 +23,20 @@ export class RegisterEspacoFisicoPage {
     private fb: FormBuilder,
     private loadingCtrl: LoadingController,
     private toast: ToastController) {
+      this.ef = new EspacoFisico();
       this.edificioId = this.navParams.data.edificioId;
+      if(this.navParams.data.espacoFisico){
+        this.ef = this.navParams.data.espacoFisico;
+      }
       this.createForm();
   }
 
   createForm(){
     this.espacoFisicoForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      startTime: ['', Validators.required],
-      endTime: ['', Validators.required],
+      name: [this.ef.name, Validators.required],
+      description: [this.ef.description, Validators.required],
+      startTime: [this.ef.startTime, Validators.required],
+      endTime: [this.ef.endTime, Validators.required],
     })
   }
 
@@ -71,6 +75,10 @@ export class RegisterEspacoFisicoPage {
       content: "Salvando espaço físico..."
     });
     this.loading.present();
+  }
+
+  removeEspacoFisico(){
+
   }
 
 }
