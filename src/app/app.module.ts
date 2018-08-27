@@ -1,3 +1,4 @@
+import { AboutPageModule } from './../pages/about/about.module';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DatePicker } from '@ionic-native/date-picker';
@@ -40,6 +41,11 @@ import { RegisterEdificioPage } from './../pages/register-edificio/register-edif
 import { SharePage } from './../pages/share/share';
 import { ReversePipe } from './../pipes/reverse/reverse';
 import { MyApp } from './app.component';
+import { TermsOfServicePageModule } from '../pages/terms-of-service/terms-of-service.module';
+import { PrivacyPageModule } from '../pages/privacy/privacy.module';
+import { PrivacyPage } from '../pages/privacy/privacy';
+import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
+import { AboutPage } from '../pages/about/about';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -81,6 +87,9 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     RegisterEspacoFisicoPageModule,
     ListEspacoFisicoPageModule,
+    AboutPageModule,
+    TermsOfServicePageModule,
+    PrivacyPageModule
   ],
   exports: [
     ReversePipe
@@ -108,6 +117,9 @@ export const firebaseConfig = {
     ListMoradoresDetailsPage,
     RegisterEspacoFisicoPage,
     ListEspacoFisicoPage,
+    AboutPage,
+    TermsOfServicePage,
+    PrivacyPage
   ],
   providers: [
     StatusBar,

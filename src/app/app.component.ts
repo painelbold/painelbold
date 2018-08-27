@@ -1,3 +1,4 @@
+import { AboutPage } from './../pages/about/about';
 import 'firebase/firestore';
 
 import { Component, ViewChild } from '@angular/core';
@@ -14,6 +15,8 @@ import { MyAccountPage } from './../pages/my-account/my-account';
 import { SharePage } from './../pages/share/share';
 import { AuthService } from './../providers/auth/auth-service';
 import { UserDataProvider } from './../providers/user-data/user-data';
+import { PrivacyPage } from '../pages/privacy/privacy';
+import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 
 @Component({
   templateUrl: 'app.html'
@@ -58,23 +61,16 @@ export class MyApp {
               { title: 'Comunicados', component: ListPage },
               { title: 'Minha Conta', component: MyAccountPage},
               { title: 'Indicar', component: SharePage},
+              { title: 'Sobre', component: AboutPage},
+              { title: 'Política de Privacidade', component: PrivacyPage},
+              { title: 'Termos de Uso', component: TermsOfServicePage}
             ];
 
             this.rootPage = ListPage;
 
         authObserver.unsubscribe();
-
         }
       });
-      }
-      else{
-        this.pages = [
-          { title: 'Comunicados', component: ListPage },
-          { title: 'Minha Conta', component: MyAccountPage},
-          { title: 'Indicar', component: SharePage},
-        ];
-
-        this.rootPage = LoginPage;
       }
     });
 
