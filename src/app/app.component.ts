@@ -17,6 +17,7 @@ import { AuthService } from './../providers/auth/auth-service';
 import { UserDataProvider } from './../providers/user-data/user-data';
 import { PrivacyPage } from '../pages/privacy/privacy';
 import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
+import { AgendamentoEspacoFisicoPage } from '../pages/agendamento-espaco-fisico/agendamento-espaco-fisico';
 
 @Component({
   templateUrl: 'app.html'
@@ -60,6 +61,7 @@ export class MyApp {
             this.pages = [
               { title: 'Comunicados', component: ListPage },
               { title: 'Minha Conta', component: MyAccountPage},
+              { title: 'Agendamento de Espaço', component: AgendamentoEspacoFisicoPage},
               { title: 'Indicar', component: SharePage},
               { title: 'Sobre', component: AboutPage},
               { title: 'Política de Privacidade', component: PrivacyPage},
@@ -96,6 +98,8 @@ export class MyApp {
   }
 
   openPage(page) {
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(page.component,{
+      user: this.loggedUser
+    });
   }
 }

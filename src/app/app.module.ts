@@ -1,3 +1,4 @@
+import { AgendamentoEspacoFisicoPage } from './../pages/agendamento-espaco-fisico/agendamento-espaco-fisico';
 import { AboutPageModule } from './../pages/about/about.module';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -46,6 +47,8 @@ import { PrivacyPageModule } from '../pages/privacy/privacy.module';
 import { PrivacyPage } from '../pages/privacy/privacy';
 import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { AboutPage } from '../pages/about/about';
+import { AgendamentoEspacoFisicoPageModule } from '../pages/agendamento-espaco-fisico/agendamento-espaco-fisico.module';
+import { AgendamentoEspacoFisicoProvider } from '../providers/agendamento-espaco-fisico/agendamento-espaco-fisico';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -89,7 +92,8 @@ export const firebaseConfig = {
     ListEspacoFisicoPageModule,
     AboutPageModule,
     TermsOfServicePageModule,
-    PrivacyPageModule
+    PrivacyPageModule,
+    AgendamentoEspacoFisicoPageModule
   ],
   exports: [
     ReversePipe
@@ -119,7 +123,8 @@ export const firebaseConfig = {
     ListEspacoFisicoPage,
     AboutPage,
     TermsOfServicePage,
-    PrivacyPage
+    PrivacyPage,
+    AgendamentoEspacoFisicoPage
   ],
   providers: [
     StatusBar,
@@ -133,7 +138,8 @@ export const firebaseConfig = {
     EdificioProvider,
     UserDataProvider,
     AgendamentoProvider,
-    EspacoFisicoProvider
+    EspacoFisicoProvider,
+    AgendamentoEspacoFisicoProvider
   ],
 })
 export class AppModule {}

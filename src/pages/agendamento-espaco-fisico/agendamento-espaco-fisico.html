@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img src="assets/logotipo.png"/>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <h4>Agendamento de Espaço</h4>
+  <form>
+    <ion-item-group>
+      <ion-item>
+        <ion-label>Espaço:</ion-label>
+          <ion-select
+          name="espacoId"
+          [(ngModel)]="espacoId"
+          espacoId="ngModel">
+            <ion-option
+            name="condominioId"
+            *ngFor="let ef of espacosFisicos"
+            [value]="ef.key">
+              {{ef.name}}
+            </ion-option>
+          </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Data</ion-label>
+        <ion-datetime
+        displayFormat="dd/MM"
+        [max]="2030-12-31"
+        >
+        </ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Hora inicial</ion-label>
+        <ion-datetime
+        displayFormat="HH:mm"
+        name="startTime"
+        formControlName="startTime"
+        (ionChange)="horaInicialChange()"
+        minuteValues="0,15,30,45"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Hora final</ion-label>
+        <ion-datetime
+        displayFormat="HH:mm"
+        name="endTime"
+        formControlName="endTime"
+        [min]="minHora"
+        minuteValues="0,15,30,45"></ion-datetime>
+      </ion-item>
+    </ion-item-group>
+  </form>
+</ion-content>
