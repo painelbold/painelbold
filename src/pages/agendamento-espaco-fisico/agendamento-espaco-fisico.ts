@@ -1,3 +1,4 @@
+import { ListPage } from './../list/list';
 import { AgendamentoEspacoFisico } from './../../models/agendamentoEspacoFisico';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, LoadingController, ToastController } from 'ionic-angular';
@@ -23,6 +24,7 @@ export class AgendamentoEspacoFisicoPage {
   espacoId: string;
   loading: Loading;
   agendamentosList: Array<AgendamentoEspacoFisico>;
+  uid: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -32,6 +34,7 @@ export class AgendamentoEspacoFisicoPage {
     private toastCtrl: ToastController,
     private formBuilder: FormBuilder) {
       this.edificioId = this.navParams.data.user.edificioId;
+      this.uid = this.navParams.data.user.key;
       this.espacosFisicos = new Array<EspacoFisico>();
       this.agendamentosList = new Array<AgendamentoEspacoFisico>();
       this.createForm();
@@ -74,14 +77,28 @@ export class AgendamentoEspacoFisicoPage {
   createForm(){
     this.agendamentoForm = this.formBuilder.group({
       date: ['', Validators.required],
-      espacoId: ['', Validators.required],
+      espacoFisicoKey: ['', Validators.required],
       startTime: ['', Validators.required],
       endTime: ['', Validators.required],
     })
   }
 
   agendaEspacoFisico(){
-
+    this.createLoading("Salvando agendamento...");
+    this.agendamento = this.agendamentoForm.value;
+    this.agendamento.edificioKey = this.edificioId;
+    this.agendamento.userKey = this.uid;
+    this.agendamentoEfProvider.saveAgendamento(this.agendamento)
+    .then(() => {
+      this.loading.dismiss();
+      this.createToast("Agendamento realizado com sucesso!");
+      this.navCtrl.setRoot(ListPage);
+    })
+    .catch((error: any) => {
+      this.loading.dismiss();
+      this.createToast("Erro ao realizar o agendamento.");
+      console.log("Erro ao realizar o agendamento.: " + error.code );
+    });
   }
 
   espacoFisicoChange(){
@@ -97,7 +114,7 @@ export class AgendamentoEspacoFisicoPage {
 
   private carregaAgendamentos() {
     this.createLoading("Carregando agendamentos...");
-    let espacoKey = this.agendamentoForm.controls["espacoId"].value;
+    let espacoKey = this.agendamentoForm.controls["espacoFisicoKey"].value;
     let subscribe = this.agendamentoEfProvider.getAgendamentosEspacoFisico(this.edificioId, espacoKey)
       .subscribe((agendamentos: any) => {
         this.loading.dismiss();

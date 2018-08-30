@@ -17,8 +17,8 @@
       <ion-item>
         <ion-label>Espaço:</ion-label>
           <ion-select
-          name="espacoId"
-          formControlName="espacoId"
+          name="espacoFisicoKey"
+          formControlName="espacoFisicoKey"
           espacoId="ngModel"
           (ionChange)="espacoFisicoChange()">
             <ion-option
@@ -61,5 +61,11 @@
         minuteValues="0,15,30,45"></ion-datetime>
       </ion-item>
     </ion-item-group>
+    <button
+    ion-button
+    class="submit-btn button-round-md"
+    color="bold-color"
+    block
+    type="submit">Salvar</button>
   </form>
 </ion-content>
