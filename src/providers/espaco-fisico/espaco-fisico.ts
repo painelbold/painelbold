@@ -43,4 +43,8 @@ export class EspacoFisicoProvider {
     });
   }
 
+  removerEspaco(ef: EspacoFisico){
+    return this.db.object(this.PATH + ef.edificioId + '/' + ef.key).remove();
+  }
+
 }

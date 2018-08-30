@@ -38,6 +38,12 @@ export class ListEspacoFisicoPage {
     })
   }
 
+  ionViewDidEnter(){
+    if(this.edificioId != null && this.condominioId != null){
+      this.loadEspacosFisicos();
+    }
+  }
+
   condChange(){
     let edSubscribe = this.eProvider.getAllEdificiosCond(this.condominioId)
     .subscribe((e: any) => {
@@ -47,15 +53,18 @@ export class ListEspacoFisicoPage {
   }
 
   edfChange(){
+    this.loadEspacosFisicos();
+  }
+
+  private loadEspacosFisicos() {
     this.createLoading();
     this.espacosFisicos = new Array<EspacoFisico>();
-
     let efSubscribe = this.efProvider.getAllEspacosEdificio(this.edificioId)
-    .subscribe((ef: any) => {
-      this.espacosFisicos = ef;
-      this.loading.dismiss();
-      efSubscribe.unsubscribe();
-    });
+      .subscribe((ef: any) => {
+        this.espacosFisicos = ef;
+        this.loading.dismiss();
+        efSubscribe.unsubscribe();
+      });
   }
 
   createLoading(){

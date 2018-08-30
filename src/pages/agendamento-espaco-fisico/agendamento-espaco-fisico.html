@@ -12,14 +12,15 @@
 
 <ion-content padding>
   <h4>Agendamento de Espaço</h4>
-  <form>
+  <form (ngSubmit)="agendaEspacoFisico()" [formGroup]="agendamentoForm">
     <ion-item-group>
       <ion-item>
         <ion-label>Espaço:</ion-label>
           <ion-select
           name="espacoId"
-          [(ngModel)]="espacoId"
-          espacoId="ngModel">
+          formControlName="espacoId"
+          espacoId="ngModel"
+          (ionChange)="espacoFisicoChange()">
             <ion-option
             name="condominioId"
             *ngFor="let ef of espacosFisicos"
@@ -31,8 +32,10 @@
       <ion-item>
         <ion-label>Data</ion-label>
         <ion-datetime
-        displayFormat="dd/MM"
-        [max]="2030-12-31"
+        displayFormat="DD/MM/YYYY"
+        formControlName="date"
+        [min]="minDate"
+        [max]="maxDate"
         >
         </ion-datetime>
       </ion-item>
@@ -43,6 +46,8 @@
         name="startTime"
         formControlName="startTime"
         (ionChange)="horaInicialChange()"
+        [min]="minHora"
+        [max]="maxHora"
         minuteValues="0,15,30,45"></ion-datetime>
       </ion-item>
       <ion-item>
@@ -52,6 +57,7 @@
         name="endTime"
         formControlName="endTime"
         [min]="minHora"
+        [max]="maxHora"
         minuteValues="0,15,30,45"></ion-datetime>
       </ion-item>
     </ion-item-group>

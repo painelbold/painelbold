@@ -1,9 +1,10 @@
 import { AgendamentoEspacoFisico } from './../../models/agendamentoEspacoFisico';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Loading, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Loading, LoadingController, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EspacoFisico } from '../../models/espacoFisico';
 import { EspacoFisicoProvider } from '../../providers/espaco-fisico/espaco-fisico';
+import { AgendamentoEspacoFisicoProvider } from '../../providers/agendamento-espaco-fisico/agendamento-espaco-fisico';
 
 @IonicPage()
 @Component({
@@ -12,25 +13,32 @@ import { EspacoFisicoProvider } from '../../providers/espaco-fisico/espaco-fisic
 })
 export class AgendamentoEspacoFisicoPage {
   minHora: any;
+  maxHora: any;
+  minDate: any;
+  maxDate: any;
   agendamentoForm: FormGroup;
   agendamento: AgendamentoEspacoFisico;
   espacosFisicos: Array<EspacoFisico>;
   edificioId: any;
   espacoId: string;
   loading: Loading;
+  agendamentosList: Array<AgendamentoEspacoFisico>;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private loadingCtrl: LoadingController,
     private efProvider: EspacoFisicoProvider,
+    private agendamentoEfProvider: AgendamentoEspacoFisicoProvider,
+    private toastCtrl: ToastController,
     private formBuilder: FormBuilder) {
       this.edificioId = this.navParams.data.user.edificioId;
       this.espacosFisicos = new Array<EspacoFisico>();
+      this.agendamentosList = new Array<AgendamentoEspacoFisico>();
       this.createForm();
   }
 
   ionViewDidLoad() {
-    this.createLoading();
+    this.createLoading("Carregando espaços físicos...");
 
     let subscribe = this.efProvider.getAllEspacosEdificio(this.edificioId)
     .subscribe((ef: any) => {
@@ -44,9 +52,9 @@ export class AgendamentoEspacoFisicoPage {
     this.minHora = this.agendamentoForm.controls["startTime"].value;
   }
 
-  createLoading(){
+  createLoading(msg: string){
     this.loading = this.loadingCtrl.create({
-      content: "Carregando espaços físicos..."
+      content: msg
     });
     this.loading.present();
   }
@@ -54,9 +62,42 @@ export class AgendamentoEspacoFisicoPage {
   createForm(){
     this.agendamentoForm = this.formBuilder.group({
       date: ['', Validators.required],
+      espacoId: ['', Validators.required],
       startTime: ['', Validators.required],
       endTime: ['', Validators.required],
     })
   }
+
+  agendaEspacoFisico(){
+
+  }
+
+  espacoFisicoChange(){
+    let ef = this.espacosFisicos.find(ef => ef.edificioId == this.edificioId);
+    this.minHora = ef.startTime;
+    this.maxHora = ef.endTime;
+
+    this.carregaAgendamentos();
+  }
+
+  private carregaAgendamentos() {
+    this.createLoading("Carregando agendamentos...");
+    let espacoKey = this.agendamentoForm.controls["espacoId"].value;
+    let subscribe = this.agendamentoEfProvider.getAgendamentosEspacoFisico(this.edificioId, espacoKey)
+      .subscribe((agendamentos: any) => {
+        this.loading.dismiss();
+        this.agendamentosList = agendamentos;
+        subscribe.unsubscribe();
+      });
+  }
+
+  createToast(msg: string){
+    this.toastCtrl.create({
+      duration: 2000,
+      message: msg,
+      position: "bottom"
+    }).present();
+  }
+
 
 }
