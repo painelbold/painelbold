@@ -35,17 +35,29 @@ export class AgendamentoEspacoFisicoPage {
       this.espacosFisicos = new Array<EspacoFisico>();
       this.agendamentosList = new Array<AgendamentoEspacoFisico>();
       this.createForm();
+      this.configLimitesDatas();
   }
 
   ionViewDidLoad() {
+    this.carregaEspacosFisicos();
+  }
+
+  configLimitesDatas(){
+    let today = new Date();
+
+    this.minDate = today.toISOString();
+    this.maxDate = new Date(today.getFullYear() + 1, 11, 31).toISOString();
+  }
+
+  private carregaEspacosFisicos() {
     this.createLoading("Carregando espaços físicos...");
 
     let subscribe = this.efProvider.getAllEspacosEdificio(this.edificioId)
-    .subscribe((ef: any) => {
-      this.espacosFisicos = ef;
-      this.loading.dismiss();
-      subscribe.unsubscribe();
-    });
+      .subscribe((ef: any) => {
+        this.espacosFisicos = ef;
+        this.loading.dismiss();
+        subscribe.unsubscribe();
+      });
   }
 
   horaInicialChange(){
@@ -73,11 +85,14 @@ export class AgendamentoEspacoFisicoPage {
   }
 
   espacoFisicoChange(){
+    this.atualizaLimitesHoras();
+    this.carregaAgendamentos();
+  }
+
+  private atualizaLimitesHoras() {
     let ef = this.espacosFisicos.find(ef => ef.edificioId == this.edificioId);
     this.minHora = ef.startTime;
     this.maxHora = ef.endTime;
-
-    this.carregaAgendamentos();
   }
 
   private carregaAgendamentos() {
@@ -98,6 +113,4 @@ export class AgendamentoEspacoFisicoPage {
       position: "bottom"
     }).present();
   }
-
-
 }
