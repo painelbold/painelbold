@@ -3,7 +3,7 @@
     <name>Painel Bold</name>
     <description>Soluções para condomínios</description>
     <author email="appsms12@gmail.com" href="http://ionicframework.com/">Bold Telecom</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.56.1:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
