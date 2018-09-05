@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FileChooser } from '@ionic-native/file-chooser';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -15,11 +16,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class UploadFilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private fileChooser: FileChooser) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UploadFilePage');
+  }
+
+  uploadFile(){
+    this.fileChooser.open()
+    .then(uri => console.log(uri))
+    .catch(e => console.log(e));
   }
 
 }

@@ -7,8 +7,9 @@ import { UserDataProvider } from './../../providers/user-data/user-data';
 import { AnnouncementPage } from './../announcement/announcement';
 import { CalendarPage } from './../calendar/calendar';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Loading, LoadingController } from 'ionic-angular';
 import { ListDetailsPage } from '../list-details/list-details'
+import { messaging } from 'firebase';
 
 @Component({
   selector: 'page-list',
@@ -18,21 +19,25 @@ export class ListPage {
   comunicados: Observable<any>;
   usuario: Usuario = new Usuario();
   agendamento: Observable<any>;
+  loading: Loading;
 
-  constructor(public navCtrl: NavController, 
-    public navParams: NavParams, 
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
     private udProvider: UserDataProvider,
     private aProvider: AnnouncementProvider,
-    private agProvider: AgendamentoProvider) {
+    private agProvider: AgendamentoProvider,
+    private loadingCtrl: LoadingController) {
   }
 
   ionViewDidEnter(){
+    this.createLoading("Carregando comunicados...");
     const subscribe = this.udProvider.getUserData()
     .subscribe((u: any) => {
+      this.loading.dismiss();
       this.usuario = u;
       this.comunicados = this.aProvider.getAllByEdificio(this.usuario.edificioId);
       this.agendamento = this.agProvider.getAgendamentoUsuario(this.usuario);
-      
+
       subscribe.unsubscribe();
     });
   }
@@ -54,5 +59,11 @@ export class ListPage {
       edificioId: this.usuario.edificioId
     });
   }
-}
 
+  createLoading(msg: string){
+    this.loading = this.loadingCtrl.create({
+      content: msg,
+    });
+    this.loading.present();
+  }
+}

@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { map } from 'rxjs/operators';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 @Injectable()
 export class DocumentoProvider {
   private PATH = 'documentos/';
 
-  constructor(private db: AngularFireDatabase,) {
+  constructor(private db: AngularFireDatabase,
+  private storage: AngularFireStorage) {
 
   }
 
@@ -21,7 +23,7 @@ export class DocumentoProvider {
   uploadDocumentosEdificio(information){
     let fileName = `${new Date().getTime()}.pdf`;
 
-    //return this.storage.ref(`this.PATH${fileName}`).putString(information);
+    return this.storage.ref(`this.PATH${fileName}`).putString(information);
   }
 
   saveInfoUploadDocumento(info){

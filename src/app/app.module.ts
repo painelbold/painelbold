@@ -49,6 +49,7 @@ import { MyAccountPage } from './../pages/my-account/my-account';
 import { RegisterCondominioPage } from './../pages/register-condominio/register-condominio';
 import { RegisterEdificioPage } from './../pages/register-edificio/register-edificio';
 import { SharePage } from './../pages/share/share';
+import { UploadFilePageModule } from './../pages/upload-file/upload-file.module';
 import { ReversePipe } from './../pipes/reverse/reverse';
 import { MyApp } from './app.component';
 
@@ -96,7 +97,8 @@ export const firebaseConfig = {
     AboutPageModule,
     TermsOfServicePageModule,
     PrivacyPageModule,
-    AgendamentoEspacoFisicoPageModule
+    AgendamentoEspacoFisicoPageModule,
+    UploadFilePageModule,
   ],
   exports: [
     ReversePipe

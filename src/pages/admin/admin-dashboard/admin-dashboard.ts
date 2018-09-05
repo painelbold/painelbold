@@ -1,3 +1,4 @@
+import { UploadFilePage } from './../../upload-file/upload-file';
 import { Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -47,6 +48,10 @@ export class AdminDashboardPage {
 
   cadastraEspaco(){
     this.navCtrl.push(ListEspacoFisicoPage);
+  }
+
+  uploadDoc(){
+    this.navCtrl.push(UploadFilePage);
   }
 
 }

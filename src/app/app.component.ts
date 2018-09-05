@@ -41,7 +41,7 @@ export class MyApp {
     this.loggedUser.fullName = "";
     this.userType = "";
 
-    const authObserver = afAuth.authState.subscribe(user => {
+    const authObserver = afAuth.authState.subscribe((user: firebase.User)=> {
       if(user){
         this.udProvider.getUserData()
         .subscribe((u:any) =>{
@@ -78,9 +78,10 @@ export class MyApp {
         }
       });
       }
+      else{
+        this.rootPage = LoginPage;
+      }
     });
-
-
   }
 
   initializeApp() {
