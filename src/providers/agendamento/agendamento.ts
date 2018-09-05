@@ -1,4 +1,5 @@
 import { Usuario } from './../../models/usuario';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../auth/auth-service';
@@ -11,7 +12,7 @@ export class AgendamentoProvider {
 
   constructor(private db: AngularFireDatabase,
     private authService: AuthService) {
-      
+
   }
 
   saveAgendamento(usuario: Usuario, data: Date){
@@ -30,9 +31,9 @@ export class AgendamentoProvider {
   getAgendamentoUsuario(usuario: Usuario){
     return this.db.object(this.PATH + usuario.edificioId)
     .snapshotChanges()
-    .map(a =>{
+    .pipe(map(a =>{
       return {key: a.key, ...a.payload.val()};
-    })
+    }));
   }
 
 }

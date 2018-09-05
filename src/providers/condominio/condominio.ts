@@ -1,5 +1,6 @@
 import * as firebase from 'firebase';
 import { AuthService } from './../auth/auth-service';
+import { map } from 'rxjs/operators';
 import { Condominio } from './../../models/condominio';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
@@ -11,18 +12,18 @@ export class CondominioProvider {
 
   constructor(private db: AngularFireDatabase,
               private authService: AuthService) {
-                if(authService.getLoggedUser())    
+                if(authService.getLoggedUser())
                   this.uid = authService.getLoggedUser().uid;
   }
 
   getAllCondominios(){
     return this.db.list(this.PATH)
     .snapshotChanges()
-    .map(changes => {
+    .pipe(map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    })
+    }))
   }
-  
+
   saveCondominio(condominio: Condominio){
     return new Promise((resolve, reject) => {
       if(condominio.key){

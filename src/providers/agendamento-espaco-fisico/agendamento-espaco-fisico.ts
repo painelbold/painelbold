@@ -2,6 +2,7 @@ import { AgendamentoEspacoFisico } from './../../models/agendamentoEspacoFisico'
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AgendamentoEspacoFisicoProvider {
@@ -13,9 +14,9 @@ export class AgendamentoEspacoFisicoProvider {
   getAllAgendamentos(edificioKey: string){
     return this.db.list(this.PATH + edificioKey)
     .snapshotChanges()
-    .map(changes => {
+    .pipe(map(changes => {
       return changes.map(e => ({key: e.payload.key, ...e.payload.val()}));
-    });
+    }));
   }
 
   saveAgendamento(agendamento: AgendamentoEspacoFisico){
@@ -41,18 +42,18 @@ export class AgendamentoEspacoFisicoProvider {
       ref.orderByChild("userKey")
       .equalTo(uid))
       .snapshotChanges()
-      .map(changes =>{
+      .pipe(map(changes =>{
         return changes.map(a => ({key: a.payload.key, ...a.payload.val()}));
-      });
+      }));
   }
 
   getAgendamentosEspacoFisico(edificioKey: string, espacoFisicoKey: string){
     return this.db.list(this.PATH + edificioKey, ref =>
     ref.orderByChild("espacoFisicoKey"))
     .snapshotChanges()
-    .map(changes =>{
+    .pipe(map(changes =>{
       return changes.map(a => ({key: a.payload.key, ...a.payload.val()}))
-    })
+    }));
   }
 
 }

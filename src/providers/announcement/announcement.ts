@@ -3,6 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Announcement } from './../../models/announcement';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AnnouncementProvider {
@@ -16,17 +17,17 @@ export class AnnouncementProvider {
     return this.db.list(this.PATH + key, ref =>
     ref.orderByChild("publishDate"))
     .snapshotChanges()
-    .map(changes=>{
+    .pipe(map(changes=>{
       return changes.map(c=>({ key: c.payload.key, ...c.payload.val() }))
-    });
+    }));
   }
-  
+
   get(key: string){
     return this.db.object(this.PATH + key)
     .snapshotChanges()
-    .map(c => {
+    .pipe(map(c => {
       return { key: c.key, ...c.payload.val() };
-    })
+    }));
 
   }
 

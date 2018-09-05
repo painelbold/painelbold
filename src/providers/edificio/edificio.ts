@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import * as firebase from 'firebase';
 import { Edificio } from './../../models/edificio';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class EdificioProvider {
-  
+
   private PATH="edificios/";
   uid: string;
   condominios: AngularFireList<any[]>;
@@ -21,17 +22,17 @@ export class EdificioProvider {
   getAllEdificiosCond(key: string){
     return this.db.list(this.PATH + key)
             .snapshotChanges()
-            .map(changes => {
+            .pipe(map(changes => {
               return changes.map(e => ({ key: e.payload.key, ...e.payload.val() }));
-            })
+            }));
   }
 
   getEdificio(key: string){
     this.db.object(this.PATH + key)
     .snapshotChanges()
-    .map(e => {
+    .pipe(map(e => {
       return { key: e.key, ...e.payload.val()};
-    });
+    }));
   }
 
   saveEdificio(edificio: Edificio){

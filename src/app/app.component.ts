@@ -26,6 +26,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any;
   loggedUser: Usuario;
+  userType: string;
 
   pages: Array<{title: string, component: any}>;
 
@@ -38,6 +39,7 @@ export class MyApp {
     this.initializeApp();
     this.loggedUser = new Usuario();
     this.loggedUser.fullName = "";
+    this.userType = "";
 
     const authObserver = afAuth.authState.subscribe(user => {
       if(user){
@@ -46,6 +48,7 @@ export class MyApp {
           this.loggedUser = u;
 
           if(this.loggedUser.admin){
+            this.userType = 'Administrador';
             this.pages = [
               { title: 'Comunicados', component: ListPage },
               { title: 'Minha Conta', component: MyAccountPage},
@@ -58,6 +61,7 @@ export class MyApp {
             authObserver.unsubscribe();
           }
           else{
+            this.userType = 'Usuário';
             this.pages = [
               { title: 'Comunicados', component: ListPage },
               { title: 'Minha Conta', component: MyAccountPage},

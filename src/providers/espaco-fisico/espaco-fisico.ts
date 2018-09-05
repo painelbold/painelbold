@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 import { AngularFireDatabase } from '../../../node_modules/angularfire2/database';
 import { EspacoFisico } from '../../models/espacoFisico';
@@ -19,9 +20,9 @@ export class EspacoFisicoProvider {
   getAllEspacosEdificio(keyEdificio: string){
     return this.db.list(this.PATH + keyEdificio)
     .snapshotChanges()
-    .map(changes => {
+    .pipe(map(changes => {
       return changes.map(e => ({key: e.payload.key, ...e.payload.val()}));
-    });
+    }));
   }
 
   saveEspaco(espaco: EspacoFisico){

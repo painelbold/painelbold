@@ -11,17 +11,17 @@
         class="menu-items"
         no-lines>
           <p class="hello-user">Olá, {{loggedUser.fullName.split(' ')[0]}}!</p>
+          <p>{{userType}}</p>
         </ion-item>
         <hr>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
+      <button menuClose ion-item (click)="logout()">
+        Logout
+      </button>
     </ion-list>
   </ion-content>
-
-  <ion-footer class="bar-stable" (click)="logout()">
-    <div class="title"><i class="icon ion-power"></i> Logout</div>
- </ion-footer>
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->

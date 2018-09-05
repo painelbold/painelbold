@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Usuario } from './../../models/usuario';
 import { Injectable, ViewChild } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -11,7 +12,7 @@ export class UserDataProvider {
               private authService: AuthService) {
 
     }
-  
+
   saveUserData(usuario: Usuario, key: string){
     return new Promise((resolve, reject) => {
       if(key){
@@ -36,21 +37,21 @@ export class UserDataProvider {
   }
 
   getAllUsersEdificio(keyEdificio: string){
-    return this.db.list(this.PATH, ref => 
+    return this.db.list(this.PATH, ref =>
       ref.orderByChild('edificioId')
       .equalTo(keyEdificio))
       .snapshotChanges()
-      .map(changes => {
+      .pipe(map(changes => {
         return changes.map(u => ({ key: u.payload.key, ...u.payload.val() }));
-      });
+      }));
   }
 
   getUserData(){
       return this.db.object(this.PATH + this.authService.getLoggedUser().uid)
       .snapshotChanges()
-      .map(u =>{
+      .pipe(map(u =>{
         return { key: u.key, ...u.payload.val()};
-      });
+      }));
     }
 
   alterarSindico(key: string, isSindico: boolean){

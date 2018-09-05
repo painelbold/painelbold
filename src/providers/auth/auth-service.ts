@@ -1,4 +1,3 @@
-import { Usuario } from './../../models/usuario';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
