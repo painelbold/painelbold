@@ -1,3 +1,4 @@
+import { UploadFilePage } from './../pages/upload-file/upload-file';
 import { AboutPage } from './../pages/about/about';
 import 'firebase/firestore';
 
@@ -18,6 +19,8 @@ import { UserDataProvider } from './../providers/user-data/user-data';
 import { PrivacyPage } from '../pages/privacy/privacy';
 import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { AgendamentoEspacoFisicoPage } from '../pages/agendamento-espaco-fisico/agendamento-espaco-fisico';
+import { AboutBoldPage } from '../pages/about-bold/about-bold';
+import { RegisterEspacoFisicoPage } from '../pages/admin/register-espaco-fisico/register-espaco-fisico';
 
 @Component({
   templateUrl: 'app.html'
@@ -41,47 +44,71 @@ export class MyApp {
     this.loggedUser.fullName = "";
     this.userType = "";
 
-    const authObserver = afAuth.authState.subscribe((user: firebase.User)=> {
+    let authObserver = afAuth.authState.subscribe((user: firebase.User)=> {
       if(user){
-        this.udProvider.getUserData()
-        .subscribe((u:any) =>{
-          this.loggedUser = u;
+        let userObserver = this.udProvider.getUserData()
+        .subscribe((user:any) =>{
+          this.loggedUser = user;
 
           if(this.loggedUser.admin){
-            this.userType = 'Administrador';
-            this.pages = [
-              { title: 'Comunicados', component: ListPage },
-              { title: 'Minha Conta', component: MyAccountPage},
-              { title: 'Indicar', component: SharePage},
-              { title: 'Painel do Administrador', component: AdminDashboardPage},
-            ];
-
-            this.rootPage = AdminDashboardPage;
-
-            authObserver.unsubscribe();
+            this.adminLogged();
           }
-          else{
-            this.userType = 'Usuário';
-            this.pages = [
-              { title: 'Comunicados', component: ListPage },
-              { title: 'Minha Conta', component: MyAccountPage},
-              { title: 'Agendamento de Espaço', component: AgendamentoEspacoFisicoPage},
-              { title: 'Indicar', component: SharePage},
-              { title: 'Sobre', component: AboutPage},
-              { title: 'Política de Privacidade', component: PrivacyPage},
-              { title: 'Termos de Uso', component: TermsOfServicePage}
-            ];
-
-            this.rootPage = ListPage;
-
-        authObserver.unsubscribe();
-        }
-      });
+          else if(this.loggedUser.sindico){
+            this.sindicoLogged();
+          }
+          else {
+            this.userLogged();
+          }
+          userObserver.unsubscribe();
+          authObserver.unsubscribe();
+        });
       }
       else{
         this.rootPage = LoginPage;
       }
     });
+  }
+
+  private userLogged() {
+    this.userType = 'Condômino';
+    this.pages = [
+      { title: 'Comunicados', component: ListPage },
+      { title: 'Minha Conta', component: MyAccountPage },
+      { title: 'Agendamento de Espaço', component: AgendamentoEspacoFisicoPage },
+      { title: 'Indicar', component: SharePage },
+      { title: 'Sobre o Painel Bold', component: AboutPage },
+      { title: 'Sobre a Bold Telecom', component: AboutBoldPage },
+      { title: 'Política de Privacidade', component: PrivacyPage },
+      { title: 'Termos de Uso', component: TermsOfServicePage }
+    ];
+    this.rootPage = ListPage;
+  }
+
+  private sindicoLogged(){
+    this.userType = 'Síndico';
+    this.pages = [
+      { title: 'Comunicados', component: ListPage },
+      { title: 'Minha Conta', component: MyAccountPage },
+      { title: 'Gerenciar Espaços Físicos', component: RegisterEspacoFisicoPage },
+      { title: 'Gerenciar Arquivos', component: UploadFilePage },
+      { title: 'Indicar', component: SharePage },
+      { title: 'Sobre o Painel Bold', component: AboutPage },
+      { title: 'Sobre a Bold Telecom', component: AboutBoldPage },
+      { title: 'Política de Privacidade', component: PrivacyPage },
+      { title: 'Termos de Uso', component: TermsOfServicePage }
+    ];
+    this.rootPage = ListPage;
+  }
+
+  private adminLogged() {
+    this.userType = 'Administrador';
+    this.pages = [
+      { title: 'Comunicados', component: ListPage },
+      { title: 'Minha Conta', component: MyAccountPage },
+      { title: 'Indicar', component: SharePage },
+      { title: 'Painel do Administrador', component: AdminDashboardPage },
+    ];
+    this.rootPage = AdminDashboardPage;
   }
 
   initializeApp() {

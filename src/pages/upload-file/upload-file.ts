@@ -16,6 +16,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class UploadFilePage {
 
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private fileChooser: FileChooser) {

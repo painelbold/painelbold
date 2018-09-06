@@ -11,11 +11,20 @@
 
 <ion-content padding>
   <h4>Envio de Documento</h4>
-
-  <button
-  ion-button
-  (click)="uploadFile()">
-    Upload
-  </button>
-
+  <ion-row>
+    <ion-col>
+      <ion-input
+      placeholder="Selecionar arquivo"
+      (click)="uploadFile()"
+      readonly="true">
+      </ion-input>
+    </ion-col>
+    <ion-col>
+      <button
+      ion-button
+      (click)="uploadFile()">
+        Upload
+      </button>
+    </ion-col>
+  </ion-row>
 </ion-content>

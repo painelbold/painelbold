@@ -52,6 +52,8 @@ import { SharePage } from './../pages/share/share';
 import { UploadFilePageModule } from './../pages/upload-file/upload-file.module';
 import { ReversePipe } from './../pipes/reverse/reverse';
 import { MyApp } from './app.component';
+import { AboutBoldPageModule } from '../pages/about-bold/about-bold.module';
+import { FileChooser } from '@ionic-native/file-chooser';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -99,6 +101,7 @@ export const firebaseConfig = {
     PrivacyPageModule,
     AgendamentoEspacoFisicoPageModule,
     UploadFilePageModule,
+    AboutBoldPageModule
   ],
   exports: [
     ReversePipe
@@ -136,6 +139,7 @@ export const firebaseConfig = {
     SplashScreen,
     DatePicker,
     SocialSharing,
+    FileChooser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     AnnouncementProvider,

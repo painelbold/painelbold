@@ -1,6 +1,6 @@
 import { AuthService } from './../../providers/auth/auth-service';
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, MenuController } from 'ionic-angular';
 import { RegisterPage } from '../register/register'
 import { ListPage } from '../list/list'
 import { NgForm } from '@angular/forms';
@@ -11,27 +11,33 @@ import { ResetPasswordPage } from '../reset-password/reset-password';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  
+
   selectedItem: any;
-  
+
   loginFields = { email: '', password: '', stayConnected: '' };
 
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
     private authService: AuthService,
+    private menu: MenuController,
     private toastController: ToastController) {
-    
+
+  }
+
+  ionViewDidEnter(){
+    this.menu.enable(false, 'sideMenu');
   }
 
   login(form: NgForm) {
     if(form.valid){
       this.authService.signIn(this.loginFields)
       .then(()=> {
-        this.navCtrl.setRoot(ListPage)
+        this.menu.enable(true, 'sideMenu');
+        this.navCtrl.setRoot(ListPage);
       })
       .catch((error)=>{
         let toast = this.toastController.create({duration: 2000, position: "bottom"});
@@ -41,13 +47,13 @@ export class LoginPage {
           toast.setMessage("O e-mail inserido não é válido.");
           break;
           case "auth/user-disabled":
-          toast.setMessage("O usuário está desabilitado.");          
+          toast.setMessage("O usuário está desabilitado.");
           break;
           case "auth/user-not-found":
-          toast.setMessage("Usuário não encontrado.");          
+          toast.setMessage("Usuário não encontrado.");
           break;
           case "auth/wrong-password":
-          toast.setMessage("E-mail ou senha incorretos.");          
+          toast.setMessage("E-mail ou senha incorretos.");
           break;
           default:
           toast.setMessage("Erro: " + error.code);

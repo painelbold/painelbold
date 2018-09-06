@@ -1,6 +1,6 @@
 import { AuthService } from './../../providers/auth/auth-service';
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, MenuController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
 @IonicPage()
@@ -12,14 +12,15 @@ export class ResetPasswordPage {
   userEmail: string = "";
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     private authService: AuthService,
-    private toastController: ToastController) {
+    private toastController: ToastController,
+    private menu: MenuController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ResetPasswordPage');
+    this.menu.enable(false, 'sideMenu');
   }
 
   resetPassword(form: NgForm){

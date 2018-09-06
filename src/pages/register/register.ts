@@ -3,7 +3,7 @@ import { CondominioProvider } from './../../providers/condominio/condominio';
 import { UserDataProvider } from './../../providers/user-data/user-data';
 import { ListPage } from './../list/list';
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, MenuController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../providers/auth/auth-service';
 import { Usuario } from '../../models/usuario';
@@ -21,14 +21,19 @@ export class RegisterPage {
   condominioId: any;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     private toastController: ToastController,
     private authService: AuthService,
     private userProvider: UserDataProvider,
     private condProvider: CondominioProvider,
-    private edfProvider: EdificioProvider) { 
+    private edfProvider: EdificioProvider,
+    private menu: MenuController) {
       this.condominios = this.condProvider.getAllCondominios();
+  }
+
+  ionViewDidEnter(){
+    this.menu.enable(false, 'sideMenu');
   }
 
   goBack(event) {
@@ -48,10 +53,11 @@ export class RegisterPage {
           this.usuario.admin = false;
           this.usuario.assinante = false;
           this.usuario.sindico = false;
-          
+
           this.userProvider.saveUserData(this.usuario, '');
-  
+
           this.toastController.create({message: "Usuário criado com sucesso", duration: 2000, position: "bottom"}).present();
+          this.menu.enable(true, 'sideMenu');
           this.navCtrl.setRoot(ListPage);
         })
         .catch((error:any)=>{
