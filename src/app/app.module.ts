@@ -1,3 +1,5 @@
+import { PedidosListPageModule } from './../pages/pedidos-list/pedidos-list.module';
+import { RegisterPedidosPageModule } from './../pages/register-pedidos/register-pedidos.module';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DatePicker } from '@ionic-native/date-picker';
@@ -101,7 +103,9 @@ export const firebaseConfig = {
     PrivacyPageModule,
     AgendamentoEspacoFisicoPageModule,
     UploadFilePageModule,
-    AboutBoldPageModule
+    AboutBoldPageModule,
+    RegisterPedidosPageModule,
+    PedidosListPageModule
   ],
   exports: [
     ReversePipe

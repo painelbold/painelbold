@@ -40,30 +40,32 @@ export class MyApp {
     private afAuth: AngularFireAuth,
     private udProvider: UserDataProvider) {
     this.initializeApp();
+    this.verificaUserLogado(afAuth);
+  }
+
+  private verificaUserLogado(afAuth: AngularFireAuth) {
     this.loggedUser = new Usuario();
     this.loggedUser.fullName = "";
     this.userType = "";
-
-    let authObserver = afAuth.authState.subscribe((user: firebase.User)=> {
-      if(user){
+    let authObserver = afAuth.authState.subscribe((user: firebase.User) => {
+      if (user) {
         let userObserver = this.udProvider.getUserData()
-        .subscribe((user:any) =>{
-          this.loggedUser = user;
-
-          if(this.loggedUser.admin){
-            this.adminLogged();
-          }
-          else if(this.loggedUser.sindico){
-            this.sindicoLogged();
-          }
-          else {
-            this.userLogged();
-          }
-          userObserver.unsubscribe();
-          authObserver.unsubscribe();
-        });
+          .subscribe((user: any) => {
+            this.loggedUser = user;
+            if (this.loggedUser.admin) {
+              this.adminLogged();
+            }
+            else if (this.loggedUser.sindico) {
+              this.sindicoLogged();
+            }
+            else {
+              this.userLogged();
+            }
+            userObserver.unsubscribe();
+            authObserver.unsubscribe();
+          });
       }
-      else{
+      else {
         this.rootPage = LoginPage;
       }
     });
