@@ -5,19 +5,31 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
+  <ion-content
+  class="menu-items">
     <ion-list>
         <ion-item
-        class="menu-items"
-        no-lines>
+        no-lines
+        class="menu-items">
           <p class="hello-user">Olá, {{loggedUser.fullName.split(' ')[0]}}!</p>
           <p>{{userType}}</p>
         </ion-item>
         <hr>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button
+      menuClose
+      class="menu-items"
+      ion-item
+      no-lines
+      *ngFor="let p of pages"
+      (click)="openPage(p)">
         {{p.title}}
       </button>
-      <button menuClose ion-item (click)="logout()">
+      <button
+      menuClose
+      class="menu-items"
+      no-lines
+      ion-item
+      (click)="logout()">
         Logout
       </button>
     </ion-list>

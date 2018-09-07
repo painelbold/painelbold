@@ -105,7 +105,11 @@ export const firebaseConfig = {
     UploadFilePageModule,
     AboutBoldPageModule,
     RegisterPedidosPageModule,
-    PedidosListPageModule
+    PedidosListPageModule,
+    AgendamentoEspacoFisicoPageModule,
+    PrivacyPageModule,
+    TermsOfServicePageModule,
+    AboutPageModule,
   ],
   exports: [
     ReversePipe
@@ -133,10 +137,6 @@ export const firebaseConfig = {
     ListMoradoresDetailsPage,
     RegisterEspacoFisicoPage,
     ListEspacoFisicoPage,
-    AboutPage,
-    TermsOfServicePage,
-    PrivacyPage,
-    AgendamentoEspacoFisicoPage
   ],
   providers: [
     StatusBar,
