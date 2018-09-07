@@ -22,7 +22,7 @@
       no-lines
       *ngFor="let p of pages"
       (click)="openPage(p)">
-        {{p.title}}
+        <div [innerHtml]="p.title"></div>
       </button>
       <button
       menuClose
