@@ -28,6 +28,7 @@ export class UserDataProvider {
              cpf: usuario.cpf || '',
              email: usuario.email || '',
              phone: usuario.phone || '',
+             unit: usuario.unit || '',
              assinante: usuario.assinante,
              admin: usuario.admin,
              edificioId: usuario.edificioId,

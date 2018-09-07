@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <img src="assets/logotipo.png"/>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <h5>Cadastrar Obra</h5>
+  <form
+  (ngSubmit)="registerObra()"
+  [formGroup]="obraForm" >
+  <ion-item-group inset>
+    <ion-item>
+      <ion-label floating>Descrição</ion-label>
+      <ion-input
+      type="text"
+      name="description"
+      formControlName="description"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label>Data de Início</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY"
+        [min]="minDate"
+        [max]="maxDate"
+        (ionChange)="dtInicioChange()"
+        formControlName="startDate"
+        required
+        ></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Data Final</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY"
+        [min]="minEndDate"
+        [max]="maxDate"
+        formControlName="endDate"
+        required
+        ></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Hora início</ion-label>
+        <ion-datetime
+        displayFormat="HH:mm"
+        name="startTime"
+        formControlName="startTime"
+        (ionChange)="horaInicialChange()"
+        minuteValues="0,15,30,45"
+        required></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Hora fim</ion-label>
+        <ion-datetime
+        displayFormat="HH:mm"
+        name="endTime"
+        formControlName="endTime"
+        [min]="minHora"
+        minuteValues="0,15,30,45"
+        required></ion-datetime>
+      </ion-item>
+  </ion-item-group>
+  <button
+  ion-button
+  class="submit-btn button-round-md"
+  color="bold-color"
+  block
+  type="submit"
+  [disabled]="!obraForm.valid">Salvar</button>
+  </form>
+
+</ion-content>

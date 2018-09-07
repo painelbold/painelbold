@@ -21,6 +21,7 @@ import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { AgendamentoEspacoFisicoPage } from '../pages/agendamento-espaco-fisico/agendamento-espaco-fisico';
 import { AboutBoldPage } from '../pages/about-bold/about-bold';
 import { RegisterEspacoFisicoPage } from '../pages/admin/register-espaco-fisico/register-espaco-fisico';
+import { RegisterObraPage } from '../pages/register-obra/register-obra';
 
 @Component({
   templateUrl: 'app.html'
@@ -77,6 +78,7 @@ export class MyApp {
       { title: 'Comunicados', component: ListPage },
       { title: 'Minha Conta', component: MyAccountPage },
       { title: 'Agendamento de Espaço', component: AgendamentoEspacoFisicoPage },
+      { title: 'Cadastrar Obra', component: RegisterObraPage},
       { title: 'Indicar', component: SharePage },
       { title: 'Sobre o Painel Bold', component: AboutPage },
       { title: 'Sobre a Bold Telecom', component: AboutBoldPage },

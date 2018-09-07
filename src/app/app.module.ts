@@ -1,8 +1,7 @@
-import { PedidosListPageModule } from './../pages/pedidos-list/pedidos-list.module';
-import { RegisterPedidosPageModule } from './../pages/register-pedidos/register-pedidos.module';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DatePicker } from '@ionic-native/date-picker';
+import { FileChooser } from '@ionic-native/file-chooser';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -12,21 +11,15 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { AboutPage } from '../pages/about/about';
-import { AdminDashboardPage } from '../pages/admin/admin-dashboard/admin-dashboard';
-import { ListEspacoFisicoPage } from '../pages/admin/list-espaco-fisico/list-espaco-fisico';
+import { AboutBoldPageModule } from '../pages/about-bold/about-bold.module';
 import { ListEspacoFisicoPageModule } from '../pages/admin/list-espaco-fisico/list-espaco-fisico.module';
-import { ListMoradoresPage } from '../pages/admin/list-moradores/list-moradores';
-import { RegisterEspacoFisicoPage } from '../pages/admin/register-espaco-fisico/register-espaco-fisico';
 import { AgendamentoEspacoFisicoPageModule } from '../pages/agendamento-espaco-fisico/agendamento-espaco-fisico.module';
-import { ListDetailsPage } from '../pages/list-details/list-details';
+import { ListObrasPageModule } from '../pages/list-obras/list-obras.module';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
-import { PrivacyPage } from '../pages/privacy/privacy';
 import { PrivacyPageModule } from '../pages/privacy/privacy.module';
+import { RegisterObraPageModule } from '../pages/register-obra/register-obra.module';
 import { RegisterPage } from '../pages/register/register';
-import { ResetPasswordPage } from '../pages/reset-password/reset-password';
-import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { TermsOfServicePageModule } from '../pages/terms-of-service/terms-of-service.module';
 import { AgendamentoEspacoFisicoProvider } from '../providers/agendamento-espaco-fisico/agendamento-espaco-fisico';
 import { AgendamentoProvider } from '../providers/agendamento/agendamento';
@@ -38,24 +31,27 @@ import { EdificioProvider } from '../providers/edificio/edificio';
 import { EspacoFisicoProvider } from '../providers/espaco-fisico/espaco-fisico';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { AboutPageModule } from './../pages/about/about.module';
-import { ListCondominioDetailsPage } from './../pages/admin/list-condominio-details/list-condominio-details';
-import { ListCondominiosPage } from './../pages/admin/list-condominios/list-condominios';
-import { ListEdificiosDetailsPage } from './../pages/admin/list-edificios-details/list-edificios-details';
-import { ListEdificiosPage } from './../pages/admin/list-edificios/list-edificios';
-import { ListMoradoresDetailsPage } from './../pages/admin/list-moradores-details/list-moradores-details';
 import { RegisterEspacoFisicoPageModule } from './../pages/admin/register-espaco-fisico/register-espaco-fisico.module';
-import { AgendamentoEspacoFisicoPage } from './../pages/agendamento-espaco-fisico/agendamento-espaco-fisico';
-import { AnnouncementPage } from './../pages/announcement/announcement';
-import { CalendarPage } from './../pages/calendar/calendar';
-import { MyAccountPage } from './../pages/my-account/my-account';
-import { RegisterCondominioPage } from './../pages/register-condominio/register-condominio';
-import { RegisterEdificioPage } from './../pages/register-edificio/register-edificio';
-import { SharePage } from './../pages/share/share';
+import { PedidosListPageModule } from './../pages/pedidos-list/pedidos-list.module';
+import { RegisterPedidosPageModule } from './../pages/register-pedidos/register-pedidos.module';
 import { UploadFilePageModule } from './../pages/upload-file/upload-file.module';
 import { ReversePipe } from './../pipes/reverse/reverse';
 import { MyApp } from './app.component';
-import { AboutBoldPageModule } from '../pages/about-bold/about-bold.module';
-import { FileChooser } from '@ionic-native/file-chooser';
+import { ListMoradoresDetailsPageModule } from '../pages/admin/list-moradores-details/list-moradores-details.module';
+import { ListMoradoresPageModule } from '../pages/admin/list-moradores/list-moradores.module';
+import { SharePageModule } from '../pages/share/share.module';
+import { MyAccountPageModule } from '../pages/my-account/my-account.module';
+import { CalendarPageModule } from '../pages/calendar/calendar.module';
+import { ResetPasswordPageModule } from '../pages/reset-password/reset-password.module';
+import { AnnouncementPageModule } from '../pages/announcement/announcement.module';
+import { AdminDashboardPageModule } from '../pages/admin/admin-dashboard/admin-dashboard.module';
+import { RegisterCondominioPageModule } from '../pages/register-condominio/register-condominio.module';
+import { RegisterEdificioPageModule } from '../pages/register-edificio/register-edificio.module';
+import { ListCondominiosPageModule } from '../pages/admin/list-condominios/list-condominios.module';
+import { ListCondominioDetailsPageModule } from '../pages/admin/list-condominio-details/list-condominio-details.module';
+import { ListEdificiosPageModule } from '../pages/admin/list-edificios/list-edificios.module';
+import { ListEdificiosDetailsPageModule } from '../pages/admin/list-edificios-details/list-edificios-details.module';
+import { ObraProvider } from '../providers/obra/obra';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -72,21 +68,6 @@ export const firebaseConfig = {
     ListPage,
     LoginPage,
     RegisterPage,
-    ListDetailsPage,
-    SharePage,
-    MyAccountPage,
-    CalendarPage,
-    ResetPasswordPage,
-    AnnouncementPage,
-    AdminDashboardPage,
-    RegisterCondominioPage,
-    RegisterEdificioPage,
-    ListCondominiosPage,
-    ListCondominioDetailsPage,
-    ListEdificiosPage,
-    ListEdificiosDetailsPage,
-    ListMoradoresPage,
-    ListMoradoresDetailsPage,
     ReversePipe,
   ],
   imports: [
@@ -96,6 +77,20 @@ export const firebaseConfig = {
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+    SharePageModule,
+    MyAccountPageModule,
+    CalendarPageModule,
+    ResetPasswordPageModule,
+    AnnouncementPageModule,
+    AdminDashboardPageModule,
+    RegisterCondominioPageModule,
+    RegisterEdificioPageModule,
+    ListCondominiosPageModule,
+    ListCondominioDetailsPageModule,
+    ListEdificiosPageModule,
+    ListEdificiosDetailsPageModule,
+    ListMoradoresPageModule,
+    ListMoradoresDetailsPageModule,
     RegisterEspacoFisicoPageModule,
     ListEspacoFisicoPageModule,
     AboutPageModule,
@@ -110,6 +105,8 @@ export const firebaseConfig = {
     PrivacyPageModule,
     TermsOfServicePageModule,
     AboutPageModule,
+    RegisterObraPageModule,
+    ListObrasPageModule
   ],
   exports: [
     ReversePipe
@@ -120,23 +117,6 @@ export const firebaseConfig = {
     ListPage,
     LoginPage,
     RegisterPage,
-    ListDetailsPage,
-    SharePage,
-    MyAccountPage,
-    CalendarPage,
-    ResetPasswordPage,
-    AnnouncementPage,
-    AdminDashboardPage,
-    RegisterCondominioPage,
-    RegisterEdificioPage,
-    ListCondominiosPage,
-    ListCondominioDetailsPage,
-    ListEdificiosPage,
-    ListEdificiosDetailsPage,
-    ListMoradoresPage,
-    ListMoradoresDetailsPage,
-    RegisterEspacoFisicoPage,
-    ListEspacoFisicoPage,
   ],
   providers: [
     StatusBar,
@@ -153,7 +133,8 @@ export const firebaseConfig = {
     AgendamentoProvider,
     EspacoFisicoProvider,
     AgendamentoEspacoFisicoProvider,
-    DocumentoProvider
+    DocumentoProvider,
+    ObraProvider
   ],
 })
 export class AppModule {}

@@ -4,6 +4,7 @@ import { IonicPage, Loading, NavController, NavParams, LoadingController, ToastC
 
 import { EspacoFisico } from '../../../models/espacoFisico';
 import { EspacoFisicoProvider } from '../../../providers/espaco-fisico/espaco-fisico';
+import { Usuario } from '../../../models/usuario';
 
 @IonicPage()
 @Component({
@@ -16,6 +17,7 @@ export class RegisterEspacoFisicoPage {
   ef: EspacoFisico;
   minHora: any;
   loading: Loading;
+  user: Usuario;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -26,7 +28,15 @@ export class RegisterEspacoFisicoPage {
     private alertCtrl: AlertController,
     private toastCtrl: ToastController) {
       this.ef = new EspacoFisico();
-      this.edificioId = this.navParams.data.edificioId;
+      this.user = this.navParams.data.user;
+
+      if(this.user.sindico){
+        this.edificioId = this.user.edificioId;
+      }
+      else{
+        this.edificioId = this.navParams.data.edificioId;
+      }
+
       if(this.navParams.data.espacoFisico){
         this.ef = this.navParams.data.espacoFisico;
       }
@@ -34,12 +44,22 @@ export class RegisterEspacoFisicoPage {
   }
 
   createForm(){
-    this.espacoFisicoForm = this.fb.group({
-      name: [this.ef.name, Validators.required],
-      description: [this.ef.description, Validators.required],
-      startTime: [this.ef.startTime, Validators.required],
-      endTime: [this.ef.endTime, Validators.required],
-    })
+    if(this.ef === new EspacoFisico()){
+      this.espacoFisicoForm = this.fb.group({
+        name: ['', Validators.required],
+        description: ['', Validators.required],
+        startTime: ['', Validators.required],
+        endTime: ['', Validators.required],
+      });
+    }
+    else{
+      this.espacoFisicoForm = this.fb.group({
+        name: [this.ef.name, Validators.required],
+        description: [this.ef.description, Validators.required],
+        startTime: [this.ef.startTime, Validators.required],
+        endTime: [this.ef.endTime, Validators.required],
+      });
+    }
   }
 
   saveEspacoFisico(){
@@ -51,19 +71,12 @@ export class RegisterEspacoFisicoPage {
     this.efProvider.saveEspaco(this.ef)
     .then(() => {
       this.loading.dismiss();
-      this.toast.create({
-        message: "Espaço físico criado com sucesso!",
-        duration: 2000,
-        position: "bottom"
-      });
+      this.createToast("Espaço físico criado com sucesso!");
       this.navCtrl.pop();
     })
     .catch((error : any) => {
-      this.toast.create({
-        message: "Erro ao salvar espaço físico.",
-        duration: 2000,
-        position: "bottom"
-      });
+      this.loading.dismiss();
+      this.createToast("Erro ao salvar espaço físico.");
       console.log("Erro ao salvar espaço físico." + error.code);
     });
   }

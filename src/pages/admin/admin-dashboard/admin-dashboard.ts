@@ -17,13 +17,11 @@ import { ListMoradoresPage } from './../../admin/list-moradores/list-moradores';
   templateUrl: 'admin-dashboard.html',
 })
 export class AdminDashboardPage {
-  user: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private afAuth: AngularFireAuth,
               private authService: AuthService,) {
-    this.user = this.navParams.get("user");
   }
 
   cadastraSindico(event){

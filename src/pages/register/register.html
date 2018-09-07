@@ -11,32 +11,32 @@
             <ion-item-group inset>
                 <ion-item>
                     <ion-label floating>Nome Completo</ion-label>
-                    <ion-input 
-                    type="text" 
-                    name="fullName" 
+                    <ion-input
+                    type="text"
+                    name="fullName"
                     [(ngModel)]="usuario.fullName"
                     #fullName="ngModel"
                     required></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label floating>CPF</ion-label>
-                    <ion-input 
-                    type="number" 
+                    <ion-input
+                    type="number"
                     pattern="[0-9]*"
-                    name="document" 
+                    name="document"
                     [(ngModel)]="usuario.cpf"
                     #document="ngModel"
                     required></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Condomínio:</ion-label>
-                        <ion-select 
+                        <ion-select
                         name="condominioId"
                         [(ngModel)]="condominioId"
                         condominioId="ngModel"
                         (ionChange)="condChange()">
-                            <ion-option 
-                            *ngFor="let c of condominios | async" 
+                            <ion-option
+                            *ngFor="let c of condominios | async"
                             [value]="c.key">
                             {{c.nome}}
                             </ion-option>
@@ -44,31 +44,41 @@
                 </ion-item>
                 <ion-item>
                     <ion-label>Edificio:</ion-label>
-                        <ion-select 
+                        <ion-select
                         name="edificioId"
                         [(ngModel)]="usuario.edificioId"
                         edificioId="ngModel">
-                            <ion-option 
-                            *ngFor="let e of edificios | async" 
+                            <ion-option
+                            *ngFor="let e of edificios | async"
                             [value]="e.key">
                             {{e.nome}}
                             </ion-option>
                         </ion-select>
                 </ion-item>
                 <ion-item>
+                  <ion-label floating>Unidade</ion-label>
+                  <ion-input
+                  type="number"
+                  name="unit"
+                  pattern="[0-9]*"
+                  [(ngModel)]="usuario.unit"
+                  #unit="ngModel"
+                  > </ion-input>
+                </ion-item>
+                <ion-item>
                     <ion-label floating>Telefone</ion-label>
-                    <ion-input 
-                    type="tel" 
-                    name="phone" 
+                    <ion-input
+                    type="tel"
+                    name="phone"
                     pattern="[0-9]*"
                     [(ngModel)]="usuario.phone"
                     #phone="ngModel"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label floating>E-mail</ion-label>
-                    <ion-input 
-                    type="email" 
-                    name="email" 
+                    <ion-input
+                    type="email"
+                    name="email"
                     [(ngModel)]="registerCredentials.email"
                     #email="ngModel"
                     required></ion-input>
@@ -78,9 +88,9 @@
                 </ion-item> -->
                 <ion-item>
                     <ion-label floating>Senha</ion-label>
-                    <ion-input 
-                    type="password" 
-                    name="password" 
+                    <ion-input
+                    type="password"
+                    name="password"
                     [(ngModel)]="registerCredentials.password"
                     #password="ngModel"
                     required></ion-input>
@@ -90,18 +100,18 @@
                 </ion-item> -->
                 <ion-item>
                     <ion-label floating>Confirmar Senha</ion-label>
-                    <ion-input 
-                    type="password" 
-                    name="confirm-password" 
+                    <ion-input
+                    type="password"
+                    name="confirm-password"
                     [(ngModel)]="registerCredentials.confirmPassword"
                     #confirmPassword="ngModel"
                     required></ion-input>
                 </ion-item>
             </ion-item-group>
-            <button 
-            ion-button 
-            class="submit-btn" 
-            full 
+            <button
+            ion-button
+            class="submit-btn"
+            full
             type="submit"
             [disabled]="!registerForm.valid">Registrar</button>
         </form>

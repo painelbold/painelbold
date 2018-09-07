@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
+import * as firebase from 'firebase';
 import { map } from 'rxjs/operators';
 
 import { AngularFireDatabase } from '../../../node_modules/angularfire2/database';
 import { EspacoFisico } from '../../models/espacoFisico';
 import { AuthService } from '../auth/auth-service';
-import * as firebase from 'firebase';
 
 @Injectable()
 export class EspacoFisicoProvider {

@@ -8,4 +8,5 @@ export class Usuario {
     sindico: boolean;
     key: string;
     edificioId: string;
+    unit: number;
 }
