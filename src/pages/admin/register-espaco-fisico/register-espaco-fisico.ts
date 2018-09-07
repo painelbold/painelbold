@@ -5,6 +5,7 @@ import { IonicPage, Loading, NavController, NavParams, LoadingController, ToastC
 import { EspacoFisico } from '../../../models/espacoFisico';
 import { EspacoFisicoProvider } from '../../../providers/espaco-fisico/espaco-fisico';
 import { Usuario } from '../../../models/usuario';
+import { AdminDashboardPage } from '../admin-dashboard/admin-dashboard';
 
 @IonicPage()
 @Component({
@@ -72,7 +73,12 @@ export class RegisterEspacoFisicoPage {
     .then(() => {
       this.loading.dismiss();
       this.createToast("Espaço físico criado com sucesso!");
-      this.navCtrl.pop();
+      if(this.user.sindico){
+        this.navCtrl.pop();
+      }
+      else if(this.user.admin){
+        this.navCtrl.setRoot(AdminDashboardPage);
+      }
     })
     .catch((error : any) => {
       this.loading.dismiss();

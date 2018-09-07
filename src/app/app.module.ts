@@ -12,14 +12,28 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { AboutBoldPageModule } from '../pages/about-bold/about-bold.module';
+import { AdminDashboardPageModule } from '../pages/admin/admin-dashboard/admin-dashboard.module';
+import { ListCondominioDetailsPageModule } from '../pages/admin/list-condominio-details/list-condominio-details.module';
+import { ListCondominiosPageModule } from '../pages/admin/list-condominios/list-condominios.module';
+import { ListEdificiosDetailsPageModule } from '../pages/admin/list-edificios-details/list-edificios-details.module';
+import { ListEdificiosPageModule } from '../pages/admin/list-edificios/list-edificios.module';
 import { ListEspacoFisicoPageModule } from '../pages/admin/list-espaco-fisico/list-espaco-fisico.module';
+import { ListMoradoresDetailsPageModule } from '../pages/admin/list-moradores-details/list-moradores-details.module';
+import { ListMoradoresPageModule } from '../pages/admin/list-moradores/list-moradores.module';
 import { AgendamentoEspacoFisicoPageModule } from '../pages/agendamento-espaco-fisico/agendamento-espaco-fisico.module';
+import { AnnouncementPageModule } from '../pages/announcement/announcement.module';
+import { CalendarPageModule } from '../pages/calendar/calendar.module';
 import { ListObrasPageModule } from '../pages/list-obras/list-obras.module';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
+import { MyAccountPageModule } from '../pages/my-account/my-account.module';
 import { PrivacyPageModule } from '../pages/privacy/privacy.module';
+import { RegisterCondominioPageModule } from '../pages/register-condominio/register-condominio.module';
+import { RegisterEdificioPageModule } from '../pages/register-edificio/register-edificio.module';
 import { RegisterObraPageModule } from '../pages/register-obra/register-obra.module';
 import { RegisterPage } from '../pages/register/register';
+import { ResetPasswordPageModule } from '../pages/reset-password/reset-password.module';
+import { SharePageModule } from '../pages/share/share.module';
 import { TermsOfServicePageModule } from '../pages/terms-of-service/terms-of-service.module';
 import { AgendamentoEspacoFisicoProvider } from '../providers/agendamento-espaco-fisico/agendamento-espaco-fisico';
 import { AgendamentoProvider } from '../providers/agendamento/agendamento';
@@ -29,29 +43,16 @@ import { CondominioProvider } from '../providers/condominio/condominio';
 import { DocumentoProvider } from '../providers/documento/documento';
 import { EdificioProvider } from '../providers/edificio/edificio';
 import { EspacoFisicoProvider } from '../providers/espaco-fisico/espaco-fisico';
+import { ObraProvider } from '../providers/obra/obra';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { AboutPageModule } from './../pages/about/about.module';
 import { RegisterEspacoFisicoPageModule } from './../pages/admin/register-espaco-fisico/register-espaco-fisico.module';
 import { PedidosListPageModule } from './../pages/pedidos-list/pedidos-list.module';
-import { RegisterPedidosPageModule } from './../pages/register-pedidos/register-pedidos.module';
 import { UploadFilePageModule } from './../pages/upload-file/upload-file.module';
 import { ReversePipe } from './../pipes/reverse/reverse';
 import { MyApp } from './app.component';
-import { ListMoradoresDetailsPageModule } from '../pages/admin/list-moradores-details/list-moradores-details.module';
-import { ListMoradoresPageModule } from '../pages/admin/list-moradores/list-moradores.module';
-import { SharePageModule } from '../pages/share/share.module';
-import { MyAccountPageModule } from '../pages/my-account/my-account.module';
-import { CalendarPageModule } from '../pages/calendar/calendar.module';
-import { ResetPasswordPageModule } from '../pages/reset-password/reset-password.module';
-import { AnnouncementPageModule } from '../pages/announcement/announcement.module';
-import { AdminDashboardPageModule } from '../pages/admin/admin-dashboard/admin-dashboard.module';
-import { RegisterCondominioPageModule } from '../pages/register-condominio/register-condominio.module';
-import { RegisterEdificioPageModule } from '../pages/register-edificio/register-edificio.module';
-import { ListCondominiosPageModule } from '../pages/admin/list-condominios/list-condominios.module';
-import { ListCondominioDetailsPageModule } from '../pages/admin/list-condominio-details/list-condominio-details.module';
-import { ListEdificiosPageModule } from '../pages/admin/list-edificios/list-edificios.module';
-import { ListEdificiosDetailsPageModule } from '../pages/admin/list-edificios-details/list-edificios-details.module';
-import { ObraProvider } from '../providers/obra/obra';
+import { PedidoProvider } from '../providers/pedido/pedido';
+import { RegisterPedidoPageModule } from '../pages/register-pedido/register-pedido.module';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -99,14 +100,14 @@ export const firebaseConfig = {
     AgendamentoEspacoFisicoPageModule,
     UploadFilePageModule,
     AboutBoldPageModule,
-    RegisterPedidosPageModule,
+    RegisterPedidoPageModule,
     PedidosListPageModule,
     AgendamentoEspacoFisicoPageModule,
     PrivacyPageModule,
     TermsOfServicePageModule,
     AboutPageModule,
     RegisterObraPageModule,
-    ListObrasPageModule
+    ListObrasPageModule,
   ],
   exports: [
     ReversePipe
@@ -134,7 +135,8 @@ export const firebaseConfig = {
     EspacoFisicoProvider,
     AgendamentoEspacoFisicoProvider,
     DocumentoProvider,
-    ObraProvider
+    ObraProvider,
+    PedidoProvider
   ],
 })
 export class AppModule {}

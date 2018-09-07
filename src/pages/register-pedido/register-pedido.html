@@ -1,18 +1,49 @@
-<!--
-  Generated template for the RegisterPedidoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>RegisterPedido</ion-title>
-  </ion-navbar>
-
-</ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        <img src="assets/logotipo.png"/>
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
 
 
 <ion-content padding>
-
+  <form (ngSubmit)="savePedido()"  [formGroup]="pedidoForm">
+  <h4>Novo Pedido</h4>
+    <ion-item-group>
+      <ion-item>
+        <ion-label>Categoria:</ion-label>
+        <ion-select
+        name="category"
+        formControlName="category"
+        category="ngModel">
+          <ion-option
+          name="categoryOption"
+          *ngFor="let c of category"
+          [value]="c">
+            {{c}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Descrição</ion-label>
+        <ion-textarea
+        type="text"
+        name="description"
+        formControlName="description">
+        </ion-textarea>
+      </ion-item>
+      <button
+      ion-button
+      class="submit-btn button-round-md"
+      block
+      [disabled]="!pedidoForm.valid"
+      color="bold-color"
+      type="submit">Fazer pedido
+      </button>
+    </ion-item-group>
+  </form>
 </ion-content>
