@@ -10,6 +10,7 @@ import { ListCondominiosPage } from '../list-condominios/list-condominios';
 import { ListEdificiosPage } from './../../admin/list-edificios/list-edificios';
 import { ListEspacoFisicoPage } from './../../admin/list-espaco-fisico/list-espaco-fisico';
 import { ListMoradoresPage } from './../../admin/list-moradores/list-moradores';
+import { ListPedidosPage } from '../../list-pedidos/list-pedidos';
 
 @IonicPage()
 @Component({
@@ -19,9 +20,7 @@ import { ListMoradoresPage } from './../../admin/list-moradores/list-moradores';
 export class AdminDashboardPage {
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private afAuth: AngularFireAuth,
-              private authService: AuthService,) {
+              public navParams: NavParams,) {
   }
 
   cadastraSindico(event){
@@ -33,7 +32,7 @@ export class AdminDashboardPage {
   }
 
   cadastraEdificio(event){
-    this.navCtrl.push(RegisterEdificioPage, {userUid: this.authService.getLoggedUser()});
+    this.navCtrl.push(RegisterEdificioPage);
   }
 
   listarCondominios(){
@@ -50,6 +49,10 @@ export class AdminDashboardPage {
 
   uploadDoc(){
     this.navCtrl.push(UploadFilePage);
+  }
+
+  viewPedidos(){
+    this.navCtrl.push(ListPedidosPage)
   }
 
 }

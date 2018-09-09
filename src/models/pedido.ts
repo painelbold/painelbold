@@ -4,6 +4,7 @@ export class Pedido{
   public category: string;
   public subCategory: string;
   public userId: string;
+  public unit: string;
   public edificioId: string;
   public dateCreated: any;
 }

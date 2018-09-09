@@ -19,6 +19,15 @@ export class PedidoProvider {
     }));
   }
 
+  getAllPedidosCondomino(keyEdificio: string, keyCondomino: string){
+    return this.db.list(this.PATH + keyEdificio, ref =>
+    ref.orderByChild("userId").equalTo(keyCondomino))
+    .snapshotChanges()
+    .pipe(map(changes => {
+      return changes.map(e => ({key: e.payload.key, ...e.payload.val()}));
+    }));
+  }
+
   savePedido(pedido: Pedido){
     return new Promise((resolve, reject) => {
       if(pedido.key){

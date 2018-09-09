@@ -1,0 +1,13 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <img src="assets/logotipo.png"/>
+    </ion-navbar>
+  </ion-header>
+
+<ion-tabs tabsPlacement ="top" class="tabs-icon-top">
+  <ion-tab class="tab" [root]="addPedidoTab" tabTitle="Novo Pedido" tabIcon="add" [rootParams]="user"></ion-tab>
+  <ion-tab class="tab" [root]="prevPedidosTab" tabTitle="Histórico de Pedidos" tabIcon="list" [rootParams]="user"> </ion-tab>
+</ion-tabs>

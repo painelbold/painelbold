@@ -47,8 +47,8 @@ export class UserDataProvider {
       }));
   }
 
-  getUserData(){
-      return this.db.object(this.PATH + this.authService.getLoggedUser().uid)
+  getUserData(uid: string){
+      return this.db.object(this.PATH + uid)
       .snapshotChanges()
       .pipe(map(u =>{
         return { key: u.key, ...u.payload.val()};

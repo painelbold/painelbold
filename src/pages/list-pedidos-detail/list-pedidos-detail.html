@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <img src="assets/logotipo.png"/>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h4>Pedido</h4>
+  <ion-card>
+    <ion-card-header>
+      <p><strong>Unidade: {{user.unit}}</strong></p>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Pedido: {{pedido.category}}</p>
+      <p>Produto: {{pedido.description}}</p>
+      <hr>
+      <p>Condômino: {{user.fullName}}</p>
+      <p>Telefone: {{user.phone}}</p>
+      <p>Horário do pedido: {{pedido.dateCreated | date:'dd/MM hh:mm'}}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

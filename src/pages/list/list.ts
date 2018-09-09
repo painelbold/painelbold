@@ -1,3 +1,4 @@
+import { AuthService } from './../../providers/auth/auth-service';
 import { AgendamentoProvider } from './../../providers/agendamento/agendamento';
 import { Agendamento } from './../../models/agendamento';
 import { Observable } from 'rxjs/Observable';
@@ -26,12 +27,13 @@ export class ListPage {
     private udProvider: UserDataProvider,
     private aProvider: AnnouncementProvider,
     private agProvider: AgendamentoProvider,
-    private loadingCtrl: LoadingController) {
+    private loadingCtrl: LoadingController,
+    private authService: AuthService) {
   }
 
   ionViewDidEnter(){
     this.createLoading("Carregando comunicados...");
-    const subscribe = this.udProvider.getUserData()
+    const subscribe = this.udProvider.getUserData(this.authService.getLoggedUser().uid)
     .subscribe((u: any) => {
       this.loading.dismiss();
       this.usuario = u;

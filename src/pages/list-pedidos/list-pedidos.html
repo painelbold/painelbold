@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <img src="assets/logotipo.png"/>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h4>Pedidos</h4>
+  <ion-item-group>
+    <ion-item>
+      <ion-label>Condomínio:</ion-label>
+        <ion-select
+        name="condominioId"
+        [(ngModel)]="condominioId"
+        condominioId="ngModel"
+        (ionChange)="condChange()">
+          <ion-option
+          name="condominioId"
+          *ngFor="let c of condominios"
+          [value]="c.key">
+            {{c.nome}}
+          </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Edificio:</ion-label>
+        <ion-select
+        name="edificioId"
+        [(ngModel)]="edificioId"
+        edificioId="ngModel"
+        (ionChange)="edfChange()">
+          <ion-option
+          name="edificioId"
+          *ngFor="let e of edificios"
+          [value]="e.key">
+            {{e.nome}}
+          </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group *ngIf="edificioId">
+    <ion-item *ngIf="pedidos.length == 0">
+      <p>Sem solicitações de pedidos.</p>
+    </ion-item>
+    <ion-item *ngFor="let p of pedidos"
+    (click)="itemTapped($event, p)"
+    text-wrap>
+      <h3>Unidade: {{p.unit}}</h3>
+      <p>Produto: {{p.category}} - {{p.description}}</p>
+      <p>Horário do pedido: {{p.dateCreated | date:'dd/MM hh:mm'}}</p>
+    </ion-item>
+  </ion-item-group>
+</ion-content>

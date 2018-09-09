@@ -1,5 +1,3 @@
-import { UploadFilePage } from './../pages/upload-file/upload-file';
-import { AboutPage } from './../pages/about/about';
 import 'firebase/firestore';
 
 import { Component, ViewChild } from '@angular/core';
@@ -8,21 +6,23 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Nav, Platform } from 'ionic-angular';
 
+import { AboutBoldPage } from '../pages/about-bold/about-bold';
+import { RegisterEspacoFisicoPage } from '../pages/admin/register-espaco-fisico/register-espaco-fisico';
+import { AgendamentoEspacoFisicoPage } from '../pages/agendamento-espaco-fisico/agendamento-espaco-fisico';
 import { LoginPage } from '../pages/login/login';
+import { PrivacyPage } from '../pages/privacy/privacy';
+import { RegisterObraPage } from '../pages/register-obra/register-obra';
+import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { Usuario } from './../models/usuario';
+import { AboutPage } from './../pages/about/about';
 import { AdminDashboardPage } from './../pages/admin/admin-dashboard/admin-dashboard';
 import { ListPage } from './../pages/list/list';
 import { MyAccountPage } from './../pages/my-account/my-account';
+import { MyPedidosPage } from './../pages/my-pedidos/my-pedidos';
 import { SharePage } from './../pages/share/share';
+import { UploadFilePage } from './../pages/upload-file/upload-file';
 import { AuthService } from './../providers/auth/auth-service';
 import { UserDataProvider } from './../providers/user-data/user-data';
-import { PrivacyPage } from '../pages/privacy/privacy';
-import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
-import { AgendamentoEspacoFisicoPage } from '../pages/agendamento-espaco-fisico/agendamento-espaco-fisico';
-import { AboutBoldPage } from '../pages/about-bold/about-bold';
-import { RegisterEspacoFisicoPage } from '../pages/admin/register-espaco-fisico/register-espaco-fisico';
-import { RegisterObraPage } from '../pages/register-obra/register-obra';
-import { RegisterPedidoPage } from '../pages/register-pedido/register-pedido';
 
 @Component({
   templateUrl: 'app.html'
@@ -51,7 +51,7 @@ export class MyApp {
     this.userType = "";
     let authObserver = afAuth.authState.subscribe((user: firebase.User) => {
       if (user) {
-        let userObserver = this.udProvider.getUserData()
+        let userObserver = this.udProvider.getUserData(user.uid)
           .subscribe((user: any) => {
             this.loggedUser = user;
             if (this.loggedUser.admin) {
@@ -80,7 +80,7 @@ export class MyApp {
       { title: 'Minha Conta', component: MyAccountPage },
       { title: 'Agendamento de Espaço', component: AgendamentoEspacoFisicoPage },
       { title: 'Cadastrar Obra', component: RegisterObraPage },
-      { title: 'Pedidos <sup>BETA</sup>', component: RegisterPedidoPage },
+      { title: 'Pedidos <sup>BETA</sup>', component: MyPedidosPage },
       { title: 'Indicar', component: SharePage },
       { title: 'Sobre o Painel Bold', component: AboutPage },
       { title: 'Sobre a Bold Telecom', component: AboutBoldPage },

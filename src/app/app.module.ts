@@ -1,3 +1,4 @@
+import { ListPedidosPageModule } from './../pages/list-pedidos/list-pedidos.module';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DatePicker } from '@ionic-native/date-picker';
@@ -47,12 +48,14 @@ import { ObraProvider } from '../providers/obra/obra';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { AboutPageModule } from './../pages/about/about.module';
 import { RegisterEspacoFisicoPageModule } from './../pages/admin/register-espaco-fisico/register-espaco-fisico.module';
-import { PedidosListPageModule } from './../pages/pedidos-list/pedidos-list.module';
 import { UploadFilePageModule } from './../pages/upload-file/upload-file.module';
 import { ReversePipe } from './../pipes/reverse/reverse';
 import { MyApp } from './app.component';
 import { PedidoProvider } from '../providers/pedido/pedido';
 import { RegisterPedidoPageModule } from '../pages/register-pedido/register-pedido.module';
+import { ListPedidosDetailPageModule } from '../pages/list-pedidos-detail/list-pedidos-detail.module';
+import { MyPedidosPageModule } from '../pages/my-pedidos/my-pedidos.module';
+import { MyPedidosListPageModule } from '../pages/my-pedidos-list/my-pedidos-list.module';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -101,13 +104,16 @@ export const firebaseConfig = {
     UploadFilePageModule,
     AboutBoldPageModule,
     RegisterPedidoPageModule,
-    PedidosListPageModule,
+    ListPedidosDetailPageModule,
     AgendamentoEspacoFisicoPageModule,
     PrivacyPageModule,
     TermsOfServicePageModule,
     AboutPageModule,
     RegisterObraPageModule,
     ListObrasPageModule,
+    ListPedidosPageModule,
+    MyPedidosPageModule,
+    MyPedidosListPageModule
   ],
   exports: [
     ReversePipe

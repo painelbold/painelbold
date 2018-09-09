@@ -31,11 +31,18 @@ export class ListEspacoFisicoPage {
   }
 
   ionViewDidLoad() {
+    this.getCondominios();
+  }
+
+  getCondominios(){
+    this.createLoading("Carregando condomínios");
+
     let condSubscribe = this.cProvider.getAllCondominios()
     .subscribe((c: any) => {
+      this.loading.dismiss();
       this.condominios = c;
       condSubscribe.unsubscribe();
-    })
+    });
   }
 
   ionViewDidEnter(){
@@ -45,6 +52,10 @@ export class ListEspacoFisicoPage {
   }
 
   condChange(){
+    this.getEdificios();
+  }
+
+  getEdificios(){
     let edSubscribe = this.eProvider.getAllEdificiosCond(this.condominioId)
     .subscribe((e: any) => {
       this.edificios = e;
@@ -57,7 +68,7 @@ export class ListEspacoFisicoPage {
   }
 
   private loadEspacosFisicos() {
-    this.createLoading();
+    this.createLoading("Carregando espaços físicos...");
     this.espacosFisicos = new Array<EspacoFisico>();
     let efSubscribe = this.efProvider.getAllEspacosEdificio(this.edificioId)
       .subscribe((ef: any) => {
@@ -67,9 +78,9 @@ export class ListEspacoFisicoPage {
       });
   }
 
-  createLoading(){
+  createLoading(msg: string){
     this.loading = this.loadingCtrl.create({
-      content: "Carregando espaços físicos..."
+      content: msg
     });
     this.loading.present();
   }
@@ -82,7 +93,7 @@ export class ListEspacoFisicoPage {
 
   newEspacoFisico(){
     this.navCtrl.push(RegisterEspacoFisicoPage, {
-      edificioId: this.edificioId});
+      edificioId: this.edificioId,});
   }
 
 }

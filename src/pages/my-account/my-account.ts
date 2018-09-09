@@ -13,22 +13,13 @@ export class MyAccountPage {
   usuario: Usuario;
   myAccountForm: FormGroup;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private udProvider: UserDataProvider,
               private formBuilder: FormBuilder,
               private toastController: ToastController) {
-    
-    this.usuario = new Usuario();
+    this.usuario = this.navParams.data.user;
     this.createForm();
-
-    const subscribe = udProvider.getUserData()
-                .subscribe((u: any) => {
-                  this.usuario = u;
-                  this.createForm();
-
-                  subscribe.unsubscribe();
-                });
   }
 
   createForm(){

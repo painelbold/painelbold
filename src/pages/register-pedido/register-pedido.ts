@@ -31,7 +31,7 @@ export class RegisterPedidoPage {
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private pedidoProvider: PedidoProvider) {
-      this.user = this.navParams.data.user;
+      this.user = this.navParams.data;
       this.createForm();
   }
 
@@ -68,12 +68,14 @@ export class RegisterPedidoPage {
     this.pedido = this.pedidoForm.value;
     this.pedido.userId = this.user.key;
     this.pedido.edificioId = this.user.edificioId;
+    this.pedido.unit = this.user.unit;
 
     this.pedidoProvider.savePedido(this.pedido)
     .then(() => {
       this.loading.dismiss();
       this.createToast("Pedido salvo com sucesso!");
-      this.navCtrl.setRoot(ListPage);
+      this.createForm();
+      this.navCtrl.parent.select(1);
     })
     .catch((error: any) => {
       this.loading.dismiss();
