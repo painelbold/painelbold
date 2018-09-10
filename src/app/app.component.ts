@@ -1,3 +1,4 @@
+import { ListObrasPage } from './../pages/list-obras/list-obras';
 import 'firebase/firestore';
 
 import { Component, ViewChild } from '@angular/core';
@@ -10,6 +11,7 @@ import { AboutBoldPage } from '../pages/about-bold/about-bold';
 import { RegisterEspacoFisicoPage } from '../pages/admin/register-espaco-fisico/register-espaco-fisico';
 import { AgendamentoEspacoFisicoPage } from '../pages/agendamento-espaco-fisico/agendamento-espaco-fisico';
 import { LoginPage } from '../pages/login/login';
+import { MyPedidosPage } from '../pages/my-pedidos/my-pedidos';
 import { PrivacyPage } from '../pages/privacy/privacy';
 import { RegisterObraPage } from '../pages/register-obra/register-obra';
 import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
@@ -18,7 +20,6 @@ import { AboutPage } from './../pages/about/about';
 import { AdminDashboardPage } from './../pages/admin/admin-dashboard/admin-dashboard';
 import { ListPage } from './../pages/list/list';
 import { MyAccountPage } from './../pages/my-account/my-account';
-import { MyPedidosPage } from './../pages/my-pedidos/my-pedidos';
 import { SharePage } from './../pages/share/share';
 import { UploadFilePage } from './../pages/upload-file/upload-file';
 import { AuthService } from './../providers/auth/auth-service';
@@ -64,7 +65,6 @@ export class MyApp {
               this.userLogged();
             }
             userObserver.unsubscribe();
-            authObserver.unsubscribe();
           });
       }
       else {
@@ -97,6 +97,7 @@ export class MyApp {
       { title: 'Minha Conta', component: MyAccountPage },
       { title: 'Gerenciar Espaços Físicos', component: RegisterEspacoFisicoPage },
       { title: 'Gerenciar Arquivos', component: UploadFilePage },
+      { title: 'Visualizar Obras', component: ListObrasPage },
       { title: 'Indicar', component: SharePage },
       { title: 'Sobre o Painel Bold', component: AboutPage },
       { title: 'Sobre a Bold Telecom', component: AboutBoldPage },

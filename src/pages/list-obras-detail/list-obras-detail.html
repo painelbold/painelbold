@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img src="assets/logotipo.png"/>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <strong><h3>Unidade: {{obra.unit}}</h3></strong>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Descrição da obra:</strong> {{obra.description}}</p>
+      <p><strong>Período:</strong> De {{obra.startDate}} até {{obra.endDate}}</p>
+      <p><strong>Horário de trabalho:</strong> De {{obra.startTime}} a {{obra.endTime}}</p>
+      <hr>
+      <p>Contato</p>
+      <p><strong>Nome do condômino:</strong> {{user.fullName}}</p>
+      <p><strong>Telefone:</strong> {{user.phone}}</p>
+      <hr>
+      <p><strong>Data de publicação:</strong> {{obra.dateCreated | date: 'dd/MM hh:mm'}}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

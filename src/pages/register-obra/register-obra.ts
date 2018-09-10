@@ -67,6 +67,7 @@ export class RegisterObraPage {
     this.obra = this.obraForm.value;
     this.obra.userCreatedId = this.user.key;
     this.obra.edificioId = this.user.edificioId;
+    this.obra.unit = this.user.unit;
 
     this.obraProvider.saveObra(this.obra)
     .then(() => {

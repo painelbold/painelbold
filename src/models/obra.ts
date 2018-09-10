@@ -10,4 +10,5 @@ export class Obra{
   public endTime: Time;
   public userCreatedId: string;
   public dateCreated: any;
+  public unit: string;
 }

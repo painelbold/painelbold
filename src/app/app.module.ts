@@ -1,4 +1,3 @@
-import { ListPedidosPageModule } from './../pages/list-pedidos/list-pedidos.module';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DatePicker } from '@ionic-native/date-picker';
@@ -25,13 +24,17 @@ import { AgendamentoEspacoFisicoPageModule } from '../pages/agendamento-espaco-f
 import { AnnouncementPageModule } from '../pages/announcement/announcement.module';
 import { CalendarPageModule } from '../pages/calendar/calendar.module';
 import { ListObrasPageModule } from '../pages/list-obras/list-obras.module';
+import { ListPedidosDetailPageModule } from '../pages/list-pedidos-detail/list-pedidos-detail.module';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { MyAccountPageModule } from '../pages/my-account/my-account.module';
+import { MyPedidosListPageModule } from '../pages/my-pedidos-list/my-pedidos-list.module';
+import { MyPedidosPageModule } from '../pages/my-pedidos/my-pedidos.module';
 import { PrivacyPageModule } from '../pages/privacy/privacy.module';
 import { RegisterCondominioPageModule } from '../pages/register-condominio/register-condominio.module';
 import { RegisterEdificioPageModule } from '../pages/register-edificio/register-edificio.module';
 import { RegisterObraPageModule } from '../pages/register-obra/register-obra.module';
+import { RegisterPedidoPageModule } from '../pages/register-pedido/register-pedido.module';
 import { RegisterPage } from '../pages/register/register';
 import { ResetPasswordPageModule } from '../pages/reset-password/reset-password.module';
 import { SharePageModule } from '../pages/share/share.module';
@@ -45,17 +48,16 @@ import { DocumentoProvider } from '../providers/documento/documento';
 import { EdificioProvider } from '../providers/edificio/edificio';
 import { EspacoFisicoProvider } from '../providers/espaco-fisico/espaco-fisico';
 import { ObraProvider } from '../providers/obra/obra';
+import { PedidoProvider } from '../providers/pedido/pedido';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { AboutPageModule } from './../pages/about/about.module';
 import { RegisterEspacoFisicoPageModule } from './../pages/admin/register-espaco-fisico/register-espaco-fisico.module';
+import { ListDetailsPage } from './../pages/list-details/list-details';
+import { ListPedidosPageModule } from './../pages/list-pedidos/list-pedidos.module';
 import { UploadFilePageModule } from './../pages/upload-file/upload-file.module';
 import { ReversePipe } from './../pipes/reverse/reverse';
 import { MyApp } from './app.component';
-import { PedidoProvider } from '../providers/pedido/pedido';
-import { RegisterPedidoPageModule } from '../pages/register-pedido/register-pedido.module';
-import { ListPedidosDetailPageModule } from '../pages/list-pedidos-detail/list-pedidos-detail.module';
-import { MyPedidosPageModule } from '../pages/my-pedidos/my-pedidos.module';
-import { MyPedidosListPageModule } from '../pages/my-pedidos-list/my-pedidos-list.module';
+import { ListObrasDetailPageModule } from '../pages/list-obras-detail/list-obras-detail.module';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -71,6 +73,7 @@ export const firebaseConfig = {
     MyApp,
     ListPage,
     LoginPage,
+    ListDetailsPage,
     RegisterPage,
     ReversePipe,
   ],
@@ -113,7 +116,8 @@ export const firebaseConfig = {
     ListObrasPageModule,
     ListPedidosPageModule,
     MyPedidosPageModule,
-    MyPedidosListPageModule
+    MyPedidosListPageModule,
+    ListObrasDetailPageModule
   ],
   exports: [
     ReversePipe
@@ -124,6 +128,7 @@ export const firebaseConfig = {
     ListPage,
     LoginPage,
     RegisterPage,
+    ListDetailsPage
   ],
   providers: [
     StatusBar,
