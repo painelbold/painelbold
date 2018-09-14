@@ -14,12 +14,12 @@
       <ion-item-group inset>
         <ion-item>
           <ion-label>Condomínio:</ion-label>
-            <ion-select 
-              [(ngModel)]="condominioId" 
+            <ion-select
+              [(ngModel)]="condominioId"
               [ngModelOptions]="{standalone: true}">
-                <ion-option 
+                <ion-option
                 name="condominioId"
-                *ngFor="let c of condominios | async" 
+                *ngFor="let c of condominios | async"
                 [value]="c.key">
                   {{c.nome}}
                 </ion-option>
@@ -27,21 +27,25 @@
       </ion-item>
       <ion-item>
         <ion-label floating>Nome do Edifício</ion-label>
-        <ion-input 
-        type="text" 
+        <ion-input
+        type="text"
         name="name"
         formControlName="nome"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Bloco</ion-label>
-        <ion-input 
-        type="text" 
+        <ion-input
+        type="text"
         name="bloco"
         formControlName="bloco"></ion-input>
       </ion-item>
     </ion-item-group>
-    <button ion-button class="submit-btn" full type="submit">Cadastrar</button>
+    <button
+    ion-button
+    class="submit-btn button-round-md"
+    block
+    type="submit">Cadastrar</button>
   </form>
 </div>
-  
+
 </ion-content>

@@ -20,15 +20,15 @@
       <p>E-mail: {{selectedItem.email}}</p>
     </ion-card-content>
     <button *ngIf="!selectedItem.sindico; else sindico"
-    ion-button 
-    class="submit-btn" 
-    full 
+    ion-button
+    class="submit-btn"
+    block
     (click)="tornarSindico()">Tornar Síndico</button>
     <ng-template #sindico>
         <button
-        ion-button 
-        class="submit-btn" 
-        full 
+        ion-button
+        class="submit-btn"
+        block
         (click)="removerSindico()">Remover Síndico</button>
     </ng-template>
   </ion-card>

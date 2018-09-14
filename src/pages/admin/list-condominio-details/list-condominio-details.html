@@ -15,49 +15,49 @@
       <ion-item-group>
         <ion-item>
             <ion-label floating>Nome</ion-label>
-            <ion-input 
-            type="text" 
+            <ion-input
+            type="text"
             name="nome"
             [(ngModel)]="condominio.nome"
             #nome="ngModel"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Logradouro</ion-label>
-            <ion-input 
-            type="text" 
+            <ion-input
+            type="text"
             name="logradouro"
             [(ngModel)]="condominio.endereco.logradouro"
             #logradouro="ngModel"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Complemento</ion-label>
-            <ion-input 
-            type="text" 
+            <ion-input
+            type="text"
             name="complemento"
             [(ngModel)]="condominio.endereco.complemento"
             #complemento="ngModel"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Bairro</ion-label>
-            <ion-input 
-            type="text" 
+            <ion-input
+            type="text"
             name="bairro"
             [(ngModel)]="condominio.endereco.bairro"
             #bairro="ngModel"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>CEP</ion-label>
-            <ion-input 
-            type="number" 
+            <ion-input
+            type="number"
             name="cep"
             [(ngModel)]="condominio.endereco.cep"
             #cep="ngModel"></ion-input>
         </ion-item>
       </ion-item-group>
-      <button 
-      ion-button 
-      class="submit-btn" 
-      full 
+      <button
+      ion-button
+      class="submit-btn button-round-md"
+      full
       type="submit">Confirmar Mudanças</button>
   </form>
 </ion-content>

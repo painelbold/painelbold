@@ -11,23 +11,23 @@
           <ion-item-group inset>
             <ion-item>
                 <ion-label floating>Título</ion-label>
-                <ion-input 
-                type="text" 
-                formControlName="title" 
+                <ion-input
+                type="text"
+                formControlName="title"
                 required></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label floating>Mensagem</ion-label>
-                <ion-input 
-                type="text" 
-                formControlName="message" 
+                <ion-input
+                type="text"
+                formControlName="message"
                 required></ion-input>
             </ion-item>
           </ion-item-group>
-          <button 
-          ion-button 
-          class="submit-btn" 
-          full 
+          <button
+          ion-button
+          class="submit-btn button-round-md"
+          full
           type="submit"
           (click)="onSave()"
           [disabled]="!announcementForm.valid">Salvar</button>

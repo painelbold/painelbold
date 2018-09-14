@@ -14,8 +14,8 @@
           <ion-item-group inset>
             <ion-item>
               <ion-label floating>Nome do Condomínio</ion-label>
-              <ion-input 
-              type="text" 
+              <ion-input
+              type="text"
               name="name"
               [(ngModel)]="condominio.nome"
               #nome="ngModel"
@@ -23,54 +23,58 @@
             </ion-item>
             <ion-item>
               <ion-label floating>CNPJ</ion-label>
-              <ion-input 
-              type="number" 
+              <ion-input
+              type="number"
               name="cnpj"
               [(ngModel)]="condominio.cnpj"
               #cnpj="ngModel"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label floating>Endereço</ion-label>
-              <ion-input 
-              type="text" 
+              <ion-input
+              type="text"
               name="logradouro"
               [(ngModel)]="address.logradouro"
               #logradouro="ngModel"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label floating>Complemento</ion-label>
-              <ion-input 
-              type="text" 
+              <ion-input
+              type="text"
               name="complemento"
               [(ngModel)]="address.complemento"
               #complemento="ngModel"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label floating>Bairro</ion-label>
-              <ion-input 
-              type="text" 
+              <ion-input
+              type="text"
               name="complemento"
               [(ngModel)]="address.bairro"
               #bairro="ngModel"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label floating>Número</ion-label>
-              <ion-input 
-              type="number" 
+              <ion-input
+              type="number"
               name="numero"
               [(ngModel)]="address.numero"
               #numero="ngModel"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label floating>CEP</ion-label>
-              <ion-input 
-              type="number" 
+              <ion-input
+              type="number"
               name="cep"
               [(ngModel)]="address.cep"
               #cep="ngModel"></ion-input>
             </ion-item>
           </ion-item-group>
-          <button ion-button class="submit-btn" full type="submit">Cadastrar</button>
+          <button
+          ion-button
+          class="submit-btn button-round-md"
+          block
+          type="submit">Cadastrar</button>
         </form>
       </div>
     </ion-content>
