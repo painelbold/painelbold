@@ -1,16 +1,15 @@
-import { AuthService } from './../../providers/auth/auth-service';
-import { AgendamentoProvider } from './../../providers/agendamento/agendamento';
-import { Agendamento } from './../../models/agendamento';
+import { Component } from '@angular/core';
+import { Loading, LoadingController, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
-import { AnnouncementProvider } from './../../providers/announcement/announcement';
+
+import { ListDetailsPage } from '../list-details/list-details';
 import { Usuario } from './../../models/usuario';
+import { AgendamentoProvider } from './../../providers/agendamento/agendamento';
+import { AnnouncementProvider } from './../../providers/announcement/announcement';
+import { AuthService } from './../../providers/auth/auth-service';
 import { UserDataProvider } from './../../providers/user-data/user-data';
 import { AnnouncementPage } from './../announcement/announcement';
 import { CalendarPage } from './../calendar/calendar';
-import { Component } from '@angular/core';
-import { NavController, NavParams, Loading, LoadingController } from 'ionic-angular';
-import { ListDetailsPage } from '../list-details/list-details'
-import { messaging } from 'firebase';
 
 @Component({
   selector: 'page-list',

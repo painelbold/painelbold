@@ -7,9 +7,9 @@
       <img src="assets/logotipo.png"/>
     </ion-title>
     <ion-buttons end>
-      <button 
-      ion-button 
-      class="button-assine" 
+      <button
+      ion-button
+      class="button-assine"
       (click)="showDates($event)"
       *ngIf="(agendamento | async)?.length">
         Mude Já
@@ -19,12 +19,21 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Comunicados</h3>
   <ion-item-group>
+  <h3>Comunicados</h3>
+  <button
+    ion-button
+    color="bold-color"
+    class="button-round-md"
+    (click)="newAnnouncement()"
+    *ngIf="usuario.sindico"
+    block >
+      Criar Novo Comunicado
+    </button>
     <ion-item *ngFor="let c of (comunicados | async) | reverse" (click)="itemTapped($event, c)" text-wrap>
       <ion-avatar item-start>
         <img src='assets/imgs/avatar1.jpg'>
-      </ion-avatar>   
+      </ion-avatar>
       <ion-label>
         <ion-row>
           <ion-col col-9>
@@ -38,15 +47,4 @@
       </ion-label>
     </ion-item>
   </ion-item-group>
-  <ion-fab 
-  bottom right 
-  (click)="newAnnouncement()"
-  *ngIf="usuario.sindico">
-    <button 
-    ion-fab
-    class="button-add">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab>
-
 </ion-content>

@@ -58,6 +58,9 @@ import { UploadFilePageModule } from './../pages/upload-file/upload-file.module'
 import { ReversePipe } from './../pipes/reverse/reverse';
 import { MyApp } from './app.component';
 import { ListObrasDetailPageModule } from '../pages/list-obras-detail/list-obras-detail.module';
+import { UploadDataProvider } from '../providers/upload-data/upload-data';
+import { FilePath } from '@ionic-native/file-path';
+import { SocialShareProvider } from '../providers/social-share/social-share';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -136,6 +139,7 @@ export const firebaseConfig = {
     DatePicker,
     SocialSharing,
     FileChooser,
+    FilePath,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     AnnouncementProvider,
@@ -147,7 +151,9 @@ export const firebaseConfig = {
     AgendamentoEspacoFisicoProvider,
     DocumentoProvider,
     ObraProvider,
-    PedidoProvider
+    PedidoProvider,
+    UploadDataProvider,
+    SocialShareProvider
   ],
 })
 export class AppModule {}

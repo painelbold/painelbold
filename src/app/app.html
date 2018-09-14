@@ -1,7 +1,9 @@
 <ion-menu [content]="content" drag-content="false" id="sideMenu">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>
+        <img src="assets/logotipo.png" />
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -11,8 +13,8 @@
         <ion-item
         no-lines
         class="menu-items">
-          <h2 class="hello-user">Olá, {{loggedUser.fullName.split(' ')[0]}}!</h2>
-          <p class="hello-user">{{userType}}</p>
+          <h2 class="hello-user">Olá, {{loggedUser.fullName.split(' ')[0]}}</h2>
+          <p class="hello-user">Perfil {{userType}}</p>
         </ion-item>
         <hr>
       <button

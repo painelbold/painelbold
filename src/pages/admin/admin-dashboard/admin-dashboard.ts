@@ -1,16 +1,13 @@
-import { UploadFilePage } from './../../upload-file/upload-file';
 import { Component } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { AuthService } from '../../../providers/auth/auth-service';
+import { ListPedidosPage } from '../../list-pedidos/list-pedidos';
 import { RegisterCondominioPage } from '../../register-condominio/register-condominio';
 import { RegisterEdificioPage } from '../../register-edificio/register-edificio';
 import { ListCondominiosPage } from '../list-condominios/list-condominios';
 import { ListEdificiosPage } from './../../admin/list-edificios/list-edificios';
 import { ListEspacoFisicoPage } from './../../admin/list-espaco-fisico/list-espaco-fisico';
 import { ListMoradoresPage } from './../../admin/list-moradores/list-moradores';
-import { ListPedidosPage } from '../../list-pedidos/list-pedidos';
 
 @IonicPage()
 @Component({
@@ -45,10 +42,6 @@ export class AdminDashboardPage {
 
   cadastraEspaco(){
     this.navCtrl.push(ListEspacoFisicoPage);
-  }
-
-  uploadDoc(){
-    this.navCtrl.push(UploadFilePage);
   }
 
   viewPedidos(){

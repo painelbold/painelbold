@@ -1,3 +1,4 @@
+import { SocialShareProvider } from './../providers/social-share/social-share';
 import { ListObrasPage } from './../pages/list-obras/list-obras';
 import 'firebase/firestore';
 
@@ -41,7 +42,8 @@ export class MyApp {
     public splashScreen: SplashScreen,
     private authService: AuthService,
     private afAuth: AngularFireAuth,
-    private udProvider: UserDataProvider) {
+    private udProvider: UserDataProvider,
+    private socialProvider: SocialShareProvider) {
     this.initializeApp();
     this.verificaUserLogado(afAuth);
   }
@@ -137,8 +139,13 @@ export class MyApp {
   }
 
   openPage(page) {
-    this.nav.setRoot(page.component,{
+    if(page.title = "Indicar"){
+      this.socialProvider.whatsappShare();
+    }
+    else{
+      this.nav.setRoot(page.component,{
       user: this.loggedUser
     });
+  }
   }
 }

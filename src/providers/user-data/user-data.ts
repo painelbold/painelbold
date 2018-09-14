@@ -31,6 +31,7 @@ export class UserDataProvider {
              unit: usuario.unit || '',
              assinante: usuario.assinante,
              admin: usuario.admin,
+             sindico: usuario.sindico,
              edificioId: usuario.edificioId,
              })
       }

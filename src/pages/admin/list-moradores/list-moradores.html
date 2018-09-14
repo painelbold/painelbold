@@ -8,20 +8,20 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-  
+
 <ion-content padding>
-  <h3>Moradores</h3>
   <ion-item-group class="moradores-header">
+      <h3>Escolher Síndico</h3>
       <ion-item>
         <ion-label>Condomínio:</ion-label>
-          <ion-select 
+          <ion-select
           name="condominioId"
           [(ngModel)]="condominioId"
           condominioId="ngModel"
           (ionChange)="condChange()">
-            <ion-option 
+            <ion-option
             name="condominioId"
-            *ngFor="let c of condominios | async" 
+            *ngFor="let c of condominios | async"
             [value]="c.key">
               {{c.nome}}
             </ion-option>
@@ -29,19 +29,19 @@
       </ion-item>
       <ion-item>
         <ion-label>Edificio:</ion-label>
-          <ion-select 
+          <ion-select
           name="edificioId"
           [(ngModel)]="edificioId"
           edificioId="ngModel"
           (ionChange)="edfChange()">
-            <ion-option 
+            <ion-option
             name="edificioId"
-            *ngFor="let e of edificios | async" 
+            *ngFor="let e of edificios | async"
             [value]="e.key">
               {{e.nome}}
             </ion-option>
         </ion-select>
-        </ion-item> 
+        </ion-item>
     </ion-item-group>
 
     <ion-item-group class="moradores-list" *ngIf="edificioId">

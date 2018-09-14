@@ -11,9 +11,9 @@
 
 
 <ion-content padding>
+  <ion-item-group>
   <form (ngSubmit)="savePedido()"  [formGroup]="pedidoForm">
   <h4>Novo Pedido</h4>
-    <ion-item-group>
       <ion-item>
         <ion-label>Categoria:</ion-label>
         <ion-select
@@ -29,10 +29,11 @@
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label floating>Descrição</ion-label>
+        <ion-label floating>Descrição do Produto</ion-label>
         <ion-textarea
         type="text"
         name="description"
+        maxlength="1000"
         formControlName="description">
         </ion-textarea>
       </ion-item>
@@ -44,6 +45,6 @@
       color="bold-color"
       type="submit">Fazer pedido
       </button>
-    </ion-item-group>
-  </form>
+    </form>
+  </ion-item-group>
 </ion-content>
