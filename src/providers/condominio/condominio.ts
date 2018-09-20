@@ -24,6 +24,14 @@ export class CondominioProvider {
     }))
   }
 
+  getCondominio(key: string){
+    return this.db.object(this.PATH + key)
+    .snapshotChanges()
+    .pipe(map(e => {
+      return { key: e.key, ...e.payload.val()};
+    }));
+  }
+
   saveCondominio(condominio: Condominio){
     return new Promise((resolve, reject) => {
       if(condominio.key){

@@ -19,7 +19,11 @@
       <hr>
       <p>Morador: {{user.fullName}}</p>
       <p>Telefone: {{user.phone}}</p>
-      <p>Endereço do Edifício: {{edificio.nome}}</p>
+      <hr>
+      <p>Condomínio: {{condominio.nome}}</p>
+      <p>Endereço:</p>
+      <p>Rua: {{condominio.endereco.logradouro}} - Número: {{condominio.endereco.numero}}</p>
+      <p>Bairro: {{condominio.endereco.bairro}}</p>
       <p>Horário do pedido: {{pedido.dateCreated | date:'dd/MM hh:mm'}}</p>
     </ion-card-content>
   </ion-card>

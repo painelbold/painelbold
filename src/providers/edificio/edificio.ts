@@ -19,24 +19,18 @@ export class EdificioProvider {
                   this.uid = authService.getLoggedUser().uid;
   }
 
-  getAllEdificiosCond(key: string){
-    return this.db.list(this.PATH + key)
-            .snapshotChanges()
-            .pipe(map(changes => {
-              return changes.map(e => ({ key: e.payload.key, ...e.payload.val() }));
-            }));
+  getAllEdificiosCond(condKey: string){
+    return this.db.list(this.PATH, ref =>
+      ref.orderByChild("condominioId")
+      .equalTo(condKey))
+      .snapshotChanges()
+      .pipe(map(changes => {
+        return changes.map(e => ({key: e.payload.key, ...e.payload.val()}));
+      }));
   }
 
-  getEdificioCond(key: string){
+  getEdificio(key: string){
     return this.db.object(this.PATH + key)
-    .snapshotChanges()
-    .pipe(map(e => {
-      return { key: e.key, ...e.payload.val()};
-    }));
-  }
-
-  getEdificioById(edificioKey: string){
-    return this.db.object(this.PATH)
     .snapshotChanges()
     .pipe(map(e => {
       return { key: e.key, ...e.payload.val()};
