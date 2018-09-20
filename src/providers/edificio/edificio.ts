@@ -27,8 +27,16 @@ export class EdificioProvider {
             }));
   }
 
-  getEdificio(key: string){
-    this.db.object(this.PATH + key)
+  getEdificioCond(key: string){
+    return this.db.object(this.PATH + key)
+    .snapshotChanges()
+    .pipe(map(e => {
+      return { key: e.key, ...e.payload.val()};
+    }));
+  }
+
+  getEdificioById(edificioKey: string){
+    return this.db.object(this.PATH)
     .snapshotChanges()
     .pipe(map(e => {
       return { key: e.key, ...e.payload.val()};

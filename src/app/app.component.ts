@@ -1,5 +1,3 @@
-import { SocialShareProvider } from './../providers/social-share/social-share';
-import { ListObrasPage } from './../pages/list-obras/list-obras';
 import 'firebase/firestore';
 
 import { Component, ViewChild } from '@angular/core';
@@ -19,11 +17,13 @@ import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { Usuario } from './../models/usuario';
 import { AboutPage } from './../pages/about/about';
 import { AdminDashboardPage } from './../pages/admin/admin-dashboard/admin-dashboard';
+import { ListObrasPage } from './../pages/list-obras/list-obras';
 import { ListPage } from './../pages/list/list';
 import { MyAccountPage } from './../pages/my-account/my-account';
 import { SharePage } from './../pages/share/share';
 import { UploadFilePage } from './../pages/upload-file/upload-file';
 import { AuthService } from './../providers/auth/auth-service';
+import { SocialShareProvider } from './../providers/social-share/social-share';
 import { UserDataProvider } from './../providers/user-data/user-data';
 
 @Component({
@@ -139,7 +139,7 @@ export class MyApp {
   }
 
   openPage(page) {
-    if(page.title = "Indicar"){
+    if(page.title === "Indicar"){
       this.socialProvider.whatsappShare();
     }
     else{

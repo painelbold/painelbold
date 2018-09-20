@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, LoadingController } from 'ionic-angular';
 import { Usuario } from '../../models/usuario';
 import { Pedido } from '../../models/pedido';
+import { Edificio } from '../../models/edificio';
+import { EdificioProvider } from '../../providers/edificio/edificio';
 
 @IonicPage()
 @Component({
@@ -11,16 +13,20 @@ import { Pedido } from '../../models/pedido';
 })
 export class ListPedidosDetailPage {
   user: Usuario;
+  edificio: Edificio;
   pedido: Pedido;
   loading: Loading;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private udProvider: UserDataProvider,
+    private edfProvider: EdificioProvider,
     private loadCtrl: LoadingController) {
       this.pedido = this.navParams.data.pedido;
       this.user = new Usuario();
+      this.edificio = new Edificio();
       this.loadUserData();
+      this.loadEdificioData();
   }
 
   loadUserData(){
@@ -31,6 +37,15 @@ export class ListPedidosDetailPage {
       this.loading.dismiss();
       this.user = user;
       userSubscribe.unsubscribe();
+    });
+  }
+
+  loadEdificioData(){
+
+    let edificioSubscribe = this.edfProvider.getEdificioById(this.pedido.edificioId)
+    .subscribe((edf: any) => {
+      this.edificio = edf;
+      edificioSubscribe.unsubscribe();
     });
   }
 

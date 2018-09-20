@@ -4,23 +4,29 @@ import { map } from 'rxjs/operators';
 import { Pedido } from '../../models/pedido';
 import firebase from 'firebase';
 
+enum StatusPedido{
+  Pendente,
+  Encaminhado,
+  Concluido
+};
+
 @Injectable()
 export class PedidoProvider {
-  private PATH='pedidos/'
+  private PATH='pedidos/';
 
   constructor(private db: AngularFireDatabase,) {
   }
 
-  getAllPedidos(keyEdificio: string){
-    return this.db.list(this.PATH + keyEdificio)
+  getAllPedidos(){
+    return this.db.list(this.PATH)
     .snapshotChanges()
     .pipe(map(changes => {
       return changes.map(e => ({key: e.payload.key, ...e.payload.val()}));
     }));
   }
 
-  getAllPedidosCondomino(keyEdificio: string, keyCondomino: string){
-    return this.db.list(this.PATH + keyEdificio, ref =>
+  getAllPedidosCondomino(keyCondomino: string){
+    return this.db.list(this.PATH, ref =>
     ref.orderByChild("userId").equalTo(keyCondomino))
     .snapshotChanges()
     .pipe(map(changes => {
@@ -31,15 +37,16 @@ export class PedidoProvider {
   savePedido(pedido: Pedido){
     return new Promise((resolve, reject) => {
       if(pedido.key){
-        this.db.list(this.PATH + pedido.edificioId)
+        this.db.list(this.PATH)
         .update(pedido.key, pedido)
         .then(() => resolve())
         .catch((e) => reject(e))
       }
       else{
         pedido.dateCreated = firebase.database.ServerValue.TIMESTAMP;
+        pedido.status = StatusPedido.Pendente;
 
-        this.db.list(this.PATH + pedido.edificioId)
+        this.db.list(this.PATH)
         .push(pedido)
         .then((result: any) => resolve(result.key))
       }

@@ -7,4 +7,5 @@ export class Pedido{
   public unit: string;
   public edificioId: string;
   public dateCreated: any;
+  public status: number;
 }

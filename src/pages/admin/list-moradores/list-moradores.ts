@@ -1,14 +1,13 @@
-import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, Loading, LoadingController } from 'ionic-angular';
-import { Observable } from "rxjs/Observable";
+import { Component } from '@angular/core';
+import { IonicPage, Loading, LoadingController, NavController, NavParams } from 'ionic-angular';
 
-import { Usuario } from "../../../models/usuario";
-import { CondominioProvider } from "../../../providers/condominio/condominio";
-import { ListMoradoresDetailsPage } from "../list-moradores-details/list-moradores-details";
-import { EdificioProvider } from "./../../../providers/edificio/edificio";
-import { UserDataProvider } from "./../../../providers/user-data/user-data";
-import { Condominio } from "../../../models/condominio";
-import { Edificio } from "../../../models/edificio";
+import { Condominio } from '../../../models/condominio';
+import { Edificio } from '../../../models/edificio';
+import { Usuario } from '../../../models/usuario';
+import { CondominioProvider } from '../../../providers/condominio/condominio';
+import { ListMoradoresDetailsPage } from '../list-moradores-details/list-moradores-details';
+import { EdificioProvider } from './../../../providers/edificio/edificio';
+import { UserDataProvider } from './../../../providers/user-data/user-data';
 
 @IonicPage()
 @Component({
@@ -19,6 +18,7 @@ export class ListMoradoresPage {
   condominios: Array<Condominio>;
   edificios: Array<Edificio>;
   users: Array<Usuario>;
+  sindicos: Array<Usuario>;
   condominioId: any;
   edificioId: string;
   loading: Loading;
@@ -30,7 +30,10 @@ export class ListMoradoresPage {
     private condProvider: CondominioProvider,
     private edfProvider: EdificioProvider,
     private loadingCtrl: LoadingController,
-  ) {}
+  ) {
+    this.users = new Array<Usuario>();
+    this.sindicos = new Array<Usuario>();
+  }
 
   ionViewDidEnter() {
     this.createLoading("Carregando condomínios...");
@@ -38,6 +41,7 @@ export class ListMoradoresPage {
     .subscribe((cond: any) => {
       this.loading.dismiss();
       this.condominios = cond;
+      condSubscribe.unsubscribe();
     });
   }
 
@@ -47,6 +51,7 @@ export class ListMoradoresPage {
     .subscribe((edf: any) => {
       this.loading.dismiss();
       this.edificios = edf;
+      edfSubscriber.unsubscribe();
     });
   }
 
@@ -56,7 +61,8 @@ export class ListMoradoresPage {
       .getAllUsersEdificio(this.edificioId)
       .subscribe((u: any) => {
         this.loading.dismiss();
-        this.users = u;
+        this.orderMoradores(u);
+        userDataSubscribe.unsubscribe();
       });
   }
 
@@ -74,6 +80,11 @@ export class ListMoradoresPage {
   }
 
   orderMoradores(users: Array<Usuario>){
-
+    this.sindicos = users.filter(
+      u => u.sindico
+    );
+    this.users = users.filter(
+      u => !u.sindico
+    );
   }
 }

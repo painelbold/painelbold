@@ -36,7 +36,7 @@ export class MyPedidosListPage {
 
   loadPedidos(){
     this.createLoading("Carregando pedidos...");
-    let pedidoSubscribe = this.pedidoProvider.getAllPedidosCondomino(this.user.edificioId, this.user.key)
+    let pedidoSubscribe = this.pedidoProvider.getAllPedidosCondomino(this.user.key)
     .subscribe((p: any) => {
       this.loading.dismiss();
       this.pedidos = p;

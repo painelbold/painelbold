@@ -11,14 +11,15 @@
   <h4>Pedido</h4>
   <ion-card>
     <ion-card-header>
-      <p><strong>Unidade: {{user.unit}}</strong></p>
+      <p><strong>Edifício: {{edificio.nome}} <br> Unidade: {{user.unit}}</strong></p>
     </ion-card-header>
     <ion-card-content>
       <p>Pedido: {{pedido.category}}</p>
       <p>Produto: {{pedido.description}}</p>
       <hr>
-      <p>Condômino: {{user.fullName}}</p>
+      <p>Morador: {{user.fullName}}</p>
       <p>Telefone: {{user.phone}}</p>
+      <p>Endereço do Edifício: {{edificio.nome}}</p>
       <p>Horário do pedido: {{pedido.dateCreated | date:'dd/MM hh:mm'}}</p>
     </ion-card-content>
   </ion-card>

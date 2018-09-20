@@ -21,7 +21,7 @@
           (ionChange)="condChange()">
             <ion-option
             name="condominioId"
-            *ngFor="let c of condominios | async"
+            *ngFor="let c of condominios"
             [value]="c.key">
               {{c.nome}}
             </ion-option>
@@ -36,7 +36,7 @@
           (ionChange)="edfChange()">
             <ion-option
             name="edificioId"
-            *ngFor="let e of edificios | async"
+            *ngFor="let e of edificios"
             [value]="e.key">
               {{e.nome}}
             </ion-option>
@@ -45,14 +45,31 @@
     </ion-item-group>
 
     <ion-item-group class="moradores-list" *ngIf="edificioId">
-      <ion-item *ngIf="!(users | async)?.length">
+      <hr>
+      <ion-item-divider>
+        Síndicos
+      </ion-item-divider>
+      <ion-item *ngIf="sindicos.length == 0">
+          <ion-label>
+            <h3 class="bold">Não existem síndicos cadastrados para o edifício.</h3>
+          </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let s of sindicos" text-wrap (click)="itemTapped($event, s)">
         <ion-label>
-          <h3 class="bold">Não existem moradores no edifício.</h3>
+          <h3>{{s.fullName}}</h3>
+          <p>{{s.email}}</p>
         </ion-label>
       </ion-item>
-      <ion-item *ngFor="let u of users | async" text-wrap (click)="itemTapped($event, u)">
+      <ion-item-divider>
+        Moradores
+      </ion-item-divider>
+      <ion-item *ngIf="users.length == 0">
         <ion-label>
-          <h3 class="bold" *ngIf="u.sindico">Síndico:</h3>
+          <h3 class="bold">Não existem moradores cadastrados no edifício.</h3>
+        </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let u of users" text-wrap (click)="itemTapped($event, u)">
+        <ion-label>
           <h3>{{u.fullName}}</h3>
           <p>{{u.email}}</p>
         </ion-label>
