@@ -8,12 +8,12 @@
 </ion-header>
 
 <ion-content padding>
-  <h4>Pedidos</h4>
+  <h4>Pedidos Pendentes</h4>
   <ion-item-group>
     <ion-item *ngIf="pedidos.length == 0">
       <p>Sem solicitações de pedidos.</p>
     </ion-item>
-    <ion-item *ngFor="let p of pedidos"
+    <ion-item *ngFor="let p of pedidosPendentes"
     (click)="itemTapped($event, p)"
     text-wrap>
       <p>Produto: {{p.category}} - {{p.description}}</p>

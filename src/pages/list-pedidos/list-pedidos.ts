@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, Loading, LoadingController, NavController, NavParams } from 'ionic-angular';
 
-import { Condominio } from '../../models/condominio';
 import { Pedido } from '../../models/pedido';
 import { PedidoProvider } from '../../providers/pedido/pedido';
 import { ListPedidosDetailPage } from '../list-pedidos-detail/list-pedidos-detail';
-import { Edificio } from './../../models/edificio';
-import { CondominioProvider } from './../../providers/condominio/condominio';
-import { EdificioProvider } from './../../providers/edificio/edificio';
+import { StatusPedido } from './../../providers/pedido/pedido';
 
 @IonicPage()
 @Component({
@@ -17,15 +14,17 @@ import { EdificioProvider } from './../../providers/edificio/edificio';
 export class ListPedidosPage {
   loading: Loading;
   pedidos: Array<Pedido>;
+  pedidosPendentes: Array<Pedido>;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private pedidoProvider: PedidoProvider,
     private loadingCtrl: LoadingController,) {
       this.pedidos = new Array<Pedido>();
+      this.pedidosPendentes = new Array<Pedido>();
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.loadPedidos();
   }
 
@@ -40,8 +39,9 @@ export class ListPedidosPage {
     this.createLoading("Carregando pedidos...");
     this.pedidos = new Array<Pedido>();
     let pedidoSubscribe = this.pedidoProvider.getAllPedidos()
-      .subscribe((p: any) => {
-        this.pedidos = p;
+      .subscribe((p: Array<Pedido>) => {
+        this.pedidosPendentes = p.filter( pedido =>
+          pedido.status == StatusPedido.Pendente);
         this.loading.dismiss();
         pedidoSubscribe.unsubscribe();
       });

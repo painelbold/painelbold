@@ -22,10 +22,19 @@
     <ion-item *ngFor="let p of pedidos"
     text-wrap>
       <p>Produto: {{p.category}} - {{p.description}}</p>
+      <p>Status: {{getStatus(p.status)}}</p>
       <p>Horário do pedido: {{p.dateCreated | date:'dd/MM hh:mm'}}</p>
       <button
       ion-button
       clear
+      *ngIf="validaRecebido(p)"
+      (click)="pedidoRecebido(p)">
+      Confirmar recebimento
+      </button>
+      <button
+      ion-button
+      clear
+      *ngIf="validaRefazPedido(p)"
       (click)="refazPedido(p)">
       Refazer pedido
       </button>

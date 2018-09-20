@@ -4,10 +4,10 @@ import { map } from 'rxjs/operators';
 import { Pedido } from '../../models/pedido';
 import firebase from 'firebase';
 
-enum StatusPedido{
+export enum StatusPedido{
   Pendente,
   Encaminhado,
-  Concluido
+  Recebido
 };
 
 @Injectable()
@@ -15,6 +15,7 @@ export class PedidoProvider {
   private PATH='pedidos/';
 
   constructor(private db: AngularFireDatabase,) {
+
   }
 
   getAllPedidos(){

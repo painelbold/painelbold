@@ -25,6 +25,12 @@
       <p>Rua: {{condominio.endereco.logradouro}} - Número: {{condominio.endereco.numero}}</p>
       <p>Bairro: {{condominio.endereco.bairro}}</p>
       <p>Horário do pedido: {{pedido.dateCreated | date:'dd/MM hh:mm'}}</p>
+      <button
+      *ngIf="statusPendente"
+      ion-button
+      class="button-round-md"
+      color="bold-color"
+      (click)="encaminhar()">Encaminhar ao Fornecedor</button>
     </ion-card-content>
   </ion-card>
 </ion-content>
