@@ -1,19 +1,27 @@
-import { Component } from '@angular/core';
-import { Loading, LoadingController, NavController, NavParams } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
+import { Component } from "@angular/core";
+import {
+  Loading,
+  LoadingController,
+  NavController,
+  NavParams
+} from "ionic-angular";
+import { Observable } from "rxjs/Observable";
 
-import { ListDetailsPage } from '../list-details/list-details';
-import { Usuario } from './../../models/usuario';
-import { AgendamentoProvider } from './../../providers/agendamento/agendamento';
-import { AnnouncementProvider } from './../../providers/announcement/announcement';
-import { AuthService } from './../../providers/auth/auth-service';
-import { UserDataProvider } from './../../providers/user-data/user-data';
-import { AnnouncementPage } from './../announcement/announcement';
-import { CalendarPage } from './../calendar/calendar';
+import { ListDetailsPage } from "../list-details/list-details";
+import { Usuario } from "./../../models/usuario";
+import { AgendamentoProvider } from "./../../providers/agendamento/agendamento";
+import { AnnouncementProvider } from "./../../providers/announcement/announcement";
+import { AuthService } from "./../../providers/auth/auth-service";
+import {
+  UserDataProvider,
+  UserType
+} from "./../../providers/user-data/user-data";
+import { AnnouncementPage } from "./../announcement/announcement";
+import { CalendarPage } from "./../calendar/calendar";
 
 @Component({
-  selector: 'page-list',
-  templateUrl: 'list.html'
+  selector: "page-list",
+  templateUrl: "list.html"
 })
 export class ListPage {
   comunicados: Observable<any>;
@@ -21,26 +29,30 @@ export class ListPage {
   agendamento: Observable<any>;
   loading: Loading;
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     public navParams: NavParams,
     private udProvider: UserDataProvider,
     private aProvider: AnnouncementProvider,
     private agProvider: AgendamentoProvider,
     private loadingCtrl: LoadingController,
-    private authService: AuthService) {
-  }
+    private authService: AuthService
+  ) {}
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.createLoading("Carregando comunicados...");
-    const subscribe = this.udProvider.getUserData(this.authService.getLoggedUser().uid)
-    .subscribe((u: any) => {
-      this.loading.dismiss();
-      this.usuario = u;
-      this.comunicados = this.aProvider.getAllByEdificio(this.usuario.edificioId);
-      this.agendamento = this.agProvider.getAgendamentoUsuario(this.usuario);
+    const subscribe = this.udProvider
+      .getUserData(this.authService.getLoggedUser().uid)
+      .subscribe((u: any) => {
+        this.loading.dismiss();
+        this.usuario = u;
+        this.comunicados = this.aProvider.getAllByEdificio(
+          this.usuario.edificioId
+        );
+        this.agendamento = this.agProvider.getAgendamentoUsuario(this.usuario);
 
-      subscribe.unsubscribe();
-    });
+        subscribe.unsubscribe();
+      });
   }
 
   itemTapped(event, item) {
@@ -49,22 +61,27 @@ export class ListPage {
     });
   }
 
-  showDates(event){
+  showDates(event) {
     this.navCtrl.push(CalendarPage, {
       user: this.usuario
     });
   }
 
-  newAnnouncement(){
+  newAnnouncement() {
     this.navCtrl.push(AnnouncementPage, {
       edificioId: this.usuario.edificioId
     });
   }
 
-  createLoading(msg: string){
+  createLoading(msg: string) {
     this.loading = this.loadingCtrl.create({
-      content: msg,
+      content: msg
     });
     this.loading.present();
+  }
+
+  validaSindico() {
+    if (this.usuario.userType == UserType.Sindico) return true;
+    else return false;
   }
 }

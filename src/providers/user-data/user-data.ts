@@ -1,8 +1,15 @@
-import { map } from 'rxjs/operators';
-import { Usuario } from './../../models/usuario';
-import { Injectable, ViewChild } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { map } from 'rxjs/operators';
+
 import { AuthService } from '../auth/auth-service';
+import { Usuario } from './../../models/usuario';
+
+export enum UserType{
+  Administrador,
+  Condomino,
+  Sindico
+}
 
 @Injectable()
 export class UserDataProvider {
@@ -15,7 +22,7 @@ export class UserDataProvider {
 
   saveUserData(usuario: Usuario, key: string){
     return new Promise((resolve, reject) => {
-      if(key){
+      if(usuario.key){
         this.db.list(this.PATH)
         .update(key, usuario)
         .then(() => resolve())
@@ -23,15 +30,14 @@ export class UserDataProvider {
       }
       else{
         this.db.database
-        .ref(this.PATH + this.authService.getLoggedUser().uid)
+        .ref(this.PATH + key)
         .set({ fullName: usuario.fullName || '',
              cpf: usuario.cpf || '',
              email: usuario.email || '',
              phone: usuario.phone || '',
              unit: usuario.unit || '',
              assinante: usuario.assinante,
-             admin: usuario.admin,
-             sindico: usuario.sindico,
+             userType: usuario.userType,
              edificioId: usuario.edificioId,
              })
       }
@@ -60,7 +66,7 @@ export class UserDataProvider {
     return new Promise((resolve,reject)=>{
       this.db
       .object(this.PATH + key)
-      .update( { sindico: isSindico } )
+      .update( { userType: isSindico ? UserType.Sindico : UserType.Condomino } )
       .then(()=> resolve())
       .catch((e) => reject(e))
     })

@@ -1,6 +1,7 @@
-import { UserDataProvider } from './../../../providers/user-data/user-data';
+import { UserDataProvider, UserType } from './../../../providers/user-data/user-data';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Usuario } from '../../../models/usuario';
 
 @IonicPage()
 @Component({
@@ -8,9 +9,9 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
   templateUrl: 'list-moradores-details.html',
 })
 export class ListMoradoresDetailsPage {
-  selectedItem:any;
+  selectedItem: Usuario;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private udProvider: UserDataProvider,
     private toastController: ToastController) {
@@ -39,5 +40,10 @@ export class ListMoradoresDetailsPage {
       this.toastController.create({message: "Erro ao remover o morador como síndico.", duration:2000, position:"bottom"}).present();
       console.log("Erro ao remover morador como síndico: " + error);
     })
+  }
+
+  validaSindico(){
+    if (this.selectedItem.userType == UserType.Sindico) return true;
+    else return false;
   }
 }

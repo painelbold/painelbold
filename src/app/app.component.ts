@@ -4,7 +4,7 @@ import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, MenuController } from 'ionic-angular';
 
 import { AboutBoldPage } from '../pages/about-bold/about-bold';
 import { RegisterEspacoFisicoPage } from '../pages/admin/register-espaco-fisico/register-espaco-fisico';
@@ -24,7 +24,7 @@ import { SharePage } from './../pages/share/share';
 import { UploadFilePage } from './../pages/upload-file/upload-file';
 import { AuthService } from './../providers/auth/auth-service';
 import { SocialShareProvider } from './../providers/social-share/social-share';
-import { UserDataProvider } from './../providers/user-data/user-data';
+import { UserDataProvider, UserType } from './../providers/user-data/user-data';
 
 @Component({
   templateUrl: 'app.html'
@@ -42,6 +42,7 @@ export class MyApp {
     public splashScreen: SplashScreen,
     private authService: AuthService,
     private afAuth: AngularFireAuth,
+    private menu: MenuController,
     private udProvider: UserDataProvider,
     private socialProvider: SocialShareProvider) {
     this.initializeApp();
@@ -54,13 +55,14 @@ export class MyApp {
     this.userType = "";
     let authObserver = afAuth.authState.subscribe((user: firebase.User) => {
       if (user) {
+        this.menu.enable(true,'sideMenu');
         let userObserver = this.udProvider.getUserData(user.uid)
           .subscribe((user: any) => {
             this.loggedUser = user;
-            if (this.loggedUser.admin) {
+            if (this.loggedUser.userType == UserType.Administrador) {
               this.adminLogged();
             }
-            else if (this.loggedUser.sindico) {
+            else if (this.loggedUser.userType == UserType.Sindico) {
               this.sindicoLogged();
             }
             else {
@@ -70,6 +72,7 @@ export class MyApp {
           });
       }
       else {
+        this.menu.enable(false,'sideMenu');
         this.rootPage = LoginPage;
       }
     });

@@ -26,7 +26,7 @@
     color="bold-color"
     class="button-round-md"
     (click)="newAnnouncement()"
-    *ngIf="usuario.sindico"
+    *ngIf="validaSindico()"
     block >
       Criar Novo Comunicado
     </button>

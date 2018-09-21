@@ -12,14 +12,14 @@
 <ion-content padding>
   <ion-card>
     <ion-card-header>
-      <h3 *ngIf="selectedItem.sindico; else morador"><strong>Síndico</strong></h3>
+      <h3 *ngIf="validaSindico(); else morador"><strong>Síndico</strong></h3>
       <ng-template #morador><h3>Morador</h3></ng-template>
     </ion-card-header>
     <ion-card-content>
       <p>Nome: {{selectedItem.fullName}}</p>
       <p>E-mail: {{selectedItem.email}}</p>
     </ion-card-content>
-    <button *ngIf="!selectedItem.sindico; else sindico"
+    <button *ngIf="!validaSindico(); else sindico"
     ion-button
     class="submit-btn"
     block

@@ -7,7 +7,7 @@ import { Usuario } from '../../../models/usuario';
 import { CondominioProvider } from '../../../providers/condominio/condominio';
 import { ListMoradoresDetailsPage } from '../list-moradores-details/list-moradores-details';
 import { EdificioProvider } from './../../../providers/edificio/edificio';
-import { UserDataProvider } from './../../../providers/user-data/user-data';
+import { UserDataProvider, UserType } from './../../../providers/user-data/user-data';
 
 @IonicPage()
 @Component({
@@ -81,10 +81,10 @@ export class ListMoradoresPage {
 
   orderMoradores(users: Array<Usuario>){
     this.sindicos = users.filter(
-      u => u.sindico
+      u => u.userType == UserType.Sindico
     );
     this.users = users.filter(
-      u => !u.sindico
+      u => u.userType == UserType.Condomino
     );
   }
 }

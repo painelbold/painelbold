@@ -4,8 +4,7 @@ export class Usuario {
     email: string;
     phone: number;
     assinante: boolean;
-    admin: boolean;
-    sindico: boolean;
+    userType: number;
     key: string;
     edificioId: string;
     unit: string;

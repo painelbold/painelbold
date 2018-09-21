@@ -5,6 +5,8 @@ import { RegisterPage } from '../register/register'
 import { ListPage } from '../list/list'
 import { NgForm } from '@angular/forms';
 import { ResetPasswordPage } from '../reset-password/reset-password';
+import firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'page-login',
@@ -23,6 +25,7 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private authService: AuthService,
+    private afAuth: AngularFireAuth,
     private menu: MenuController,
     private toastController: ToastController) {
 
@@ -36,6 +39,12 @@ export class LoginPage {
     if(form.valid){
       this.authService.signIn(this.loginFields)
       .then(()=> {
+        if(this.loginFields.stayConnected){
+          this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+        }
+        else{
+          this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+        }
         this.menu.enable(true, 'sideMenu');
         this.navCtrl.setRoot(ListPage);
       })
