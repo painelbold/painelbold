@@ -31,7 +31,7 @@ export class RegisterEspacoFisicoPage {
       this.ef = new EspacoFisico();
       this.user = this.navParams.data.user;
 
-      if(this.user.sindico){
+      if(this.user){
         this.edificioId = this.user.edificioId;
       }
       else{
