@@ -21,11 +21,11 @@
                 <ion-item>
                     <ion-label floating>CPF</ion-label>
                     <ion-input
-                    type="number"
-                    pattern="[0-9]*"
+                    type="text"
                     name="document"
                     [(ngModel)]="usuario.cpf"
                     #document="ngModel"
+                    [brmasker]="{mask:'000.000.000-00', len:14}"
                     required></ion-input>
                 </ion-item>
                 <ion-item>
@@ -70,8 +70,8 @@
                     <ion-input
                     type="tel"
                     name="phone"
-                    pattern="[0-9]*"
                     [(ngModel)]="usuario.phone"
+                    [brmasker]="{phone: true}"
                     #phone="ngModel"></ion-input>
                 </ion-item>
                 <ion-item>

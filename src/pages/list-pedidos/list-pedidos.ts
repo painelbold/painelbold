@@ -41,7 +41,10 @@ export class ListPedidosPage {
     let pedidoSubscribe = this.pedidoProvider.getAllPedidos()
       .subscribe((p: Array<Pedido>) => {
         this.pedidosPendentes = p.filter( pedido =>
-          pedido.status == StatusPedido.Pendente);
+          pedido.status == StatusPedido.Pendente)
+          .sort((a,b) =>
+            a.dateCreated <= b.dateCreated ? -1 : 1
+          );
         this.loading.dismiss();
         pedidoSubscribe.unsubscribe();
       });

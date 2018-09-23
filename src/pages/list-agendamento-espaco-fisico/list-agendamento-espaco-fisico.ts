@@ -77,7 +77,9 @@ export class ListAgendamentoEspacoFisicoPage {
     this.createLoading("Carregando espaços físicos...");
     let efSubscribe = this.efProvider.getAllEspacosEdificio(edificioKey)
     .subscribe((ef: any) => {
-      this.espacosFisicos = ef;
+      this.espacosFisicos = ef.sort((a,b) =>
+        a.dateCreated <= b.dateCreated ? -1 : 1
+      );
       this.loading.dismiss();
       efSubscribe.unsubscribe();
     });

@@ -10,6 +10,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { BrMaskerModule } from 'brmasker-ionic-3';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { AboutBoldPageModule } from '../pages/about-bold/about-bold.module';
@@ -24,6 +25,9 @@ import { ListMoradoresPageModule } from '../pages/admin/list-moradores/list-mora
 import { AgendamentoEspacoFisicoPageModule } from '../pages/agendamento-espaco-fisico/agendamento-espaco-fisico.module';
 import { AnnouncementPageModule } from '../pages/announcement/announcement.module';
 import { CalendarPageModule } from '../pages/calendar/calendar.module';
+import {
+  ListAgendamentoEspacoFisicoDetailPageModule,
+} from '../pages/list-agendamento-espaco-fisico-detail/list-agendamento-espaco-fisico-detail.module';
 import {
   ListAgendamentoEspacoFisicoPageModule,
 } from '../pages/list-agendamento-espaco-fisico/list-agendamento-espaco-fisico.module';
@@ -40,7 +44,7 @@ import { RegisterCondominioPageModule } from '../pages/register-condominio/regis
 import { RegisterEdificioPageModule } from '../pages/register-edificio/register-edificio.module';
 import { RegisterObraPageModule } from '../pages/register-obra/register-obra.module';
 import { RegisterPedidoPageModule } from '../pages/register-pedido/register-pedido.module';
-import { RegisterPage } from '../pages/register/register';
+import { RegisterPageModule } from '../pages/register/register.module';
 import { ResetPasswordPageModule } from '../pages/reset-password/reset-password.module';
 import { SharePageModule } from '../pages/share/share.module';
 import { TermsOfServicePageModule } from '../pages/terms-of-service/terms-of-service.module';
@@ -64,7 +68,6 @@ import { ListPedidosPageModule } from './../pages/list-pedidos/list-pedidos.modu
 import { UploadFilePageModule } from './../pages/upload-file/upload-file.module';
 import { ReversePipe } from './../pipes/reverse/reverse';
 import { MyApp } from './app.component';
-import { ListAgendamentoEspacoFisicoDetailPageModule } from '../pages/list-agendamento-espaco-fisico-detail/list-agendamento-espaco-fisico-detail.module';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -81,7 +84,6 @@ export const firebaseConfig = {
     ListPage,
     LoginPage,
     ListDetailsPage,
-    RegisterPage,
     ReversePipe,
   ],
   imports: [
@@ -126,7 +128,9 @@ export const firebaseConfig = {
     MyPedidosListPageModule,
     ListObrasDetailPageModule,
     ListAgendamentoEspacoFisicoPageModule,
-    ListAgendamentoEspacoFisicoDetailPageModule
+    ListAgendamentoEspacoFisicoDetailPageModule,
+    RegisterPageModule,
+    BrMaskerModule
   ],
   exports: [
     ReversePipe
@@ -136,7 +140,6 @@ export const firebaseConfig = {
     MyApp,
     ListPage,
     LoginPage,
-    RegisterPage,
     ListDetailsPage
   ],
   providers: [

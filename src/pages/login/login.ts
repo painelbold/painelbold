@@ -16,7 +16,7 @@ export class LoginPage {
 
   selectedItem: any;
 
-  loginFields = { email: '', password: '', stayConnected: '' };
+  loginFields = { email: '', password: '', stayConnected: true };
 
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;

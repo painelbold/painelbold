@@ -42,7 +42,9 @@ export class ListObrasPage {
     let obraSubscribe = this.obraProvider.getAllObras(this.user.edificioId)
     .subscribe((obras: any) => {
       this.loading.dismiss();
-      this.obras = obras;
+      this.obras = obras.sort((a,b) =>
+        a.dateCreated <= b.dateCreated ? -1 : 1
+      );
       obraSubscribe.unsubscribe();
     });
   }
