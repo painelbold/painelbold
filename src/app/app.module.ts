@@ -2,6 +2,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DatePicker } from '@ionic-native/date-picker';
 import { FileChooser } from '@ionic-native/file-chooser';
+import { FilePath } from '@ionic-native/file-path';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -23,6 +24,10 @@ import { ListMoradoresPageModule } from '../pages/admin/list-moradores/list-mora
 import { AgendamentoEspacoFisicoPageModule } from '../pages/agendamento-espaco-fisico/agendamento-espaco-fisico.module';
 import { AnnouncementPageModule } from '../pages/announcement/announcement.module';
 import { CalendarPageModule } from '../pages/calendar/calendar.module';
+import {
+  ListAgendamentoEspacoFisicoPageModule,
+} from '../pages/list-agendamento-espaco-fisico/list-agendamento-espaco-fisico.module';
+import { ListObrasDetailPageModule } from '../pages/list-obras-detail/list-obras-detail.module';
 import { ListObrasPageModule } from '../pages/list-obras/list-obras.module';
 import { ListPedidosDetailPageModule } from '../pages/list-pedidos-detail/list-pedidos-detail.module';
 import { ListPage } from '../pages/list/list';
@@ -49,6 +54,8 @@ import { EdificioProvider } from '../providers/edificio/edificio';
 import { EspacoFisicoProvider } from '../providers/espaco-fisico/espaco-fisico';
 import { ObraProvider } from '../providers/obra/obra';
 import { PedidoProvider } from '../providers/pedido/pedido';
+import { SocialShareProvider } from '../providers/social-share/social-share';
+import { UploadDataProvider } from '../providers/upload-data/upload-data';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { AboutPageModule } from './../pages/about/about.module';
 import { RegisterEspacoFisicoPageModule } from './../pages/admin/register-espaco-fisico/register-espaco-fisico.module';
@@ -57,10 +64,7 @@ import { ListPedidosPageModule } from './../pages/list-pedidos/list-pedidos.modu
 import { UploadFilePageModule } from './../pages/upload-file/upload-file.module';
 import { ReversePipe } from './../pipes/reverse/reverse';
 import { MyApp } from './app.component';
-import { ListObrasDetailPageModule } from '../pages/list-obras-detail/list-obras-detail.module';
-import { UploadDataProvider } from '../providers/upload-data/upload-data';
-import { FilePath } from '@ionic-native/file-path';
-import { SocialShareProvider } from '../providers/social-share/social-share';
+import { ListAgendamentoEspacoFisicoDetailPageModule } from '../pages/list-agendamento-espaco-fisico-detail/list-agendamento-espaco-fisico-detail.module';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDxLEmSXjV9XSR_oGUqMOLIbSvNgiFTtp4",
@@ -120,7 +124,9 @@ export const firebaseConfig = {
     ListPedidosPageModule,
     MyPedidosPageModule,
     MyPedidosListPageModule,
-    ListObrasDetailPageModule
+    ListObrasDetailPageModule,
+    ListAgendamentoEspacoFisicoPageModule,
+    ListAgendamentoEspacoFisicoDetailPageModule
   ],
   exports: [
     ReversePipe

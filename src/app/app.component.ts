@@ -25,6 +25,7 @@ import { UploadFilePage } from './../pages/upload-file/upload-file';
 import { AuthService } from './../providers/auth/auth-service';
 import { SocialShareProvider } from './../providers/social-share/social-share';
 import { UserDataProvider, UserType } from './../providers/user-data/user-data';
+import { ListAgendamentoEspacoFisicoPage } from '../pages/list-agendamento-espaco-fisico/list-agendamento-espaco-fisico';
 
 @Component({
   templateUrl: 'app.html'
@@ -86,7 +87,7 @@ export class MyApp {
       { title: 'Agendamento de Espaço', component: AgendamentoEspacoFisicoPage },
       { title: 'Cadastrar Obra', component: RegisterObraPage },
       { title: 'Pedidos <sup>BETA</sup>', component: MyPedidosPage },
-      { title: 'Indicar', component: SharePage },
+      { title: 'Indicar via WhatsApp', component: SharePage },
       { title: 'Sobre o Painel Bold', component: AboutPage },
       { title: 'Sobre a Bold Telecom', component: AboutBoldPage },
       { title: 'Política de Privacidade', component: PrivacyPage },
@@ -103,7 +104,8 @@ export class MyApp {
       { title: 'Gerenciar Espaços Físicos', component: RegisterEspacoFisicoPage },
       { title: 'Gerenciar Arquivos', component: UploadFilePage },
       { title: 'Visualizar Obras', component: ListObrasPage },
-      { title: 'Indicar', component: SharePage },
+      { title: 'Listar Agendamentos de Espaços', component: ListAgendamentoEspacoFisicoPage },
+      { title: 'Indicar via WhatsApp', component: SharePage },
       { title: 'Sobre o Painel Bold', component: AboutPage },
       { title: 'Sobre a Bold Telecom', component: AboutBoldPage },
       { title: 'Política de Privacidade', component: PrivacyPage },

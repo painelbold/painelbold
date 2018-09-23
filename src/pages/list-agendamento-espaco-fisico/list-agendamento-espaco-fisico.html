@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <img src="assets/logotipo.png"/>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item-group>
+    <h5>Agendamentos de Espaços Físicos</h5>
+    <ion-item>
+        <ion-label>Espaço Físico:</ion-label>
+          <ion-select
+          name="espacoFisicoKey"
+          [(ngModel)]="espacoFisicoKey"
+          condominioId="ngModel"
+          (ionChange)="espacoFisicoChange()">
+            <!-- <ion-option
+            name="espacoFisicoKey"
+            [value]="0">
+            Todos
+            </ion-option> -->
+            <ion-option
+            name="espacoFisicoKey"
+            *ngFor="let ef of espacosFisicos"
+            [value]="ef">
+              {{ef.name}}
+            </ion-option>
+          </ion-select>
+      </ion-item>
+  </ion-item-group>
+  <ion-item-group *ngIf="espacoFisicoKey">
+    <hr>
+    <ion-item
+    *ngFor="let aef of agendamentosEf"
+    text-wrap
+    (click)="openDetails(aef)">
+    <p>Dia: {{aef.date | date:"dd/MM"}}</p>
+    <p>Período: {{aef.startTime}} até {{aef.endTime}}</p>
+    </ion-item>
+  </ion-item-group>
+
+</ion-content>

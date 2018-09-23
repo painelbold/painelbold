@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <img src="assets/logotipo.png"/>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h5>Agendamento</h5>
+  <ion-card>
+    <ion-card-header>
+      <strong>Espaço: {{espacoFisico.name}}</strong>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Dia do agendamento: {{agendamento.date | date: "dd/MM"}}</p>
+      <p>Período: {{agendamento.startTime}} até {{agendamento.endTime}}</p>
+      <hr>
+      <strong><p>Contato</p></strong>
+      <p>Nome do condômino: {{user.fullName}}</p>
+      <p>Unidade: {{user.unit}}</p>
+      <p>Telefone: {{user.phone}}</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

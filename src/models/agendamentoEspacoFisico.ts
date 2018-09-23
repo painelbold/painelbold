@@ -5,6 +5,7 @@ export class AgendamentoEspacoFisico{
   public userKey: string;
   public edificioKey: string;
   public espacoFisicoKey: string;
+  public date: Date;
   public startTime: Time;
   public endTime: Time;
   public dateCreated: any;
